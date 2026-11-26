@@ -60,11 +60,11 @@ export default function BreathingBag() {
 
       <section id="overview" className="case-sec">
         <h2 className="display">overview</h2>
+        <HighlightBlock>
+          <p className="bag-q display">{marks(b.question).nodes}</p>
+        </HighlightBlock>
         <div className="case-two">
-          <HighlightBlock>
-            <p className="bag-q display">{marks(b.question).nodes}</p>
-            <p className="case-lead">{b.intro}</p>
-          </HighlightBlock>
+          <p className="case-lead">{b.intro}</p>
           <HighlightBlock className="pop-block">
             <div className="case-stats vertical">
               {b.stats.map(([big, small]) => (

@@ -1,7 +1,7 @@
 /* Breathing Bag page extras */
 .bag-hero-plate { aspect-ratio: auto; }
 .bag-hero-plate svg { width: 100%; height: auto; }
-.case .bag-q { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1; margin-bottom: 16px; text-transform: none; }
+.case .bag-q { font-size: clamp(1.8rem, 5.2vw, 4.4rem); line-height: 1; margin: 28px 0 24px; text-transform: none; white-space: nowrap; }
 
 /* dashboard demo */
 .bd { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 28px; align-items: stretch;
