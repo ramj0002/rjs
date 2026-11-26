@@ -28,6 +28,26 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 .spaced { letter-spacing: 0.4em; font-size: 0.85rem; }
 
+/* ---------- project colours (from the original site) ----------
+   --c is the project colour, --ci a deeper shade of it for text on white. */
+.t-pink    { --c: #fb4bb6; --ci: #d92a92; }
+.t-pink2   { --c: #f335a7; --ci: #cf1a88; }
+.t-teal    { --c: #5dc1cf; --ci: #1e93a6; }
+.t-purple  { --c: #9f49be; --ci: #8a35ab; }
+.t-yellow  { --c: #f1bd04; --ci: #a88400; }
+.t-yellow2 { --c: #cca602; --ci: #9a7d00; }
+.t-red     { --c: #ff3333; --ci: #e01f1f; }
+
+/* A project page takes on its colour everywhere, nav included. */
+html:has(.page-theme.t-pink)    { --blue: #fb4bb6; --ink: #d92a92; }
+html:has(.page-theme.t-pink2)   { --blue: #f335a7; --ink: #cf1a88; }
+html:has(.page-theme.t-teal)    { --blue: #5dc1cf; --ink: #1e93a6; }
+html:has(.page-theme.t-purple)  { --blue: #9f49be; --ink: #8a35ab; }
+html:has(.page-theme.t-yellow)  { --blue: #f1bd04; --ink: #a88400; }
+html:has(.page-theme.t-yellow2) { --blue: #cca602; --ink: #9a7d00; }
+html:has(.page-theme.t-red)     { --blue: #ff3333; --ink: #e01f1f; }
+body { transition: color 0.3s; }
+
 /* ---------- nav ---------- */
 .nav {
   position: fixed; inset: 0 0 auto 0; z-index: 50;
@@ -72,28 +92,30 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   padding: 6px 14px; font-size: 1rem; white-space: nowrap; flex: none;
   transition: background 0.2s, color 0.2s;
 }
-.filters button:hover { background: rgba(0, 12, 237, 0.08); }
+.filters button:hover { background: color-mix(in srgb, var(--ink) 8%, transparent); }
 .filters button.on { background: var(--ink); color: var(--white); }
 
 .filters .n { margin-left: 6px; opacity: 0.55; font-size: 0.85em; }
 
 /* ---------- project cards ---------- */
-.work { --accent: var(--blue); --soft: #6f75f2; --panel: #fff; }
+.work { --accent: var(--blue); --soft: color-mix(in srgb, var(--blue) 65%, white); --panel: #fff; }
 .cards { display: grid; grid-template-columns: minmax(0, 1fr); grid-auto-rows: 1fr; gap: 28px; }
 .card {
   border: 2px solid var(--ink); background: var(--panel);
   display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   transition: transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s;
 }
-.card { cursor: pointer; }
-.card:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 var(--blue); }
+.card { cursor: pointer; color: var(--ink); transition: transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s, color 0.25s, border-color 0.25s; }
+/* Hover: the card switches to its project's colour */
+.card:hover { --ink: var(--ci); --blue: var(--c); --accent: var(--c); --soft: color-mix(in srgb, var(--c) 65%, white); border-color: var(--ci); }
+.card:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 var(--c); }
 .card:hover .more { color: var(--blue); }
 .card:hover .more span { transform: translateX(6px); }
 .card.ghost { visibility: hidden; pointer-events: none; }
 .plate {
   position: relative; border-right: 2px solid var(--ink); color: var(--ink);
   min-height: 380px; overflow: hidden;
-  background: radial-gradient(circle at 1px 1px, rgba(0, 12, 237, 0.16) 1.2px, transparent 1.6px) 0 0 / 14px 14px;
+  background: radial-gradient(circle at 1px 1px, color-mix(in srgb, var(--ink) 16%, transparent) 1.2px, transparent 1.6px) 0 0 / 14px 14px;
 }
 .plate-svg { position: absolute; inset: 0; padding: 20px; }
 .plate-svg svg { width: 100%; height: 100%; display: block; }
@@ -112,7 +134,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   gap: 0; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); margin-bottom: 16px;
 }
 .facts div { padding: 10px 12px 10px 0; }
-.facts div + div { border-left: 1px solid rgba(0, 12, 237, 0.3); padding-left: 12px; }
+.facts div + div { border-left: 1px solid color-mix(in srgb, var(--ink) 30%, transparent); padding-left: 12px; }
 .facts b { display: block; font-size: 1.9rem; line-height: 1.05; white-space: nowrap; }
 .facts span { display: block; font-size: 0.92rem; font-style: italic; line-height: 1.3; margin-top: 2px; }
 .tools { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }

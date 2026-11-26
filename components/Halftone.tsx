@@ -32,7 +32,8 @@ export default function Halftone({
       frame = 0;
       ctx.clearRect(0, 0, w, h);
       if (background !== "transparent") { ctx.fillStyle = background; ctx.fillRect(0, 0, w, h); }
-      ctx.fillStyle = color;
+      // "currentColor" follows the CSS text colour (e.g. a project's theme)
+      ctx.fillStyle = color === "currentColor" ? getComputedStyle(canvas).color : color;
       const R = Math.max(60, w * 0.18);
       for (let j = 0; j < rows; j++) {
         for (let i = 0; i < cols; i++) {

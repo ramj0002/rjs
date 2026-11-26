@@ -49,7 +49,7 @@ function Stats({ items, className = "" }: { items: [string, string][]; className
 
 export default function KtmbCase() {
   return (
-    <main className="case">
+    <main className="case page-theme t-pink">
       <header className="case-hero">
         <div className="case-hero-text">
           <p className="case-kicker"><em>case study · Product / UX</em></p>

@@ -3,6 +3,9 @@
 // image instead, put it in /public/work/ and set `image: "/work/your-file.jpg"`;
 // it gets the halftone treatment automatically.
 
+// Colours carried over from the original site (see app/globals.css for the values).
+export type Theme = "pink" | "pink2" | "teal" | "purple" | "yellow" | "yellow2" | "red";
+
 export type Category = "Product / UX" | "AI / Data" | "Creative Tech" | "Spatial / 3D" | "Visual / Artwork";
 
 export const categories: Category[] = [
@@ -22,6 +25,7 @@ export type Project = {
   tools: string[];
   link: string;
   linkLabel: string;
+  theme: Theme;          // colour from the old site, used on hover and on the project page
   image?: string;
 };
 
@@ -30,6 +34,7 @@ const OLD = "https://rjsportfolio.framer.website/";
 export const projects: Project[] = [
   {
     id: "ktmb",
+    theme: "pink",
     title: "Redesigning the KTMB Mobile App",
     category: "Product / UX",
     summary:
@@ -41,6 +46,7 @@ export const projects: Project[] = [
   },
   {
     id: "orchard",
+    theme: "teal",
     title: "Glow of Orchard: thermal retail analytics",
     category: "Creative Tech",
     summary:
@@ -52,6 +58,7 @@ export const projects: Project[] = [
   },
   {
     id: "bag",
+    theme: "teal",
     title: "Breathing Bag",
     category: "Creative Tech",
     summary:
@@ -63,6 +70,7 @@ export const projects: Project[] = [
   },
   {
     id: "fewshot",
+    theme: "purple",
     title: "Few-shot medical image classification",
     category: "AI / Data",
     summary:
@@ -74,6 +82,7 @@ export const projects: Project[] = [
   },
   {
     id: "sarcasm",
+    theme: "purple",
     title: "Sarcasm detection",
     category: "AI / Data",
     summary:
@@ -85,6 +94,7 @@ export const projects: Project[] = [
   },
   {
     id: "xyr",
+    theme: "pink2",
     title: "XYR Fashion Store",
     category: "Product / UX",
     summary:
@@ -96,6 +106,7 @@ export const projects: Project[] = [
   },
   {
     id: "renders",
+    theme: "yellow",
     title: "3D rendered visualisations",
     category: "Spatial / 3D",
     summary:
@@ -107,6 +118,7 @@ export const projects: Project[] = [
   },
   {
     id: "tech",
+    theme: "yellow2",
     title: "Technical drawings",
     category: "Spatial / 3D",
     summary:
@@ -118,6 +130,7 @@ export const projects: Project[] = [
   },
   {
     id: "zine",
+    theme: "red",
     title: "ਦ੍ਰਿਸ਼ਟੀਕੋਣ, a fashion zine",
     category: "Visual / Artwork",
     summary:
@@ -129,6 +142,7 @@ export const projects: Project[] = [
   },
   {
     id: "drawings",
+    theme: "red",
     title: "Digital illustration",
     category: "Visual / Artwork",
     summary:

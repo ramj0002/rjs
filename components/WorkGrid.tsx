@@ -51,7 +51,7 @@ export default function WorkGrid() {
           return (
             <article
               key={p.id}
-              className={`card${visible ? "" : " ghost"}`}
+              className={`card t-${p.theme}${visible ? "" : " ghost"}`}
               style={pin ? { gridArea: "1 / 1" } : undefined}
               aria-hidden={!visible}
               inert={!visible}
@@ -59,7 +59,7 @@ export default function WorkGrid() {
             >
               <div className="plate">
                 {p.image ? (
-                  <Halftone src={p.image} alt={p.title} color="#000CED" cell={6} />
+                  <Halftone src={p.image} alt={p.title} color="currentColor" cell={6} />
                 ) : p.id === "bag" ? (
                   <div className="plate-svg"><BagPlate /></div>
                 ) : (

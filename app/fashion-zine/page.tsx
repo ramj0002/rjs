@@ -11,7 +11,7 @@ export const metadata: Metadata = { title: `fashion zine — ${site.title}` };
 
 export default function FashionZine() {
   return (
-    <main className="zine-page">
+    <main className="zine-page page-theme t-red">
       <header className="zine-band">
         <h1 className="display">{zine.heading}</h1>
         <p>{zine.subheading}</p>

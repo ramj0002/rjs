@@ -1,7 +1,7 @@
 /* Fashion zine page: red-on-white duotone, like the zine itself. */
 .zine-page {
-  --red: #f0402f;
-  --red-ink: #ff1a00;
+  --red: #ff3333;
+  --red-ink: #e01f1f;
   --gurmukhi: "Noto Serif Gurmukhi", serif;
   --texturina: "Texturina", serif;
   color: var(--red-ink);

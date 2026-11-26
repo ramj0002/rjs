@@ -40,8 +40,11 @@ export default function ThermalDemo() {
 
     const raw = new Float32Array(N * N);
     const mine = new Float32Array(N * N); // share of each reading that is the cursor's heat
-    const BLUE = [0, 12, 237], RED = [230, 40, 30];
-    const mix = (k: number) => `rgb(${BLUE.map((b, i) => Math.round(b + (RED[i] - b) * k)).join(",")})`;
+    // The shoppers use the page's text colour (so the demo follows the project colour);
+    // the visitor's own heat is always red.
+    let BASE = [0, 12, 237];
+    const RED = [230, 40, 30];
+    const mix = (k: number) => `rgb(${BASE.map((b, i) => Math.round(b + (RED[i] - b) * k)).join(",")})`;
     const draw = (now: number) => {
       raf = requestAnimationFrame(draw);
       if (!visible) return;
@@ -56,12 +59,15 @@ export default function ThermalDemo() {
 
       ctx.clearRect(0, 0, w, h);
       const x0 = (w - (panel * 2 + gap)) / 2;
-      const ink = "#000CED";
+      const ink = getComputedStyle(canvas).color;
+      const m = ink.match(/\d+/g);
+      if (m) BASE = m.slice(0, 3).map(Number);
 
       // Left panel: raw 8×8, one big dot per pixel.
       const c1 = panel / N;
-      ctx.strokeStyle = "rgba(0,12,237,.25)"; ctx.lineWidth = 1;
+      ctx.strokeStyle = ink; ctx.globalAlpha = 0.25; ctx.lineWidth = 1;
       ctx.strokeRect(x0 + 0.5, 0.5, panel - 1, panel - 1);
+      ctx.globalAlpha = 1;
       ctx.fillStyle = ink;
       for (let j = 0; j < N; j++)
         for (let i = 0; i < N; i++) {
@@ -76,7 +82,7 @@ export default function ThermalDemo() {
       // Right panel: bilinear interpolation of the same 8×8 reading.
       const x1 = x0 + panel + gap;
       const c2 = panel / UP;
-      ctx.strokeRect(x1 + 0.5, 0.5, panel - 1, panel - 1);
+      ctx.globalAlpha = 0.25; ctx.strokeRect(x1 + 0.5, 0.5, panel - 1, panel - 1); ctx.globalAlpha = 1;
       for (let j = 0; j < UP; j++)
         for (let i = 0; i < UP; i++) {
           const gx = Math.min(N - 1.001, Math.max(0, ((i + 0.5) / UP) * N - 0.5));

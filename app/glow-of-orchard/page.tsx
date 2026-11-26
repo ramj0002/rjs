@@ -29,7 +29,7 @@ const sections = [
 
 export default function GlowOfOrchard() {
   return (
-    <main className="case">
+    <main className="case page-theme t-teal">
       <header className="case-hero">
         <div className="case-hero-text">
           <p className="case-kicker"><em>case study · Creative Tech</em></p>
