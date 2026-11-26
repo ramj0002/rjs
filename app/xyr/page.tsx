@@ -77,12 +77,12 @@ export default function Xyr() {
             ))}
           </ol>
         </HighlightBlock>
-        <div className="xyr-screens" style={{ marginTop: 36 }}>
+        <div className="case-grid-1 case-big xyr-screens" style={{ marginTop: 36 }}>
           {x.customer.map((im) => <CaseImage key={im.src} {...im} />)}
         </div>
         {hasVideo ? (
           <figure className="case-img xyr-video">
-            <video src={x.video} autoPlay muted loop playsInline />
+            <video src={x.video} poster="/xyr/walk-the-future.jpg" autoPlay muted loop playsInline preload="metadata" />
             <figcaption>Walk the Future</figcaption>
           </figure>
         ) : null}
@@ -99,7 +99,7 @@ export default function Xyr() {
         <h2 className="display">all-or-nothing checkout</h2>
         <p className="case-lead">{x.checkout.intro}</p>
         <CheckoutDemo />
-        <div className="case-grid-2" style={{ marginTop: 36 }}>
+        <div className="case-grid-1 case-big xyr-big" style={{ marginTop: 36 }}>
           {x.email.map((im) => <CaseImage key={im.src} {...im} />)}
         </div>
       </section>
@@ -116,7 +116,7 @@ export default function Xyr() {
             </div>
           ))}
         </div>
-        <div className="case-grid-2 xyr-admin-imgs" style={{ marginTop: 32 }}>
+        <div className="case-grid-1 case-big xyr-big" style={{ marginTop: 32 }}>
           {x.adminImages.map((im) => <CaseImage key={im.src} {...im} />)}
         </div>
       </section>
