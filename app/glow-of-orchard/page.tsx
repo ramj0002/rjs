@@ -5,6 +5,7 @@ import "./orchard.css";
 import CaseImage from "@/components/CaseImage";
 import HighlightBlock from "@/components/Highlight";
 import ThermalDemo from "@/components/ThermalDemo";
+import SensorCompare from "@/components/SensorCompare";
 import { plates } from "@/components/plates";
 import { orchard as o } from "@/content/orchard";
 import { site } from "@/content/site";
@@ -58,16 +59,8 @@ export default function GlowOfOrchard() {
         </div>
 
         <h3 className="display case-h3">the problem</h3>
-        <div className="orch-problems">
-          <div>
-            <p className="label">camera systems</p>
-            <ul className="case-list">{o.problems.cameras.map((t) => <li key={t}>{t}</li>)}</ul>
-          </div>
-          <div>
-            <p className="label">traditional sensors</p>
-            <ul className="case-list">{o.problems.sensors.map((t) => <li key={t}>{t}</li>)}</ul>
-          </div>
-        </div>
+        <p className="case-lead">Stores want to know how people move, but the usual options each fall short somewhere.</p>
+        <SensorCompare />
         <blockquote className="orch-hmw">“{o.hmw}”</blockquote>
 
         <h3 className="display case-h3">the solution</h3>
