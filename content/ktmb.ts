@@ -209,12 +209,4 @@ export const ktmb = {
       text: "The best fix in Round 1 was deleting the duplicate cabin menu. Every element competes for attention, so cutting one is a real design decision.",
     },
   ],
-  next: [
-    "Personalised recommendations",
-    "Clearer train comparison",
-    "Real-time booking help",
-    "Advanced filters",
-    "A refined design system and stronger branding",
-    "Faster performance and live updates",
-  ],
 };

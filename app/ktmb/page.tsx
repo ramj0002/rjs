@@ -143,19 +143,21 @@ export default function KtmbCase() {
         <ul className="case-list">{k.ideation.buildList.map((t) => <li key={t}>{t}</li>)}</ul>
 
         <h3 className="display case-h3">9 steps became 5</h3>
-        <p className="label">before: 9 steps</p>
-        <ol className="case-flow old">
-          {k.oldFlow.map((s, i) => (
-            <li key={s}><span className="display">{s}</span>{i < k.oldFlow.length - 1 && <i aria-hidden>→</i>}</li>
-          ))}
-        </ol>
-        <p className="label">after: 5 steps</p>
-        <ol className="case-flow">
-          {k.flow.map((s, i) => (
-            <li key={s}><span className="display">{s}</span>{i < k.flow.length - 1 && <i aria-hidden>→</i>}</li>
-          ))}
-        </ol>
-        <p>Every screen has the same progress bar at the top and a booking summary at the bottom, so you always know where you are and what you picked.</p>
+        <div className="case-flows">
+          <p className="label">before: 9 steps</p>
+          <ol className="case-flow old">
+            {k.oldFlow.map((s, i) => (
+              <li key={s}><span className="display">{s}</span>{i < k.oldFlow.length - 1 && <i aria-hidden>→</i>}</li>
+            ))}
+          </ol>
+          <p className="label">after: 5 steps</p>
+          <ol className="case-flow">
+            {k.flow.map((s, i) => (
+              <li key={s}><span className="display">{s}</span>{i < k.flow.length - 1 && <i aria-hidden>→</i>}</li>
+            ))}
+          </ol>
+          <p>Every screen has the same progress bar at the top and a booking summary at the bottom, so you always know where you are and what you picked.</p>
+        </div>
         <div className="case-rows case-rows-big">
           {k.decisions.map((d, i) => (
             <div key={d.title}>
@@ -229,8 +231,6 @@ export default function KtmbCase() {
             </div>
           ))}
         </div>
-        <h3 className="display case-h3">what I’d do next</h3>
-        <ul className="tools">{k.next.map((t) => <li key={t}>{t}</li>)}</ul>
       </section>
 
       <footer className="case-foot">

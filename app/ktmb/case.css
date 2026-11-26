@@ -56,7 +56,7 @@ html:has(.case) { scroll-padding-top: 120px; }
 .case-methods { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border: 2px solid var(--ink); margin: 24px 0; }
 .case-methods > div { padding: 18px; }
 .case-methods > div + div { border-left: 2px solid var(--ink); }
-.case-methods b { display: block; font-size: 2.6rem; line-height: 1; }
+.case-methods b { display: block; font-size: clamp(3.4rem, 5.4vw, 4.8rem); line-height: 1; margin-bottom: 4px; }
 .case-methods .m-label { display: block; margin-bottom: 8px; }
 .case-methods p { font-size: 1rem; margin: 0; }
 .case-note { border-left: 4px solid var(--blue); padding-left: 14px; }
@@ -140,10 +140,12 @@ html:has(.case) { scroll-padding-top: 120px; }
   color: inherit; padding: 0 0.12em; margin: 0 -0.04em;
   background: linear-gradient(transparent 12%, rgba(46, 55, 254, 0.2) 12%, rgba(46, 55, 254, 0.2) 92%, transparent 92%) no-repeat 0 0 / 0% 100%;
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
-  transition: background-size 0.7s cubic-bezier(.6, 0, .3, 1);
-  transition-delay: calc(var(--i) * 0.55s + 0.15s);
+  transition: background-size 0s; /* clears instantly when out of view */
 }
-.hl-block.on .hl { background-size: 100% 100%; }
+.hl-block.on .hl {
+  background-size: 100% 100%;
+  transition: background-size 0.7s cubic-bezier(.6, 0, .3, 1) calc(var(--i) * 0.55s + 0.15s);
+}
 @media (prefers-reduced-motion: reduce) { .hl { transition: none; background-size: 100% 100%; } }
 .case blockquote.no-quote { visibility: hidden; }
 
@@ -174,3 +176,15 @@ html:has(.case) { scroll-padding-top: 120px; }
 .case-two .case-stats.vertical div { align-items: center; }
 .case-two .case-stats.vertical b { min-width: 0; width: 3.1em; flex: none; }
 .case-two .case-stats.vertical div > span { font-size: clamp(1.3rem, 2vw, 1.6rem); line-height: 1.2; }
+
+/* 9 → 5 flows: centred; the 9 old steps stay on one line in smaller text */
+.case-flows { text-align: center; }
+.case-flows .label { text-align: center; }
+.case-flows .case-flow { justify-content: center; }
+.case-flows > p:last-child { margin-left: auto; margin-right: auto; max-width: 62ch; }
+.case-flow.old { flex-wrap: nowrap; gap: 6px; overflow-x: auto; scrollbar-width: none; justify-content: center; }
+.case-flow.old::-webkit-scrollbar { display: none; }
+.case-flow.old li { gap: 6px; flex: none; }
+.case-flow.old span { font-size: 0.92rem; padding: 3px 10px; white-space: nowrap; }
+.case-flow.old i { font-size: 1rem; }
+@media (max-width: 1100px) { .case-flow.old { justify-content: flex-start; } }
