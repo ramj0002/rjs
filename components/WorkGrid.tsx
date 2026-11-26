@@ -22,6 +22,10 @@ export default function WorkGrid() {
   };
   const shown = (p: (typeof projects)[number]) => filter === "All" || p.category === filter;
   const firstShown = projects.find(shown);
+  // Each category's colour from the original site ("All" stays blue).
+  const themeOf: Record<Category, string> = {
+    "Product / UX": "pink", "AI / Data": "purple", "Creative Tech": "teal", "Spatial / 3D": "yellow", "Visual / Artwork": "red",
+  };
   const count = (c: Category | "All") => (c === "All" ? projects.length : projects.filter((p) => p.category === c).length);
 
   return (
@@ -30,7 +34,7 @@ export default function WorkGrid() {
         <h2 className="display">work</h2>
         <div className="filters" role="toolbar" aria-label="Filter projects">
           {(["All", ...categories] as const).map((c) => (
-            <button key={c} aria-pressed={filter === c} className={filter === c ? "on" : ""} onClick={() => setFilter(c)}>
+            <button key={c} aria-pressed={filter === c} className={`${c === "All" ? "" : `t-${themeOf[c]}`}${filter === c ? " on" : ""}`} onClick={() => setFilter(c)}>
               {c}
               <span className="n">{count(c)}</span>
             </button>
