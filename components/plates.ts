@@ -25,8 +25,8 @@ export const plates: Record<string, () => string> = {
 ${D(125, 244, "1.6 ★", 'class="a-pop-a" text-anchor="middle" font-size="26" fill="var(--accent)"')}
 <path d="M238 80 H312" stroke="var(--accent)" stroke-width="5"/><circle cx="238" cy="80" r="6" fill="var(--panel)" stroke="var(--accent)" stroke-width="3"/><circle cx="312" cy="80" r="6" fill="var(--accent)" stroke="var(--accent)"/>
 <circle class="a-travel" cx="238" cy="80" r="5" fill="currentColor" stroke="none"/>
-<rect x="234" y="104" width="82" height="40" rx="6"/><rect x="234" y="154" width="82" height="40" rx="6"/><rect x="234" y="208" width="82" height="30" rx="15" fill="currentColor"/>
-<text class="a-pop-b" x="275" y="230" text-anchor="middle" fill="#fff" stroke="none" font-size="17" letter-spacing="1">★★★★★</text>
+<rect x="234" y="102" width="82" height="36" rx="6"/><rect x="234" y="146" width="82" height="36" rx="6"/><rect x="234" y="190" width="82" height="22" rx="11" fill="currentColor"/>
+${D(275, 244, "5 ★", 'class="a-pop-b" text-anchor="middle" font-size="26" fill="var(--accent)"')}
 <path class="a-nudge" d="M190 150 H210 M204 144 L210 150 L204 156" stroke="var(--accent)"/>`),
 
   // The heat map breathes like people moving under the light; the beam scans.
@@ -74,7 +74,8 @@ ${D(100, 236, "OrganAMNIST 88%", 'text-anchor="middle"')}${D(290, 236, "DermaMNI
   // A sentence is split into tokens, embedded by BERT, then classified.
   sarcasm: () => {
     const toks = ["oh", "great", "another", "monday", "love", "it"];
-    let x = 34, chips = "";
+    const widths = toks.map((t) => 12 + t.length * 8.2);
+    let x = 200 - (widths.reduce((a, b) => a + b, 0) + 6 * (toks.length - 1)) / 2, chips = "";
     toks.forEach((t, i) => {
       const w = 12 + t.length * 8.2;
       chips += `<g class="a-tok" ${delay(i * 0.14)}><rect x="${x}" y="84" width="${w}" height="24" rx="12"/>${T(x + w / 2, 101, t, 'text-anchor="middle" font-size="14"')}</g>`;
@@ -85,13 +86,13 @@ ${D(100, 236, "OrganAMNIST 88%", 'text-anchor="middle"')}${D(290, 236, "DermaMNI
       const o = (0.25 + ((i * 53) % 70) / 100).toFixed(2);
       cells += `<rect class="a-cell" ${delay((i % 8) * 0.06)} x="${34 + i * 14}" y="186" width="11" height="22" fill="var(--accent)" fill-opacity="${o}" stroke="none"/>`;
     }
-    return S(`<rect x="24" y="20" width="352" height="44" rx="6" fill="var(--panel)"/>${T(40, 48, "“oh great, another monday. love it.”", 'font-size="17" font-style="italic"')}
+    return S(`<rect x="24" y="20" width="352" height="44" rx="6" fill="var(--panel)"/>${T(200, 48, "“oh great, another monday. love it.”", 'text-anchor="middle" font-size="17" font-style="italic"')}
 <path d="M200 66 V80" opacity=".5"/>${chips}
 <path d="M200 112 V126" opacity=".5"/>
 <g class="a-bert"><rect x="150" y="128" width="100" height="40" fill="currentColor"/>${D(200, 156, "BERT", 'text-anchor="middle" fill="#fff" font-size="20"')}</g>
-<path d="M200 170 V182" opacity=".5"/>${cells}${T(34, 224, "768-d embedding", 'fill="var(--soft)" font-style="italic" font-size="13"')}
+<path d="M200 170 V182" opacity=".5"/>${cells}${T(200, 224, "768-d embedding", 'text-anchor="middle" fill="var(--soft)" font-style="italic" font-size="13"')}
 <rect x="34" y="240" width="200" height="14" rx="7"/><rect class="a-meter" x="34" y="240" width="184" height="14" rx="7" fill="var(--accent)" stroke="none"/>
-${T(34, 274, "sarcasm score", 'fill="var(--soft)" font-style="italic" font-size="13"')}
+${T(134, 274, "sarcasm score", 'text-anchor="middle" fill="var(--soft)" font-style="italic" font-size="13"')}
 <g class="a-verdict"><rect x="250" y="228" width="126" height="40" fill="var(--accent)" stroke="var(--accent)"/>${D(313, 254, "sarcastic ✓", 'text-anchor="middle" fill="#fff" font-size="19"')}</g>`);
   },
 
@@ -101,7 +102,7 @@ ${T(34, 274, "sarcasm score", 'fill="var(--soft)" font-style="italic" font-size=
 ${D(60, 92, "XYR", 'font-size="22"')}<path d="M260 84 H340" opacity=".4"/>
 <rect class="a-scan" x="60" y="106" width="62" height="78" fill="var(--accent)" fill-opacity=".16" stroke="var(--accent)" stroke-width="2.5"/>
 ${[0, 1, 2, 3].map((i) => `<rect x="${60 + i * 74}" y="106" width="62" height="78"/><path d="M${60 + i * 74} 196 H${110 + i * 74}" opacity=".5"/><path d="M${60 + i * 74} 208 H${92 + i * 74}" opacity=".5"/>`).join("")}
-<rect class="a-pulse" x="60" y="226" width="96" height="22" rx="11" fill="currentColor"/>${[["12 left", 0], ["3 left", -3.75], ["27 left", -2.5], ["sold out", -1.25]].map(([t, d]) => D(260, 244, "stock: " + t, `class="a-stock" ${delay(d as number)} fill="var(--accent)"`)).join("")}`),
+<rect class="a-pulse" x="60" y="226" width="96" height="22" rx="11" fill="currentColor"/>${[["12 left", 0], ["3 left", -3.75], ["27 left", -2.5], ["sold out", -1.25]].map(([t, d]) => D(344, 244, "stock: " + t, `text-anchor="end" class="a-stock" ${delay(d as number)} fill="var(--accent)"`)).join("")}`),
 
   // The petals turn slowly; the clock hands keep time.
   renders: () => {
@@ -159,7 +160,6 @@ ${swatches.map((c, i) => `<circle cx="${86 + i * 22}" cy="222" r="7" fill="${c}"
 <g>
   <animateMotion path="${line}" keyPoints="0;1;1" keyTimes="0;0.6;1" calcMode="linear" dur="5s" repeatCount="indefinite"/>
   <g transform="rotate(-35)"><path d="M0 0 L-5 -14 L5 -14 Z" fill="currentColor"/><rect x="-5" y="-74" width="10" height="60" rx="3" fill="var(--panel)" stroke-width="2"/><path d="M-5 -62 H5" opacity=".5"/></g>
-</g>
-${T(332, 278, "digital illustration", 'text-anchor="end" fill="var(--soft)" font-style="italic"')}`);
+</g>`);
   },
 };
