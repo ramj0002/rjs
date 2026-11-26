@@ -82,7 +82,12 @@
 .xyr-home-frame { position: relative; border: 2px solid var(--ink); }
 .xyr-home-frame img { width: 100%; display: block; }
 /* hero banner sits 91px–1535px down the 4096px-tall screenshot */
-.xyr-home-frame video { position: absolute; left: 0; width: 100%; top: calc(91 / 4096 * 100%); height: calc(1444 / 4096 * 100%); object-fit: cover; }
+.xyr-home-frame .xyr-hero-vid { position: absolute; left: 0; width: 100%; top: calc(91 / 4096 * 100%); height: calc(1444 / 4096 * 100%); object-fit: cover; }
 .case-big .xyr-home figcaption { text-align: left; }
 .xyr-screens { margin-top: 36px; }
 .xyr-screens .case-img img { aspect-ratio: auto; object-fit: contain; }
+.xyr-hero-vid { container-type: inline-size; }
+.xyr-hero-vid video { width: 100%; height: 100%; object-fit: cover; display: block; border: 0; }
+.xyr-hero-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.4cqw; color: #fff; font-family: Helvetica, Arial, sans-serif; text-shadow: 0 1px 12px rgba(0,0,0,.35); }
+.xyr-hero-text b { font-size: 4.8cqw; font-weight: 700; letter-spacing: -0.01em; }
+.xyr-hero-text span { background: #fff; color: #000; text-shadow: none; font-size: 1.3cqw; font-weight: 700; padding: 0.7cqw 2cqw; border-radius: 999px; }

@@ -81,7 +81,12 @@ export default function Xyr() {
           <div className="xyr-home-frame">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/xyr/home-full.jpg" alt="XYR home page" loading="lazy" />
-            {hasVideo && <video src={x.video} poster="/xyr/walk-the-future.jpg" autoPlay muted loop playsInline preload="metadata" />}
+            {hasVideo && (
+              <div className="xyr-hero-vid">
+                <video src={x.video} poster="/xyr/walk-the-future.jpg" autoPlay muted loop playsInline preload="metadata" />
+                <div className="xyr-hero-text" aria-hidden><b>Walk the Future</b><span>Shop Now</span></div>
+              </div>
+            )}
           </div>
           <figcaption>Home page, with the “Walk the Future” video</figcaption>
         </figure>
