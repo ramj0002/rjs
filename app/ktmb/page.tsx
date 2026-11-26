@@ -117,7 +117,7 @@ export default function KtmbCase() {
               <span className="num display">{String(i + 1).padStart(2, "0")}</span>
               <div>
                 <h3 className="display">{f.title}</h3>
-                {f.quote && <blockquote>“{f.quote}”</blockquote>}
+                {f.quote ? <blockquote>“{f.quote}”</blockquote> : <blockquote className="no-quote" aria-hidden>&nbsp;</blockquote>}
                 <p>{f.text}</p>
               </div>
             </li>

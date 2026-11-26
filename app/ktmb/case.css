@@ -145,3 +145,4 @@ html:has(.case) { scroll-padding-top: 120px; }
 }
 .hl-block.on .hl { background-size: 100% 100%; }
 @media (prefers-reduced-motion: reduce) { .hl { transition: none; background-size: 100% 100%; } }
+.case blockquote.no-quote { visibility: hidden; }
