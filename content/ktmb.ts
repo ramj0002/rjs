@@ -187,11 +187,13 @@ export const ktmb = {
     changed:
       "Between rounds the seat map gained orientation and facility icons, the duplicate cabin menu went, visual hierarchy tightened, train classes got colour-coding and seat types got explanations. Every Round 1 pain point was confirmed fixed.",
     screens: [
-      { src: "/ktmb/final-gold.jpg", caption: "Final: Gold flow", wide: true },
-      { src: "/ktmb/final-silver.jpg", caption: "Final: Silver flow", wide: true },
-      { src: "/ktmb/final-seat-info.jpg", caption: "Seat info prompt: seat types and wheelchair access explained", wide: true },
-      { src: "/ktmb/final-train-compare.jpg", caption: "Train comparison prompt: the difference between ETS Gold and Platinum" },
-      { src: "/ktmb/final-tickets.jpg", caption: "Simplified ticket access: view, search and open tickets in one place" },
+      { src: "/ktmb/final-gold.jpg", caption: "Final: Gold flow" },
+      { src: "/ktmb/final-silver.jpg", caption: "Final: Silver flow" },
+    ],
+    features: [
+      { src: "/ktmb/final-seat-info.jpg", title: "Seat info prompt", text: "Explains each seat type and flags wheelchair-accessible seats, so people can choose with confidence." },
+      { src: "/ktmb/final-train-compare.jpg", title: "Train comparison prompt", text: "Shows the difference between ETS Gold and Platinum at a glance: stops, speed and what’s included." },
+      { src: "/ktmb/final-tickets.jpg", title: "Simplified ticket access", text: "View, search and open your tickets in one place, with the full ticket details a tap away." },
     ],
   },
 

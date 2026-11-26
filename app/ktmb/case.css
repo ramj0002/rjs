@@ -188,3 +188,15 @@ html:has(.case) { scroll-padding-top: 120px; }
 .case-flow.old span { font-size: 0.92rem; padding: 3px 10px; white-space: nowrap; }
 .case-flow.old i { font-size: 1rem; }
 @media (max-width: 1100px) { .case-flow.old { justify-content: flex-start; } }
+
+/* Final feature screens: one per row, image beside its title and description */
+.case-features > div {
+  display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 40px; align-items: center;
+  padding: 32px 0; border-top: 1.5px solid rgba(46, 55, 254, 0.22);
+}
+.case-features .case-img { margin: 0; }
+.case-features .case-img img { max-height: 560px; width: auto; max-width: 100%; margin: 0 auto; }
+.case-features .case-img figcaption { display: none; }
+.case-features h3 { font-size: clamp(1.9rem, 3vw, 2.6rem); margin-bottom: 10px; }
+.case-features p { font-size: 1.25rem; }
+@media (max-width: 760px) { .case-features > div { grid-template-columns: 1fr; gap: 16px; } }

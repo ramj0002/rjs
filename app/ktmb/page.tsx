@@ -156,7 +156,6 @@ export default function KtmbCase() {
               <li key={s}><span className="display">{s}</span>{i < k.flow.length - 1 && <i aria-hidden>→</i>}</li>
             ))}
           </ol>
-          <p>Every screen has the same progress bar at the top and a booking summary at the bottom, so you always know where you are and what you picked.</p>
         </div>
         <div className="case-rows case-rows-big">
           {k.decisions.map((d, i) => (
@@ -216,8 +215,19 @@ export default function KtmbCase() {
         <h2 className="display">results</h2>
         <Stats items={k.final.stats} />
         <p className="case-lead">{k.final.changed}</p>
-        <div className="case-grid-2">
-          {k.final.screens.map((im) => <CaseImage key={im.src} src={im.src} caption={im.caption} className={"wide" in im && im.wide ? "wide" : ""} />)}
+        <div className="case-grid-1 case-big">
+          {k.final.screens.map((im) => <CaseImage key={im.src} src={im.src} caption={im.caption} />)}
+        </div>
+        <div className="case-features">
+          {k.final.features.map((f) => (
+            <div key={f.src}>
+              <CaseImage src={f.src} caption={f.title} />
+              <div>
+                <h3 className="display">{f.title}</h3>
+                <p>{f.text}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
