@@ -34,7 +34,7 @@ export const bag = {
   circuit: {
     embed: "https://app.cirkitdesigner.com/project/a6c4b9b4-3dda-4afd-b8ca-37a78f996a12?view=interactive_preview",
     link: "https://app.cirkitdesigner.com/project/a6c4b9b4-3dda-4afd-b8ca-37a78f996a12",
-    text: "One Arduino, a breadboard, a battery pack and ten servos. Wired and tested in Cirkit Designer before anything was sewn in.",
+    text: "An Arduino Uno R4, a breadboard, a power bank and ten servos. Wired and tested in Cirkit Designer before anything was sewn in.",
   },
 
   holder: {
