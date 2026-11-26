@@ -45,8 +45,15 @@ export const bag = {
     ],
   },
 
+  finished: { src: "/breathing-bag/finished.jpg", caption: "The finished bag" },
   build: [
-    { src: "/breathing-bag/finished.jpg", caption: "The finished bag" },
-    { src: "/breathing-bag/moving.mp4", caption: "The bag breathing" },
+    { src: "/breathing-bag/fringe.jpg", caption: "Cutting my own leather fringe" },
+    { src: "/breathing-bag/wiring.jpg", caption: "Wiring ten servos" },
+    { src: "/breathing-bag/wiring-bag.mp4", caption: "Fitting them into the bag" },
+  ],
+  videos: [
+    { src: "/breathing-bag/testing.mp4", caption: "Testing from the dashboard" },
+    { src: "/breathing-bag/heart.mp4", caption: "Heart mode" },
+    { src: "/breathing-bag/peekaboo.mp4", caption: "Peekaboo" },
   ],
 };

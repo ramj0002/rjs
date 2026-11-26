@@ -30,6 +30,17 @@ const sections = [
 
 const exists = (src: string) => fs.existsSync(path.join(process.cwd(), "public", src));
 
+function Media({ src, caption }: { src: string; caption: string }) {
+  if (src.endsWith(".mp4") && exists(src))
+    return (
+      <figure className="case-img">
+        <figcaption>{caption}</figcaption>
+        <video src={src} poster={src.replace(".mp4", ".jpg")} autoPlay muted loop playsInline preload="metadata" />
+      </figure>
+    );
+  return <CaseImage src={src} caption={caption} />;
+}
+
 export default function BreathingBag() {
   return (
     <main className="case xyr page-theme t-teal">
@@ -107,6 +118,9 @@ export default function BreathingBag() {
           <iframe src={b.circuit.embed} title="Breathing Bag circuit in Cirkit Designer" loading="lazy" allowFullScreen />
         </figure>
         <p className="case-note"><a href={b.circuit.link} target="_blank" rel="noreferrer">Open the circuit in Cirkit Designer →</a></p>
+        <div className="bag-three" style={{ marginTop: 36 }}>
+          {b.build.map((m) => <Media key={m.src} {...m} />)}
+        </div>
       </section>
 
       <section id="holder" className="case-sec">
@@ -120,16 +134,10 @@ export default function BreathingBag() {
       <section id="build" className="case-sec">
         <h2 className="display">the bag</h2>
         <div className="case-grid-1 case-big">
-          {b.build.map((im) =>
-            im.src.endsWith(".mp4") && exists(im.src) ? (
-              <figure key={im.src} className="case-img">
-                <figcaption>{im.caption}</figcaption>
-                <video src={im.src} autoPlay muted loop playsInline preload="metadata" />
-              </figure>
-            ) : (
-              <CaseImage key={im.src} {...im} />
-            )
-          )}
+          <CaseImage {...b.finished} />
+        </div>
+        <div className="bag-three" style={{ marginTop: 36 }}>
+          {b.videos.map((m) => <Media key={m.src} {...m} />)}
         </div>
       </section>
 

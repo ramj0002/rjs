@@ -7,10 +7,7 @@
 .bd { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 28px; align-items: stretch;
   border: 2px solid var(--ink); border-radius: 24px; padding: clamp(18px, 3vw, 30px); margin-top: 12px; }
 .bd-bag { display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--ink); }
-.bd-bag svg { width: 100%; max-width: 380px; height: auto; overflow: visible; }
-.bd-led { fill: transparent; stroke: none; transition: fill 0.2s; }
-.bd-bag .live .bd-led { fill: var(--blue); }
-.bd-bag .live path { stroke: var(--blue); }
+.bd-bag svg { width: 100%; max-width: 300px; height: auto; overflow: visible; }
 .case .bd-status { margin: 8px 0 0; text-align: center; }
 .bd-panel { display: flex; flex-direction: column; gap: 14px; }
 .bd-top { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
@@ -23,9 +20,11 @@
 .bd button:hover { background: color-mix(in srgb, var(--blue) 14%, transparent); }
 .bd button.on { background: var(--blue); border-color: var(--blue); color: #fff; }
 .bd-grid { display: grid; gap: 10px; }
-.bd-row { display: grid; grid-template-columns: repeat(4, 48px) 1fr; gap: 8px; align-items: center; }
+.bd-row { display: grid; grid-template-columns: 14px repeat(4, 48px) 1fr; gap: 8px; align-items: center; }
+.bd-swatch { width: 14px; height: 48px; border-radius: 7px; background: var(--row); border: 1.5px solid #0e3f45; }
+.bd .bd-motor.on { background: var(--row); border-color: #0e3f45; color: #0e3f45; }
 .bd .bd-motor { width: 48px; height: 48px; padding: 0; border-radius: 12px; font-family: var(--display, Anton, Impact, sans-serif); font-size: 1.25rem; }
-.bd-row:not(:last-child) .bd-row-btns { grid-column: 5; }
+.bd-row-btns { grid-column: 6; }
 .bd-row-btns { display: flex; gap: 8px; justify-content: flex-end; }
 .bd .bd-off { align-self: flex-end; border-style: dashed; }
 
@@ -34,7 +33,13 @@
 
 @media (max-width: 900px) {
   .bd { grid-template-columns: 1fr; }
-  .bd-row { grid-template-columns: repeat(4, 44px); }
+  .bd-row { grid-template-columns: 14px repeat(4, 44px); }
   .bd-row-btns { grid-column: 1 / -1 !important; justify-content: flex-start; }
 }
 .bag-holders .case-img img { aspect-ratio: 4 / 3; object-fit: cover; }
+
+/* build photos and bag videos: three in a row, same portrait frame */
+.bag-three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.bag-three .case-img { margin: 0; }
+.bag-three img, .bag-three video { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; display: block; }
+@media (max-width: 700px) { .bag-three { grid-template-columns: 1fr; } }
