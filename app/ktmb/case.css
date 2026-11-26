@@ -205,3 +205,4 @@ html:has(.case) { scroll-padding-top: 120px; }
 .case-two .case-stats.vertical div { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; align-items: center; column-gap: 26px; row-gap: 0; }
 .case-two .case-stats.vertical b { width: auto; }
 .case-two .case-stats.vertical div > span { font-size: clamp(1.45rem, 2.3vw, 1.9rem); white-space: normal; }
+.case-two .case-stats.vertical b { justify-self: center; text-align: center; }
