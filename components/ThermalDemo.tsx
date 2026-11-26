@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 
 // A live demo of the Glow of Orchard heat map algorithm.
-// Two shoppers wander under the "sensor"; your cursor is a third heat source.
+// Two shoppers wander under the "sensor"; your cursor is a third heat source, shown in red.
 // Left: the raw 8×8 reading. Right: the same reading upscaled with bilinear interpolation.
 // Both are drawn as halftone dots: bigger dot = warmer.
 
@@ -30,28 +30,29 @@ export default function ThermalDemo() {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
-    // Temperature at (x, y) in 0..1 space: sum of warm blobs.
-    const field = (x: number, y: number, t: number) => {
-      const people = [
-        [0.5 + 0.32 * Math.sin(t * 0.37), 0.5 + 0.3 * Math.sin(t * 0.53 + 1)],
-        [0.5 + 0.3 * Math.cos(t * 0.29 + 2), 0.5 + 0.32 * Math.sin(t * 0.41 + 4)],
-      ];
-      if (mouse.on) people.push([mouse.x, mouse.y]);
-      let v = 0;
-      for (const [px, py] of people) {
-        const d2 = (x - px) ** 2 + (y - py) ** 2;
-        v += Math.exp(-d2 / 0.012);
-      }
-      return Math.min(1, v);
-    };
+    // Temperature at (x, y) in 0..1 space. Shoppers and the visitor's cursor are kept
+    // separately so the cursor's own heat can be drawn in red.
+    const blob = (x: number, y: number, px: number, py: number) => Math.exp(-((x - px) ** 2 + (y - py) ** 2) / 0.012);
+    const shoppers = (x: number, y: number, t: number) =>
+      blob(x, y, 0.5 + 0.32 * Math.sin(t * 0.37), 0.5 + 0.3 * Math.sin(t * 0.53 + 1)) +
+      blob(x, y, 0.5 + 0.3 * Math.cos(t * 0.29 + 2), 0.5 + 0.32 * Math.sin(t * 0.41 + 4));
+    const you = (x: number, y: number) => (mouse.on ? blob(x, y, mouse.x, mouse.y) : 0);
 
     const raw = new Float32Array(N * N);
+    const mine = new Float32Array(N * N); // share of each reading that is the cursor's heat
+    const BLUE = [0, 12, 237], RED = [230, 40, 30];
+    const mix = (k: number) => `rgb(${BLUE.map((b, i) => Math.round(b + (RED[i] - b) * k)).join(",")})`;
     const draw = (now: number) => {
       raf = requestAnimationFrame(draw);
       if (!visible) return;
       const t = reduce ? 3 : now / 1000;
       for (let j = 0; j < N; j++)
-        for (let i = 0; i < N; i++) raw[j * N + i] = field((i + 0.5) / N, (j + 0.5) / N, t);
+        for (let i = 0; i < N; i++) {
+          const x = (i + 0.5) / N, y = (j + 0.5) / N;
+          const a = shoppers(x, y, t), b = you(x, y);
+          raw[j * N + i] = Math.min(1, a + b);
+          mine[j * N + i] = a + b > 0.001 ? b / (a + b) : 0;
+        }
 
       ctx.clearRect(0, 0, w, h);
       const x0 = (w - (panel * 2 + gap)) / 2;
@@ -66,6 +67,7 @@ export default function ThermalDemo() {
         for (let i = 0; i < N; i++) {
           const v = raw[j * N + i];
           const r = (c1 / 2) * (0.08 + 0.9 * Math.sqrt(v));
+          ctx.fillStyle = mix(mine[j * N + i]);
           ctx.beginPath();
           ctx.arc(x0 + (i + 0.5) * c1, (j + 0.5) * c1, r, 0, Math.PI * 2);
           ctx.fill();
@@ -82,12 +84,15 @@ export default function ThermalDemo() {
           const ix = Math.floor(gx), iy = Math.floor(gy), fx = gx - ix, fy = gy - iy;
           const a = raw[iy * N + ix], b = raw[iy * N + ix + 1], c = raw[(iy + 1) * N + ix], d = raw[(iy + 1) * N + ix + 1];
           const v = a * (1 - fx) * (1 - fy) + b * fx * (1 - fy) + c * (1 - fx) * fy + d * fx * fy;
+          const ma = mine[iy * N + ix], mb = mine[iy * N + ix + 1], mc = mine[(iy + 1) * N + ix], md = mine[(iy + 1) * N + ix + 1];
+          ctx.fillStyle = mix(ma * (1 - fx) * (1 - fy) + mb * fx * (1 - fy) + mc * (1 - fx) * fy + md * fx * fy);
           const r2 = (c2 / 2) * Math.min(1.15, 0.12 + 1.05 * Math.sqrt(v));
           ctx.beginPath();
           ctx.arc(x1 + (i + 0.5) * c2, (j + 0.5) * c2, r2, 0, Math.PI * 2);
           ctx.fill();
         }
 
+      ctx.fillStyle = ink;
       ctx.font = "italic 15px Baskervville, Georgia, serif";
       ctx.textAlign = "center";
       ctx.fillText("raw 8 × 8 sensor reading", x0 + panel / 2, panel + 24);

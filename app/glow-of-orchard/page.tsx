@@ -6,6 +6,8 @@ import CaseImage from "@/components/CaseImage";
 import HighlightBlock from "@/components/Highlight";
 import ThermalDemo from "@/components/ThermalDemo";
 import SensorCompare from "@/components/SensorCompare";
+import SolutionSteps from "@/components/SolutionSteps";
+import { marks } from "@/components/marks";
 import { plates } from "@/components/plates";
 import { orchard as o } from "@/content/orchard";
 import { site } from "@/content/site";
@@ -61,11 +63,15 @@ export default function GlowOfOrchard() {
         <h3 className="display case-h3">the problem</h3>
         <p className="case-lead">Stores want to know how people move, but the usual options each fall short somewhere.</p>
         <SensorCompare />
-        <blockquote className="orch-hmw">“{o.hmw}”</blockquote>
+        <HighlightBlock>
+          <blockquote className="orch-hmw">“{marks(o.hmw).nodes}”</blockquote>
+        </HighlightBlock>
 
         <h3 className="display case-h3">the solution</h3>
         <p className="case-lead">{o.solution.intro}</p>
-        <ul className="case-list">{o.solution.points.map((t) => <li key={t}>{t}</li>)}</ul>
+        <HighlightBlock className="sol-block">
+          <SolutionSteps points={o.solution.points} />
+        </HighlightBlock>
       </section>
 
       <section id="system" className="case-sec">
@@ -100,7 +106,7 @@ export default function GlowOfOrchard() {
 
       <section id="algorithm" className="case-sec">
         <h2 className="display">heat map algorithm</h2>
-        <p className="case-lead">The sensor only sees 64 points. Bilinear interpolation (written in Java for the real system) fills in the gaps to make a smooth heat map. Try it: move your cursor over either grid to add your own body heat.</p>
+        <p className="case-lead">The sensor only sees 64 points. Bilinear interpolation (written in Java for the real system) fills in the gaps to make a smooth heat map. Try it: move your cursor over either grid to add your own body heat (shown in red).</p>
         <ThermalDemo />
       </section>
 

@@ -17,14 +17,14 @@ export const orchard = {
     cameras: ["Camera-based systems are expensive", "They raise privacy concerns", "They need heavy computation (video processing)"],
     sensors: ["Traditional sensors lack spatial resolution", "They can’t capture meaningful movement patterns"],
   },
-  hmw: "How might we track customer movement and engagement in a retail space without using cameras, while keeping it low cost and scalable?",
+  hmw: "How might we ==track customer movement and engagement== in a retail space ==without using cameras==, while keeping it ==low cost and scalable==?",
   solution: {
-    intro: "A distributed IoT sensing system built into the store’s lighting, which:",
+    intro: "A sensing system built into the store’s own lights:",
     points: [
-      "Captures thermal data instead of images",
-      "Tracks customer movement through heat signatures",
-      "Generates heat maps of foot traffic",
-      "Sends structured data to a central server for analysis",
+      { icon: "heat", title: "Heat, not images", text: "Captures thermal data instead of video" },
+      { icon: "path", title: "Follows movement", text: "Tracks people through their heat signatures" },
+      { icon: "map", title: "Maps foot traffic", text: "Turns readings into heat maps of the floor" },
+      { icon: "server", title: "Sends it to the server", text: "Structured data, ready for analysis" },
     ],
   },
 
