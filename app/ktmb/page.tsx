@@ -145,20 +145,20 @@ export default function KtmbCase() {
         <ul className="case-list">{k.ideation.buildList.map((t) => <li key={t}>{t}</li>)}</ul>
 
         <h3 className="display case-h3">9 steps became 5</h3>
-        <div className="case-flows">
+        <HighlightBlock className="case-flows anim-flows">
           <p className="label">before: 9 steps</p>
           <ol className="case-flow old">
             {k.oldFlow.map((s, i) => (
-              <li key={s}><span className="display">{s}</span>{i < k.oldFlow.length - 1 && <i aria-hidden>→</i>}</li>
+              <li key={s} style={{ ["--i" as string]: i }}><span className="display">{s}</span>{i < k.oldFlow.length - 1 && <i aria-hidden>→</i>}</li>
             ))}
           </ol>
           <p className="label">after: 5 steps</p>
           <ol className="case-flow">
             {k.flow.map((s, i) => (
-              <li key={s}><span className="display">{s}</span>{i < k.flow.length - 1 && <i aria-hidden>→</i>}</li>
+              <li key={s} style={{ ["--i" as string]: i }}><span className="display">{s}</span>{i < k.flow.length - 1 && <i aria-hidden>→</i>}</li>
             ))}
           </ol>
-        </div>
+        </HighlightBlock>
         <div className="case-rows case-rows-big">
           {k.decisions.map((d, i) => (
             <div key={d.title}>

@@ -215,3 +215,16 @@ html:has(.case) { scroll-padding-top: 120px; }
 .pop-methods.on .case-methods > div:nth-child(4) b { animation-delay: 0.6s; }
 @keyframes method-pop { to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .pop-methods .case-methods b { opacity: 1; transform: none; animation: none !important; } }
+
+/* 9 → 5 flows animate on scroll: the old steps trudge in one by one, then the new 5 pop in quickly */
+.anim-flows .case-flow li { opacity: 0; }
+.anim-flows .label { opacity: 0; transition: opacity 0.3s; }
+.anim-flows.on .label { opacity: 1; }
+.anim-flows.on .label:nth-of-type(2) { transition-delay: 1.6s; }
+.anim-flows.on .case-flow.old li { animation: flow-step 0.35s ease-out forwards; animation-delay: calc(var(--i) * 0.16s + 0.15s); }
+.anim-flows.on .case-flow:not(.old) li { animation: flow-pop 0.5s cubic-bezier(.2, 1.5, .4, 1) forwards; animation-delay: calc(var(--i) * 0.12s + 1.8s); }
+@keyframes flow-step { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
+@keyframes flow-pop { from { opacity: 0; transform: scale(0.6); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .anim-flows .case-flow li, .anim-flows .label { opacity: 1; animation: none !important; transition: none; }
+}
