@@ -148,6 +148,34 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .a-sketch path:nth-child(3) { animation-delay: 0.7s; }
 .a-sketch path:nth-child(4) { animation-delay: 1.05s; }
 
+.a-pop-a { animation: a-pop-a 6s ease-out infinite; }
+.a-pop-b { animation: a-pop-b 6s ease-out infinite; }
+.a-tok { animation: a-tok 6s ease-out infinite backwards; }
+.a-bert { animation: a-bert 6s ease-in-out infinite; }
+.a-cell { animation: a-cell 6s ease-in-out infinite backwards; }
+.a-meter { animation: a-meter 6s cubic-bezier(.3,0,.2,1) infinite; transform-origin: left !important; }
+.a-verdict { animation: a-verdict 6s ease-out infinite; }
+.a-stock { animation: a-stock 5s linear infinite; }
+.a-leaf-front, .a-leaf-back { transform-box: view-box !important; transform-origin: 200px 150px !important; }
+.a-leaf-front { animation: a-leaf-front 6s ease-in-out infinite; }
+.a-leaf-back { animation: a-leaf-back 6s ease-in-out infinite; }
+
+@keyframes a-pop-a { 0% { transform: scale(0); opacity: 0; } 8% { transform: scale(1.35); opacity: 1; } 14%, 86% { transform: scale(1); opacity: 1; } 96%, 100% { transform: scale(0); opacity: 0; } }
+@keyframes a-pop-b { 0%, 34% { transform: scale(0); opacity: 0; } 42% { transform: scale(1.35); opacity: 1; } 48%, 86% { transform: scale(1); opacity: 1; } 96%, 100% { transform: scale(0); opacity: 0; } }
+@keyframes a-tok { 0% { opacity: 0; transform: translateY(-6px); } 6%, 88% { opacity: 1; transform: none; } 98%, 100% { opacity: 0; } }
+@keyframes a-bert { 0%, 22% { transform: scale(1); } 28% { transform: scale(1.12); } 34%, 100% { transform: scale(1); } }
+@keyframes a-cell { 0%, 26% { opacity: 0; transform: scaleY(.2); } 34% { opacity: 1; transform: scaleY(1.2); } 40%, 88% { opacity: 1; transform: scaleY(1); } 98%, 100% { opacity: 0; } }
+@keyframes a-meter { 0%, 48% { transform: scaleX(0); } 66%, 88% { transform: scaleX(1); } 98%, 100% { transform: scaleX(0); } }
+@keyframes a-verdict { 0%, 66% { opacity: 0; transform: scale(.7); } 72% { opacity: 1; transform: scale(1.1); } 76%, 88% { opacity: 1; transform: scale(1); } 98%, 100% { opacity: 0; } }
+@keyframes a-stock { 0%, 22% { opacity: 1; } 24%, 100% { opacity: 0; } }
+@keyframes a-leaf-front {
+  0%, 15% { transform: scaleX(1); opacity: 1; } 30% { transform: scaleX(0); opacity: 1; }
+  85% { transform: scaleX(0); opacity: 0; } 86% { transform: scaleX(1); opacity: 0; } 100% { transform: scaleX(1); opacity: 1; }
+}
+@keyframes a-leaf-back {
+  0%, 30% { transform: scaleX(0); opacity: 1; } 45%, 85% { transform: scaleX(1); opacity: 1; }
+  97% { transform: scaleX(1); opacity: 0; } 100% { transform: scaleX(0); opacity: 0; }
+}
 @keyframes a-travel { 0%, 10% { transform: translateX(0); } 55%, 75% { transform: translateX(74px); } 100% { transform: translateX(0); } }
 @keyframes a-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
 @keyframes a-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.07); } }

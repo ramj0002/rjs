@@ -74,7 +74,7 @@ export const projects: Project[] = [
   },
   {
     id: "sarcasm",
-    title: "Sarcasm detection (ORP)",
+    title: "Sarcasm detection",
     category: "AI / Data",
     summary:
       "People often say the opposite of what they mean, and opinion tracking gets it wrong. I scraped Reddit, hand-labelled comments for sarcasm and sentiment, and trained classifiers on BERT embeddings inside a Streamlit app with a dashboard, a live chatbot and Excel export.",
