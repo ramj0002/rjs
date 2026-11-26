@@ -43,3 +43,6 @@
 .bag-three .case-img { margin: 0; }
 .bag-three img, .bag-three video { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; display: block; }
 @media (max-width: 700px) { .bag-three { grid-template-columns: 1fr; } }
+.case .bag-alive { font-family: var(--serif, "Baskervville", serif); font-style: italic; font-weight: 400; text-transform: none; }
+.bag-overview .case-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 900px) { .bag-overview .case-two { grid-template-columns: 1fr; } }

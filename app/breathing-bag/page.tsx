@@ -10,7 +10,6 @@ import CaseImage from "@/components/CaseImage";
 import HighlightBlock from "@/components/Highlight";
 import BagPlate from "@/components/BagPlate";
 import BagDashboard from "@/components/BagDashboard";
-import { marks } from "@/components/marks";
 import { bag as b } from "@/content/bag";
 import { site } from "@/content/site";
 
@@ -58,10 +57,10 @@ export default function BreathingBag() {
         {sections.map(([id, label]) => <a key={id} href={`#${id}`}>{label}</a>)}
       </nav>
 
-      <section id="overview" className="case-sec">
+      <section id="overview" className="case-sec bag-overview">
         <h2 className="display">overview</h2>
         <HighlightBlock>
-          <p className="bag-q display">{marks(b.question).nodes}</p>
+          <p className="bag-q display">What if a bag was <mark className="hl" style={{ ["--i" as string]: 0 }}><em className="bag-alive">alive</em></mark>?</p>
         </HighlightBlock>
         <div className="case-two">
           <p className="case-lead">{b.intro}</p>
