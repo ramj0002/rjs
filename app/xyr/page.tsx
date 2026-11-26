@@ -77,15 +77,17 @@ export default function Xyr() {
             ))}
           </ol>
         </HighlightBlock>
-        <div className="case-grid-1 case-big xyr-screens" style={{ marginTop: 36 }}>
-          {x.customer.map((im) => <CaseImage key={im.src} {...im} />)}
+        <figure className="case-img xyr-home" style={{ marginTop: 36 }}>
+          <div className="xyr-home-frame">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/xyr/home-full.jpg" alt="XYR home page" loading="lazy" />
+            {hasVideo && <video src={x.video} poster="/xyr/walk-the-future.jpg" autoPlay muted loop playsInline preload="metadata" />}
+          </div>
+          <figcaption>Home page, with the “Walk the Future” video</figcaption>
+        </figure>
+        <div className="case-grid-1 case-big xyr-screens">
+          {x.customer.filter((im) => !im.src.endsWith("home.png")).map((im) => <CaseImage key={im.src} {...im} />)}
         </div>
-        {hasVideo ? (
-          <figure className="case-img xyr-video">
-            <video src={x.video} poster="/xyr/walk-the-future.jpg" autoPlay muted loop playsInline preload="metadata" />
-            <figcaption>Walk the Future</figcaption>
-          </figure>
-        ) : null}
       </section>
 
       <section id="design" className="case-sec">
