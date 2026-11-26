@@ -45,14 +45,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .nav-flower:hover svg { transform: rotate(180deg) scale(1.15); }
 
 /* ---------- hero ---------- */
-.hero { height: 100svh; position: relative; padding-top: 56px; }
+.hero { height: clamp(240px, min(58svh, 40vw + 140px), 560px); position: relative; padding-top: 56px; }
 .hero-canvas { width: 100%; height: 100%; display: block; touch-action: pan-y; }
-.hero-hint {
-  position: absolute; left: 0; right: 0; bottom: 28px;
-  display: flex; justify-content: space-between; padding: 0 32px;
-  font-size: 1.05rem; opacity: 0.75;
-}
-
 /* ---------- marquee ---------- */
 .marquee {
   background: var(--blue); color: var(--white);
@@ -71,10 +65,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .work { padding: 96px 32px 120px; max-width: 1400px; margin: 0 auto; }
 .work-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 40px; }
 .work-head h2 { font-size: clamp(5rem, 16vw, 14rem); }
-.filters { display: flex; flex-wrap: wrap; gap: 8px; max-width: 640px; justify-content: flex-end; }
+.filters { display: flex; flex-wrap: nowrap; gap: 8px; overflow-x: auto; scrollbar-width: none; max-width: 100%; }
+.filters::-webkit-scrollbar { display: none; }
 .filters button {
   border: 1.5px solid var(--ink); border-radius: 999px;
-  padding: 6px 14px; font-size: 1rem;
+  padding: 6px 14px; font-size: 1rem; white-space: nowrap; flex: none;
   transition: background 0.2s, color 0.2s;
 }
 .filters button:hover { background: rgba(0, 12, 237, 0.08); }
@@ -114,14 +109,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* ---------- footer ---------- */
 .footer {
-  background: var(--blue); color: var(--white);
-  padding: 96px 32px 48px; text-align: center;
+  border-top: 2px solid var(--ink);
+  max-width: 1400px; margin: 0 auto; padding: 24px 32px 32px;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;
+  font-size: 1.05rem;
 }
-.footer-kicker { font-size: 1.4rem; margin-bottom: 8px; }
-.footer-email { display: inline-block; font-size: clamp(6rem, 22vw, 20rem); transition: color 0.3s, transform 0.4s; }
-.footer-email:hover { color: var(--ink); transform: rotate(-3deg) scale(1.03); }
-.footer-links { margin-top: 40px; display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; font-size: 1.1rem; }
-.footer-links a:hover { text-decoration: underline; }
+.footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer a:hover { text-decoration: underline; }
 
 /* ---------- about ---------- */
 .about { background: var(--blue); min-height: 100vh; padding: 88px 32px 64px; overflow: hidden; }
@@ -163,7 +157,6 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 @media (max-width: 760px) {
   .nav { font-size: 1.1rem; gap: 18px; }
   .work { padding: 64px 18px 80px; }
-  .filters { justify-content: flex-start; }
   .row-head { grid-template-columns: 34px 1fr 28px; }
   .row-head .cat { display: none; }
   .row-body { grid-template-columns: 1fr; }

@@ -11,10 +11,6 @@ export default function Home() {
     <main>
       <section className="hero">
         <HalftoneHero />
-        <p className="hero-hint">
-          <em>run your cursor (or finger) through the dots</em>
-          <a href="#work">scroll ↓</a>
-        </p>
       </section>
 
       <div className="marquee" aria-hidden>
@@ -34,13 +30,12 @@ export default function Home() {
       <WorkIndex />
 
       <footer className="footer">
-        <p className="footer-kicker"><em>got something in mind?</em></p>
-        <a className="footer-email display" href={`mailto:${site.email}`}>say hi</a>
-        <div className="footer-links">
+        <span>© {new Date().getFullYear()} {site.name}</span>
+        <nav>
           <a href={`mailto:${site.email}`}>{site.email}</a>
-          <a className="spaced" href={site.resume} target="_blank" rel="noreferrer">RESUME</a>
-          <Link href="/about/">about me →</Link>
-        </div>
+          <a href={site.resume} target="_blank" rel="noreferrer">resume</a>
+          <Link href="/about/">about me</Link>
+        </nav>
       </footer>
     </main>
   );
