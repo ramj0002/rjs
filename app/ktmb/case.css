@@ -71,7 +71,7 @@ html:has(.case) { scroll-padding-top: 120px; }
 .case-needs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border: 2px solid var(--ink); }
 .case-needs > div { padding: 18px; }
 .case-needs > div + div { border-left: 2px solid var(--ink); }
-.case-needs dt { font-size: 1.5rem; line-height: 1.05; margin-bottom: 8px; }
+.case-needs dt { font-size: 1.5rem; line-height: 1.05; margin-bottom: 10px; white-space: pre-line; min-height: 2.1em; }
 .case-needs dd { font-size: 1rem; line-height: 1.45; }
 
 .case-flow { list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 18px; }
@@ -133,7 +133,7 @@ html:has(.case) { scroll-padding-top: 120px; }
 .case-stats .arrow { font-size: 0.8em; margin: 0 0.08em; position: relative; top: -0.1em; }
 .case-two .case-stats div > span { white-space: nowrap; font-size: 0.92rem; }
 .case-grid-1 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
-.case-infra .case-img figcaption { font-size: clamp(1.2rem, 2vw, 1.5rem); margin-top: 10px; }
+.case-big .case-img figcaption { font-size: clamp(1.2rem, 2vw, 1.5rem); margin-top: 10px; }
 
 /* Marker highlight that sweeps left to right, one phrase after another */
 .hl {
@@ -146,3 +146,9 @@ html:has(.case) { scroll-padding-top: 120px; }
 .hl-block.on .hl { background-size: 100% 100%; }
 @media (prefers-reduced-motion: reduce) { .hl { transition: none; background-size: 100% 100%; } }
 .case blockquote.no-quote { visibility: hidden; }
+
+/* Bigger rows (design decisions) */
+.case-rows-big h3 { font-size: clamp(1.8rem, 3vw, 2.5rem); }
+.case-rows-big p { font-size: 1.28rem; line-height: 1.5; }
+.case-rows-big .label { font-size: 1.05rem; margin-bottom: 4px; }
+.case #design > p, .case #design .case-list li { font-size: 1.25rem; }

@@ -74,7 +74,7 @@ export default function KtmbCase() {
           <Stats items={[["1.6 ★", "starting app rating"], ["9 → 5", "booking steps"], ["1:39", "avg. booking time after"]]} />
         </div>
         <h3 className="display case-h3">app infrastructure</h3>
-        <div className="case-grid-1 case-infra">
+        <div className="case-grid-1 case-big">
           {k.infrastructure.map((im) => <CaseImage key={im.src} src={im.src} caption={im.caption} className={"wide" in im && im.wide ? "wide" : ""} />)}
         </div>
       </section>
@@ -133,7 +133,7 @@ export default function KtmbCase() {
 
       <section id="design" className="case-sec">
         <h2 className="display">ideation &amp; design</h2>
-        <div className="case-grid-2">
+        <div className="case-grid-1 case-big">
           {k.ideation.images.map((im) => <CaseImage key={im.src} src={im.src} caption={im.caption} className={"wide" in im && im.wide ? "wide" : ""} />)}
         </div>
         <h3 className="display case-h3">what we built first</h3>
@@ -147,12 +147,14 @@ export default function KtmbCase() {
           ))}
         </ol>
         <p>Every screen has the same progress bar at the top and a booking summary at the bottom, so you always know where you are and what you picked.</p>
-        <div className="case-decisions">
+        <div className="case-rows case-rows-big">
           {k.decisions.map((d, i) => (
             <div key={d.title}>
-              <p className="label">decision {i + 1}</p>
-              <h3 className="display">{d.title}</h3>
-              <p>{d.text}</p>
+              <div>
+                <p className="label">decision {i + 1}</p>
+                <h3 className="display">{d.title}</h3>
+              </div>
+              <div><p>{d.text}</p></div>
             </div>
           ))}
         </div>

@@ -77,11 +77,11 @@ export const ktmb = {
   ],
 
   needs: [
-    ["Understand options quickly", "Train classes, services and seat types should be clear at a glance."],
-    ["See selections clearly", "The chosen train, seat and price should stay visible at every step."],
-    ["Edit without restarting", "Changing a detail shouldn’t erase the booking."],
-    ["Trust the system", "Errors need plain language and a way to recover."],
-    ["Get clear feedback", "Always confirm what just happened and what comes next."],
+    ["Understand\noptions quickly", "Train classes, services and seat types should be clear at a glance."],
+    ["See selections\nclearly", "The chosen train, seat and price should stay visible at every step."],
+    ["Edit without\nrestarting", "Changing a detail shouldn’t erase the booking."],
+    ["Trust the\nsystem", "Errors need plain language and a way to recover."],
+    ["Get clear\nfeedback", "Always confirm what just happened and what comes next."],
   ] as [string, string][],
 
   ideation: {
