@@ -22,12 +22,22 @@ const sections = [
   ["learned", "learned"],
 ];
 
+// Wrap ★ and → so they can be centred on the numbers (they come from a fallback font).
+function Big({ text }: { text: string }) {
+  const parts = text.split(/([★→])/).filter(Boolean);
+  return (
+    <>
+      {parts.map((p, i) => (p === "★" || p === "→" ? <span key={i} className={p === "★" ? "sym star" : "sym arrow"}>{p}</span> : p))}
+    </>
+  );
+}
+
 function Stats({ items }: { items: [string, string][] }) {
   return (
     <div className="case-stats">
       {items.map(([big, small]) => (
         <div key={big}>
-          <b className="display">{big}</b>
+          <b className="display"><Big text={big} /></b>
           <span>{small}</span>
         </div>
       ))}

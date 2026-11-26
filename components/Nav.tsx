@@ -5,10 +5,11 @@ import Flower from "./Flower";
 
 export default function Nav() {
   const path = usePathname();
+  const onHome = path === "/" || path === "";
   const onAbout = path?.startsWith("/about");
   return (
     <nav className="nav">
-      <Link href="/" className={!onAbout ? "active" : ""}>home</Link>
+      <Link href="/" className={onHome ? "active" : ""}>home</Link>
       <Link href="/" aria-label="home" className="nav-flower">
         <Flower size={26} />
       </Link>

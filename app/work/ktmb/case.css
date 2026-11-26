@@ -128,3 +128,6 @@ html:has(.case) { scroll-padding-top: 120px; }
 .case-two .case-stats div { padding-right: 10px; }
 .case-two .case-stats div + div { padding-left: 12px; }
 .case-sec h2 + .case-rows { border-top: 0; }
+.case-stats .sym { display: inline-block; vertical-align: top; line-height: 1; }
+.case-stats .star { font-size: 0.74em; margin-top: 0.06em; }
+.case-stats .arrow { font-size: 0.8em; margin: 0 0.08em; position: relative; top: -0.1em; }
