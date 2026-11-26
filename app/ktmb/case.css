@@ -228,3 +228,12 @@ html:has(.case) { scroll-padding-top: 120px; }
 @media (prefers-reduced-motion: reduce) {
   .anim-flows .case-flow li, .anim-flows .label { opacity: 1; animation: none !important; transition: none; }
 }
+
+/* ALIGNMENT RULE: images side by side always share one height, so their bottoms and
+   captions line up even when the source images are different shapes.
+   Photos fill the space (cover); screenshots and diagrams are never cropped (contain). */
+.case-grid-2 { align-items: stretch; }
+.case-grid-2 .case-img { display: flex; flex-direction: column; margin-bottom: 0; }
+.case-grid-2 .case-img img { flex: 1 1 auto; min-height: 0; height: 100%; object-fit: contain; }
+.case-grid-2 .case-img.photo img { object-fit: cover; aspect-ratio: 4 / 3; }
+.case-grid-2 .case-img figcaption { margin-top: 8px; }

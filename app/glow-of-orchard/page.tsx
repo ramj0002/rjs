@@ -147,7 +147,7 @@ export default function GlowOfOrchard() {
           <CaseImage src={o.productionImage.src} caption={o.productionImage.caption} className="orch-photo" />
         </div>
         <div className="case-grid-2">
-          {o.installImages.map((im, i) => <CaseImage key={im.src + i} {...im} />)}
+          {o.installImages.map((im, i) => <CaseImage key={im.src + i} {...im} className="photo" />)}
         </div>
       </section>
 
