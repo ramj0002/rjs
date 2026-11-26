@@ -1,0 +1,114 @@
+/* Fashion zine page: red-on-white duotone, like the zine itself. */
+.zine-page {
+  --red: #f0402f;
+  --red-ink: #ff1a00;
+  --gurmukhi: "Noto Serif Gurmukhi", serif;
+  --texturina: "Texturina", serif;
+  color: var(--red-ink);
+  background: var(--white);
+  padding-top: 56px;
+}
+
+.zine-band {
+  background: var(--red); color: var(--white);
+  padding: clamp(40px, 7vw, 96px) 32px;
+  text-align: center;
+}
+.zine-band h1 { font-size: clamp(2.6rem, 8vw, 7rem); text-transform: none; line-height: 1; }
+.zine-band p { font-size: clamp(1.2rem, 2.4vw, 2rem); margin-top: 16px; }
+
+.zine-intro { max-width: 1100px; margin: 0 auto; padding: 80px 32px 40px; }
+.zine-title {
+  font-family: var(--gurmukhi); font-weight: 500;
+  font-size: clamp(4rem, 14vw, 11rem); line-height: 1.15;
+}
+.zine-pron {
+  font-family: var(--texturina); font-style: italic;
+  font-size: clamp(1.3rem, 2.6vw, 2rem); letter-spacing: 0.35em; margin: 12px 0 32px;
+}
+.zine-def { font-size: clamp(1.6rem, 3.6vw, 3rem); line-height: 1.25; color: var(--red-ink); max-width: 22ch; }
+.zine-tag { font-size: clamp(1.2rem, 2vw, 1.6rem); margin-top: 24px; }
+
+/* ---------- the floating zine ---------- */
+.zine-stage { position: relative; }
+.zine-sticky {
+  position: sticky; top: 56px; height: calc(100svh - 56px);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 1px 1px, rgba(240, 64, 47, 0.18) 1.2px, transparent 1.6px) 0 0 / 14px 14px;
+}
+.zine-float { animation: zine-bob 5s ease-in-out infinite; perspective: 1800px; position: relative; }
+.zine-tilt { transform-style: preserve-3d; will-change: transform; }
+.zine-book {
+  --w: min(32vw, 330px, calc((100svh - 340px) / 1.414));
+  position: relative; width: var(--w); height: calc(var(--w) * 1.414);
+  margin-left: var(--w); /* spine sits at the centre of the stage */
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(.2, .8, .2, 1);
+}
+.leaf {
+  position: absolute; inset: 0;
+  transform-origin: left center; transform-style: preserve-3d;
+  transition: transform 0.12s linear;
+}
+.face {
+  position: absolute; inset: 0; backface-visibility: hidden; overflow: hidden;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06), inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+.face img { width: 100%; height: 100%; object-fit: cover; display: block; user-select: none; }
+.face.front { border-radius: 0 4px 4px 0; }
+.face.back { transform: rotateY(180deg); border-radius: 4px 0 0 4px; }
+/* a little paper shading toward the spine */
+.face.front::after, .face.back::after { content: ""; position: absolute; inset: 0; pointer-events: none; }
+.face.front::after { background: linear-gradient(90deg, rgba(0,0,0,.18), transparent 10%); }
+.face.back::after { background: linear-gradient(270deg, rgba(0,0,0,.18), transparent 10%); }
+
+.zine-shadow {
+  position: absolute; left: 50%; bottom: -60px; width: 120%; height: 40px;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse at center, rgba(120, 20, 10, 0.28), transparent 70%);
+  animation: zine-shadow 5s ease-in-out infinite;
+}
+@keyframes zine-bob { 0%, 100% { transform: translateY(-10px); } 50% { transform: translateY(10px); } }
+@keyframes zine-shadow { 0%, 100% { opacity: 0.6; scale: 0.9; } 50% { opacity: 1; scale: 1; } }
+
+.zine-controls {
+  margin-top: 90px; display: flex; align-items: center; gap: 20px; font-size: 1.1rem;
+}
+.zine-controls button {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1.5px solid var(--red-ink); font-size: 1.2rem;
+  transition: background 0.2s, color 0.2s;
+}
+.zine-controls button:hover:not(:disabled) { background: var(--red-ink); color: #fff; }
+.zine-controls button:disabled { opacity: 0.3; cursor: default; }
+.zine-controls span { min-width: 9em; text-align: center; font-style: italic; }
+.zine-hint { position: absolute; bottom: 20px; font-size: 0.95rem; opacity: 0.7; }
+
+/* ---------- process ---------- */
+.zine-process { max-width: 1300px; margin: 0 auto; padding: 100px 32px; }
+.zine-process h2 { font-size: clamp(4rem, 12vw, 10rem); margin-bottom: 40px; }
+.zine-process ol { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.zine-process li { border-top: 2px solid var(--red-ink); padding-top: 18px; }
+.zine-process .step { font-size: 0.95rem; letter-spacing: 0.2em; text-transform: uppercase; }
+.zine-process h3 { font-size: clamp(2rem, 3.4vw, 3rem); margin: 12px 0; }
+.zine-process p { font-size: 1.15rem; line-height: 1.5; }
+
+.zine-foot {
+  background: var(--red); color: #fff;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 40px 32px; font-size: 1.2rem;
+}
+.zine-foot .display { font-size: clamp(2rem, 5vw, 4rem); }
+.zine-foot a:hover { opacity: 0.8; }
+
+@media (max-width: 760px) {
+  .zine-book { --w: min(42vw, calc((100svh - 260px) / 1.414)); }
+  .zine-process ol { grid-template-columns: 1fr; }
+  .zine-intro, .zine-process { padding-left: 18px; padding-right: 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .zine-float, .zine-shadow { animation: none; }
+}
