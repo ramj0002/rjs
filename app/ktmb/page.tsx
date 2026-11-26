@@ -97,15 +97,17 @@ export default function KtmbCase() {
       <section id="research" className="case-sec">
         <h2 className="display">understanding the users</h2>
         <p className="case-lead">{k.research.objective}</p>
-        <div className="case-methods">
-          {k.research.methods.map((m) => (
-            <div key={m.label}>
-              <b className="display">{m.n}</b>
-              <span className="m-label"><em>{m.label}</em></span>
-              <p>{m.text}</p>
-            </div>
-          ))}
-        </div>
+        <HighlightBlock className="pop-methods">
+          <div className="case-methods">
+            {k.research.methods.map((m) => (
+              <div key={m.label}>
+                <b className="display">{m.n}</b>
+                <span className="m-label"><em>{m.label}</em></span>
+                <p>{m.text}</p>
+              </div>
+            ))}
+          </div>
+        </HighlightBlock>
         <p className="case-note">{k.research.audience}</p>
         <h3 className="display case-h3">usability testing of the current app</h3>
         <Stats items={k.research.stats} />

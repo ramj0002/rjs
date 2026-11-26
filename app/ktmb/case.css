@@ -206,3 +206,12 @@ html:has(.case) { scroll-padding-top: 120px; }
 .case-two .case-stats.vertical b { width: auto; }
 .case-two .case-stats.vertical div > span { font-size: clamp(1.45rem, 2.3vw, 1.9rem); white-space: normal; }
 .case-two .case-stats.vertical b { justify-self: center; text-align: center; }
+
+/* Research numbers pop in one by one (replays when scrolled back to) */
+.pop-methods .case-methods b { opacity: 0; transform: translateY(16px) scale(0.6); }
+.pop-methods.on .case-methods b { animation: method-pop 0.65s cubic-bezier(.2, 1.5, .4, 1) forwards; }
+.pop-methods.on .case-methods > div:nth-child(2) b { animation-delay: 0.2s; }
+.pop-methods.on .case-methods > div:nth-child(3) b { animation-delay: 0.4s; }
+.pop-methods.on .case-methods > div:nth-child(4) b { animation-delay: 0.6s; }
+@keyframes method-pop { to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .pop-methods .case-methods b { opacity: 1; transform: none; animation: none !important; } }
