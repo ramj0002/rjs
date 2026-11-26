@@ -49,7 +49,7 @@ export default function GlowOfOrchard() {
             <p>{o.context}</p>
           </div>
           <HighlightBlock className="pop-block">
-            <div className="case-stats vertical">
+            <div className="case-stats vertical single">
               {o.stats.map(([big, small]) => (
                 <div key={small}><b className="display">{big}</b><span>{small}</span></div>
               ))}

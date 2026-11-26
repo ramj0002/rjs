@@ -78,3 +78,5 @@
   .orch-flow li, .orch-proto li { opacity: 1; animation: none !important; }
   .orch-proto li.fail { opacity: 0.6; }
 }
+.case .case-stats.vertical.single div { padding: 0; }
+.case-two .case-stats.vertical.single b { font-size: clamp(4.2rem, 8vw, 6.8rem); }

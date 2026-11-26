@@ -9,9 +9,7 @@ export const orchard = {
   tags: ["IoT", "Thermal sensing", "Hardware integration", "Lighting engineering", "Patent"],
 
   stats: [
-    ["64", "temperatures per reading"],
-    ["0", "cameras needed"],
-    ["5", "boards tried to get it right"],
+    ["300", "lights installed"],
   ] as [string, string][],
 
   context: "Modern retail relies heavily on customer behaviour data to optimise layout, product placement and operations.",
