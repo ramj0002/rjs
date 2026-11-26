@@ -34,9 +34,9 @@ function Big({ text }: { text: string }) {
   );
 }
 
-function Stats({ items }: { items: [string, string][] }) {
+function Stats({ items, className = "" }: { items: [string, string][]; className?: string }) {
   return (
-    <div className="case-stats">
+    <div className={`case-stats ${className}`}>
       {items.map(([big, small]) => (
         <div key={big}>
           <b className="display"><Big text={big} /></b>
@@ -71,7 +71,9 @@ export default function KtmbCase() {
             <p className="case-lead">{k.intro}</p>
             <ul className="case-list">{k.appDoes.map((t) => <li key={t}>{t}</li>)}</ul>
           </div>
-          <Stats items={[["1.6 ★", "starting app rating"], ["9 → 5", "booking steps"], ["1:39", "avg. booking time after"]]} />
+          <HighlightBlock className="pop-block">
+            <Stats className="vertical" items={[["1.6 ★", "starting app rating"], ["9 → 5", "booking steps"], ["1:39", "avg. booking time after"]]} />
+          </HighlightBlock>
         </div>
         <h3 className="display case-h3">app infrastructure</h3>
         <div className="case-grid-1 case-big">
