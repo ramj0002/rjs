@@ -89,18 +89,20 @@ export default function GlowOfOrchard() {
         </HighlightBlock>
 
         <h3 className="display case-h3">hardware layer</h3>
-        <p>Each lighting unit includes:</p>
-        <div className="orch-hw">
-          {o.hardware.map((hw) => (
-            <div key={hw.title}>
-              <h3 className="display">{hw.title}</h3>
-              <p className="label">{hw.sub}</p>
-              <ul className="case-list">{hw.points.map((t) => <li key={t}>{t}</li>)}</ul>
+        <div className="orch-hw-wrap">
+          <CaseImage src={o.hardwareImage.src} caption={o.hardwareImage.caption} className="orch-photo" />
+          <div>
+            <p>Each lighting unit includes:</p>
+            <div className="orch-hw">
+              {o.hardware.map((hw) => (
+                <div key={hw.title}>
+                  <h3 className="display">{hw.title}</h3>
+                  <p className="label">{hw.sub}</p>
+                  <ul className="case-list">{hw.points.map((t) => <li key={t}>{t}</li>)}</ul>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div className="case-grid-2 orch-photos">
-          {o.hardwareImages.map((im) => <CaseImage key={im.src} {...im} />)}
+          </div>
         </div>
       </section>
 
@@ -140,7 +142,10 @@ export default function GlowOfOrchard() {
 
       <section id="production" className="case-sec">
         <h2 className="display">production &amp; integration</h2>
-        <ul className="case-list orch-big-list">{o.production.map((t) => <li key={t}>{t}</li>)}</ul>
+        <div className="orch-hw-wrap reverse">
+          <ul className="case-list orch-big-list">{o.production.map((t) => <li key={t}>{t}</li>)}</ul>
+          <CaseImage src={o.productionImage.src} caption={o.productionImage.caption} className="orch-photo" />
+        </div>
         <div className="case-grid-2">
           {o.installImages.map((im, i) => <CaseImage key={im.src + i} {...im} />)}
         </div>

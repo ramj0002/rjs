@@ -40,10 +40,7 @@ export const orchard = {
     { title: "Microcontroller", sub: "ESPDUINO-32", points: ["Handles data acquisition", "Pre-processes the sensor output"] },
     { title: "Network module", sub: "Wi-Fi", points: ["Sends data to the server"] },
   ],
-  hardwareImages: [
-    { src: "/orchard/downlight-1.png", caption: "The downlight with the sensor fitted inside" },
-    { src: "/orchard/downlight-2.png", caption: "Sensor mount on the light housing" },
-  ],
+  hardwareImage: { src: "/orchard/hardware.webp", caption: "The downlight with the AMG8833 sensor fitted inside" },
 
   built: [
     ["Heat map algorithm", "Implemented bilinear interpolation in Java to upscale the 8×8 sensor grid into a smooth, colour-coded heat map."],
@@ -67,6 +64,7 @@ export const orchard = {
     "A custom 3D-printed mount holds the thermal sensor, keeping its angle and position steady.",
     "Sensor placement was calibrated to get the best field of view with the least noise in the readings.",
   ],
+  productionImage: { src: "/orchard/production.webp", caption: "The custom 3D-printed sensor mount on the light housing" },
   installImages: [
     { src: "/orchard/install-1.jpg", caption: "Installed in store" },
     { src: "/orchard/install-2.jpg", caption: "Installed in store" },

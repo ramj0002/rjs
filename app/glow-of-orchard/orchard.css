@@ -117,3 +117,13 @@
 @media (max-width: 520px) { .sol { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .sol li { opacity: 1; animation: none !important; } }
 .sol h3 { white-space: pre-line; min-height: 2.1em; }
+
+/* Photo beside text (hardware layer, production) */
+.orch-hw-wrap { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 48px; align-items: center; margin-bottom: 36px; }
+.orch-hw-wrap.reverse { grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr); }
+.orch-photo img { max-height: 520px; width: auto; max-width: 100%; margin: 0 auto; }
+.orch-photo figcaption { text-align: center; }
+.orch-hw-wrap .orch-hw { grid-template-columns: 1fr; margin-bottom: 0; }
+.orch-hw-wrap .orch-hw > div { padding: 16px 0; }
+.orch-hw-wrap .orch-hw > div + div { border-left: 0; padding-left: 0; border-top: 1.5px solid color-mix(in srgb, var(--blue) 22%, transparent); }
+@media (max-width: 900px) { .orch-hw-wrap, .orch-hw-wrap.reverse { grid-template-columns: 1fr; gap: 20px; } .orch-photo img { max-height: 380px; } }
