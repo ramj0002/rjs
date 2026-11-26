@@ -4,9 +4,10 @@ import Link from "next/link";
 import { categories, projects, type Category } from "@/content/projects";
 import { plates } from "./plates";
 import Halftone from "./Halftone";
+import BagPlate from "./BagPlate";
 
 // Project cards: a drawn plate (or halftone image), key numbers, tools and a link.
-// Featured projects (wide: true) span the full row when "All" is selected.
+// One project per row: plate on the left, details on the right.
 
 export default function WorkGrid() {
   const [filter, setFilter] = useState<Category | "All">("All");
@@ -33,15 +34,17 @@ export default function WorkGrid() {
           const internal = p.link.startsWith("/");
           const LinkEl = internal ? Link : "a";
           return (
-            <article key={p.id} className={`card${p.wide && filter === "All" ? " wide" : ""}`}>
+            <article key={p.id} className="card">
               <div className="plate">
                 {p.image ? (
                   <Halftone src={p.image} alt={p.title} color="#000CED" cell={6} />
+                ) : p.id === "bag" ? (
+                  <div className="plate-svg"><BagPlate /></div>
                 ) : (
                   <div className="plate-svg" role="img" aria-label={`Drawing for ${p.title}`}
                     dangerouslySetInnerHTML={{ __html: plates[p.id]?.() ?? "" }} />
                 )}
-                <em>fig. {String(fig).padStart(2, "0")}</em>
+                <span className="fig display">{String(fig).padStart(2, "0")}</span>
               </div>
               <div className="card-body">
                 <p className="cat"><em>{p.category}</em></p>

@@ -79,25 +79,25 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* ---------- project cards ---------- */
 .work { --accent: var(--blue); --soft: #6f75f2; --panel: #fff; }
-.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; }
 .card {
   border: 2px solid var(--ink); background: var(--panel);
-  display: grid; grid-template-rows: auto 1fr;
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   transition: transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s;
 }
 .card:hover { transform: translate(-4px, -4px); box-shadow: 8px 8px 0 var(--blue); }
-.card.wide { grid-column: 1 / -1; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); grid-template-rows: auto; }
 .plate {
-  position: relative; border-bottom: 2px solid var(--ink); color: var(--ink);
-  aspect-ratio: 4 / 3; overflow: hidden;
+  position: relative; border-right: 2px solid var(--ink); color: var(--ink);
+  min-height: 380px; overflow: hidden;
   background: radial-gradient(circle at 1px 1px, rgba(0, 12, 237, 0.16) 1.2px, transparent 1.6px) 0 0 / 14px 14px;
 }
-.card.wide .plate { border-bottom: 0; border-right: 2px solid var(--ink); aspect-ratio: auto; min-height: 340px; }
-.plate-svg, .plate-svg svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.plate-svg { position: absolute; inset: 0; padding: 20px; }
+.plate-svg svg { width: 100%; height: 100%; display: block; }
+.bag-plate { touch-action: pan-y; cursor: crosshair; }
 .plate .halftone { position: absolute; inset: 0; height: 100% !important; object-fit: cover; }
-.plate em {
-  position: absolute; left: 12px; bottom: 10px; font-size: 0.9rem;
-  background: var(--panel); padding: 1px 8px; border: 1.5px solid var(--ink);
+.plate .fig {
+  position: absolute; top: 14px; right: 18px; z-index: 1;
+  color: var(--blue); font-size: 2.2rem; line-height: 1;
 }
 .card-body { padding: clamp(20px, 2.4vw, 30px); display: flex; flex-direction: column; }
 .card-body .cat { font-size: 1rem; color: var(--blue); margin-bottom: 4px; }
@@ -174,8 +174,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   .nav { font-size: 1.1rem; gap: 18px; }
   .work { padding: 64px 18px 80px; }
   .cards { grid-template-columns: 1fr; gap: 20px; }
-  .card.wide { grid-template-columns: 1fr; }
-  .card.wide .plate { border-right: 0; border-bottom: 2px solid var(--ink); aspect-ratio: 4 / 3; min-height: 0; }
+  .card { grid-template-columns: 1fr; }
+  .plate { border-right: 0; border-bottom: 2px solid var(--ink); aspect-ratio: 4 / 3; min-height: 0; }
   .card:hover { transform: none; box-shadow: none; }
   .about { padding: 80px 18px 48px; }
   .about-grid { grid-template-columns: 1fr; }

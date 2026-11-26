@@ -17,7 +17,6 @@ export type Project = {
   id: string;            // also picks the drawing in components/plates.ts
   title: string;
   category: Category;
-  wide?: boolean;        // featured: spans the full row
   summary: string;
   facts: [string, string][]; // [big number, what it means]
   tools: string[];
@@ -33,7 +32,6 @@ export const projects: Project[] = [
     id: "ktmb",
     title: "Redesigning the KTMB Mobile App",
     category: "Product / UX",
-    wide: true,
     summary:
       "Malaysia’s national rail app had a 1.6-star rating. I mapped the existing app’s information architecture, then rebuilt the structure and the key screens around what riders actually need to do, so the app earns back their trust.",
     facts: [["1.6 ★", "starting rating"], ["2", "architectures mapped: current and redesign"]],
@@ -45,7 +43,6 @@ export const projects: Project[] = [
     id: "orchard",
     title: "Glow of Orchard: thermal retail analytics",
     category: "Creative Tech",
-    wide: true,
     summary:
       "A camera-free way to see how shoppers move. An AMG8833 thermal sensor sits inside an LED downlight, an ESP32-class board sends the readings over Wi-Fi, and the server turns them into live heat maps of dwell time, traffic and density. Privacy is kept because there are no images, only heat.",
     facts: [["64", "temperatures per reading"], ["4th", "prototype board that worked"], ["Patent", "contributor"]],
