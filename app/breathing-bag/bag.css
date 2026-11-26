@@ -58,3 +58,18 @@
 @media (max-width: 900px) { .bag-overview .case-two .case-stats.vertical { position: static; } .bag-overview .case-two .case-stats.vertical div { padding: 14px 0; } }
 .case .bag-overview .case-two .case-lead { margin: 0; }
 .case .bag-q { margin-bottom: 40px; }
+
+/* "alive" never stops breathing: each letter rises and swells in a slow wave */
+.bag-alive span { display: inline-block; animation: alive 2.4s ease-in-out infinite; animation-delay: calc(var(--k) * 0.14s); transform-origin: 50% 80%; }
+@keyframes alive {
+  0%, 100% { transform: translateY(0) scale(1); }
+  40% { transform: translateY(-0.12em) scale(1.08); }
+  70% { transform: translateY(0.03em) scale(0.98); }
+}
+@media (prefers-reduced-motion: reduce) { .bag-alive span { animation: none; } }
+
+/* stat labels the same size as their numbers */
+.case .bag-overview .case-two .case-stats.vertical div > span { font-size: clamp(1.8rem, 2.8vw, 2.5rem); line-height: 1; white-space: nowrap; }
+/* digits and words read the same height */
+.case .bag-overview .case-two .case-stats.vertical b { font-size: clamp(2.3rem, 3.6vw, 3.1rem); }
+.case .bag-overview .case-two .case-stats.vertical div > span { font-size: clamp(1.7rem, 2.6vw, 2.3rem); }

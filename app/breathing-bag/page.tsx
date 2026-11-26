@@ -60,7 +60,7 @@ export default function BreathingBag() {
       <section id="overview" className="case-sec bag-overview">
         <h2 className="display">overview</h2>
         <HighlightBlock>
-          <p className="bag-q display">What if a bag was <mark className="hl" style={{ ["--i" as string]: 0 }}><em className="bag-alive">alive</em></mark>?</p>
+          <p className="bag-q display">What if a bag was <mark className="hl" style={{ ["--i" as string]: 0 }}><em className="bag-alive" aria-label="alive">{"alive".split("").map((ch, i) => <span key={i} aria-hidden style={{ ["--k" as string]: i }}>{ch}</span>)}</em></mark>?</p>
         </HighlightBlock>
         <div className="case-two">
           <p className="case-lead">{b.intro}</p>
