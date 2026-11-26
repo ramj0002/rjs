@@ -289,7 +289,8 @@ body { transition: color 0.3s; }
   .marquee-track, .spin { animation: none; }
 }
 
-/* Filter buttons wear their category colour; the selected one is filled. */
-.filters button[class*="t-"] { color: var(--ci); border-color: var(--ci); }
-.filters button[class*="t-"]:hover { background: color-mix(in srgb, var(--c) 14%, transparent); }
+/* Filter buttons are blue; on hover each switches to its category colour,
+   and a selected category stays filled in its colour. */
+.filters button { transition: background 0.2s, color 0.2s, border-color 0.2s; }
+.filters button[class*="t-"]:hover { color: var(--ci); border-color: var(--ci); background: color-mix(in srgb, var(--c) 14%, transparent); }
 .filters button[class*="t-"].on { background: var(--ci); border-color: var(--ci); color: #fff; }
