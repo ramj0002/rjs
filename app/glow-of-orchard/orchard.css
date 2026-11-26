@@ -1,0 +1,80 @@
+/* Glow of Orchard page: extras on top of the shared case-study styles (app/ktmb/case.css). */
+
+.orch-problems { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px; }
+.orch-hmw {
+  font-size: clamp(1.6rem, 3vw, 2.4rem) !important; line-height: 1.3 !important;
+  text-align: center; margin: 48px auto 0 !important; max-width: 30ch;
+}
+
+/* System flow: four numbered steps joined by arrows, appearing one by one */
+.orch-flow ol { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border: 2px solid var(--ink); }
+.orch-flow li { padding: 22px 20px; position: relative; }
+.orch-flow li + li { padding-left: 30px; }
+.orch-flow li + li { border-left: 2px solid var(--ink); }
+.orch-flow li + li::before {
+  content: "→"; position: absolute; left: -15px; top: 26px; width: 28px; height: 28px;
+  background: var(--white); color: var(--blue); font-size: 1.2rem; text-align: center; line-height: 26px;
+  border: 2px solid var(--ink); border-radius: 50%;
+}
+.orch-flow .num { font-size: 2.6rem; color: var(--blue); line-height: 1; display: block; margin-bottom: 8px; }
+.orch-flow h3 { font-size: clamp(1.4rem, 2.2vw, 1.9rem); margin-bottom: 6px; }
+.orch-flow p { font-size: 1.05rem; margin: 0; }
+.orch-flow li { opacity: 0; }
+.orch-flow.on li { animation: flow-step 0.45s ease-out forwards; animation-delay: calc(var(--i) * 0.3s + 0.1s); }
+
+.orch-hw { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 2px solid var(--ink); margin-bottom: 28px; }
+.orch-hw > div { padding: 20px 20px 10px 0; }
+.orch-hw > div + div { border-left: 1.5px solid rgba(46, 55, 254, 0.22); padding-left: 20px; }
+.orch-hw h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
+.orch-photos .case-img img { max-height: 460px; width: auto; max-width: 100%; margin: 0 auto; }
+.orch-photos .case-img figcaption { text-align: center; }
+
+/* Heat map demo */
+.thermal-demo { width: 100%; display: block; margin-top: 18px; cursor: crosshair; touch-action: pan-y; }
+
+/* Prototypes: a timeline of five boards */
+.orch-proto ol { list-style: none; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+.orch-proto li {
+  border: 2px solid var(--ink); border-radius: 18px; padding: 18px 16px; position: relative;
+  opacity: 0;
+}
+.orch-proto.on li { animation: flow-pop 0.5s cubic-bezier(.2, 1.5, .4, 1) forwards; animation-delay: calc(var(--i) * 0.22s + 0.1s); }
+.orch-proto .num { font-size: 2.2rem; line-height: 1; color: var(--blue); }
+.orch-proto .board { font-size: 1.25rem; line-height: 1.1; margin: 10px 0 8px; text-transform: none; }
+.orch-proto .result { font-size: 1rem; font-style: italic; margin: 0; }
+.orch-proto li.fail { border-style: dashed; opacity: 0; }
+.orch-proto.on li.fail { animation-name: flow-pop-faded; }
+.orch-proto li.final { background: var(--blue); color: #fff; border-color: var(--blue); }
+.orch-proto li.final .num { color: #fff; }
+@keyframes flow-pop-faded { from { opacity: 0; transform: scale(0.6); } to { opacity: 0.6; transform: none; } }
+
+.orch-big-list li { font-size: 1.25rem; }
+
+/* Patent */
+.orch-patent { text-align: center; border: 2px solid var(--ink); border-radius: 24px; padding: clamp(28px, 5vw, 56px); }
+.case .orch-patent-no { font-size: clamp(2.2rem, 5vw, 4rem); line-height: 1.05; color: var(--blue); margin-bottom: 14px; text-transform: none; }
+.orch-patent .case-lead { margin: 0 auto 24px; max-width: 40ch; }
+.orch-btn {
+  display: inline-block; background: var(--blue); color: #fff; border-radius: 999px;
+  padding: 10px 26px; font-size: 1.5rem; text-transform: lowercase; transition: transform 0.2s;
+}
+.orch-btn:hover { transform: translateY(-2px); }
+
+@media (max-width: 900px) {
+  .orch-flow ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .orch-flow li:nth-child(3) { border-left: 0; }
+  .orch-flow li:nth-child(n+3) { border-top: 2px solid var(--ink); }
+  .orch-flow li:nth-child(3)::before { display: none; }
+  .orch-proto ol { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .orch-hw { grid-template-columns: 1fr; }
+  .orch-hw > div + div { border-left: 0; padding-left: 0; border-top: 1.5px solid rgba(46, 55, 254, 0.22); }
+}
+@media (max-width: 640px) {
+  .orch-problems, .orch-flow ol { grid-template-columns: 1fr; }
+  .orch-flow li + li { border-left: 0; border-top: 2px solid var(--ink); padding-left: 20px; padding-top: 28px; }
+  .orch-flow li + li::before { left: 20px; top: -15px; content: "↓"; display: block !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .orch-flow li, .orch-proto li { opacity: 1; animation: none !important; }
+  .orch-proto li.fail { opacity: 0.6; }
+}

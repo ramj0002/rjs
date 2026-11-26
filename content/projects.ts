@@ -45,9 +45,9 @@ export const projects: Project[] = [
     category: "Creative Tech",
     summary:
       "A thermal sensor hidden in a shop light tracks how shoppers move, turning heat into live heat maps. No cameras, so no faces.",
-    facts: [["64", "temperatures per reading"], ["4th", "prototype that worked"], ["Patent", "contributor"]],
+    facts: [["64", "temperatures per reading"], ["5", "boards to get it right"], ["Patent", "contributor"]],
     tools: ["AMG8833", "ESPUINO-32", "Java interpolation", "SolidWorks", "DIALux", "AWS study"],
-    link: OLD + "glow-of-orchard",
+    link: "/glow-of-orchard/",
     linkLabel: "See the build",
   },
   {
