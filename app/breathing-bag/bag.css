@@ -1,0 +1,40 @@
+/* Breathing Bag page extras */
+.bag-hero-plate { aspect-ratio: auto; }
+.bag-hero-plate svg { width: 100%; height: auto; }
+.case .bag-q { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1; margin-bottom: 16px; text-transform: none; }
+
+/* dashboard demo */
+.bd { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 28px; align-items: stretch;
+  border: 2px solid var(--ink); border-radius: 24px; padding: clamp(18px, 3vw, 30px); margin-top: 12px; }
+.bd-bag { display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--ink); }
+.bd-bag svg { width: 100%; max-width: 380px; height: auto; overflow: visible; }
+.bd-led { fill: transparent; stroke: none; transition: fill 0.2s; }
+.bd-bag .live .bd-led { fill: var(--blue); }
+.bd-bag .live path { stroke: var(--blue); }
+.case .bd-status { margin: 8px 0 0; text-align: center; }
+.bd-panel { display: flex; flex-direction: column; gap: 14px; }
+.bd-top { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.bd-box { border: 2px solid var(--ink); border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; }
+.bd-box b { font-size: 1.4rem; font-weight: 400; display: flex; justify-content: space-between; }
+.bd-box b span { color: var(--blue); }
+.bd-box input[type="range"] { width: 100%; accent-color: var(--blue); }
+.bd-btns { display: flex; gap: 8px; }
+.bd button { border: 1.5px solid var(--ink); border-radius: 999px; padding: 6px 14px; font-size: 1rem; background: transparent; color: var(--ink); cursor: pointer; }
+.bd button:hover { background: color-mix(in srgb, var(--blue) 14%, transparent); }
+.bd button.on { background: var(--blue); border-color: var(--blue); color: #fff; }
+.bd-grid { display: grid; gap: 10px; }
+.bd-row { display: grid; grid-template-columns: repeat(4, 48px) 1fr; gap: 8px; align-items: center; }
+.bd .bd-motor { width: 48px; height: 48px; padding: 0; border-radius: 12px; font-family: var(--display, Anton, Impact, sans-serif); font-size: 1.25rem; }
+.bd-row:not(:last-child) .bd-row-btns { grid-column: 5; }
+.bd-row-btns { display: flex; gap: 8px; justify-content: flex-end; }
+.bd .bd-off { align-self: flex-end; border-style: dashed; }
+
+/* circuit embed */
+.bag-circuit iframe { width: 100%; aspect-ratio: 16 / 10; border: 0; display: block; background: #fff; }
+
+@media (max-width: 900px) {
+  .bd { grid-template-columns: 1fr; }
+  .bd-row { grid-template-columns: repeat(4, 44px); }
+  .bd-row-btns { grid-column: 1 / -1 !important; justify-content: flex-start; }
+}
+.bag-holders .case-img img { aspect-ratio: 4 / 3; object-fit: cover; }

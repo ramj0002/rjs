@@ -65,7 +65,7 @@ export const projects: Project[] = [
       "A leather bag that seems alive: ten hidden motors move its fringes, controlled from a web dashboard.",
     facts: [["10", "MG90S servos"], ["4", "control modes"]],
     tools: ["Arduino", "XAMPP", "Web dashboard", "Cirkit Designer"],
-    link: OLD + "breathing-bag",
+    link: "/breathing-bag/",
     linkLabel: "See it move",
   },
   {
