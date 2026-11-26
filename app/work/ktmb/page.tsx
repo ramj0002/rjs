@@ -63,7 +63,7 @@ export default function KtmbCase() {
         </div>
         <h3 className="display case-h3">app infrastructure</h3>
         <div className="case-grid-2">
-          {k.infrastructure.map((im) => <CaseImage key={im.src} {...im} />)}
+          {k.infrastructure.map((im) => <CaseImage key={im.src} src={im.src} caption={im.caption} className={"wide" in im && im.wide ? "wide" : ""} />)}
         </div>
       </section>
 
@@ -122,7 +122,7 @@ export default function KtmbCase() {
       <section id="design" className="case-sec">
         <h2 className="display">ideation &amp; design</h2>
         <div className="case-grid-2">
-          {k.ideation.images.map((im) => <CaseImage key={im.src} {...im} />)}
+          {k.ideation.images.map((im) => <CaseImage key={im.src} src={im.src} caption={im.caption} className={"wide" in im && im.wide ? "wide" : ""} />)}
         </div>
         <h3 className="display case-h3">what we built first</h3>
         <p>The high-impact, feasible ideas from our impact vs. effort map:</p>
@@ -135,7 +135,6 @@ export default function KtmbCase() {
           ))}
         </ol>
         <p>Every screen has the same progress bar at the top and a booking summary at the bottom, so you always know where you are and what you picked.</p>
-        <CaseImage {...k.flowImage} />
         <div className="case-decisions">
           {k.decisions.map((d, i) => (
             <div key={d.title}>
@@ -169,7 +168,7 @@ export default function KtmbCase() {
 
         <h3 className="display case-h3">round 2</h3>
         <div className="case-grid-2">
-          {k.round2.images.map((im) => <CaseImage key={im.src} {...im} />)}
+          {k.round2.images.map((im) => <CaseImage key={im.src} src={im.src} caption={im.caption} className={"wide" in im && im.wide ? "wide" : ""} />)}
         </div>
         <div className="case-quotes">
           {k.round2.quotes.map((q) => (
@@ -186,7 +185,7 @@ export default function KtmbCase() {
         <Stats items={k.final.stats} />
         <p className="case-lead">{k.final.changed}</p>
         <div className="case-grid-2">
-          {k.final.screens.map((im) => <CaseImage key={im.src} {...im} />)}
+          {k.final.screens.map((im) => <CaseImage key={im.src} src={im.src} caption={im.caption} className={"wide" in im && im.wide ? "wide" : ""} />)}
         </div>
       </section>
 

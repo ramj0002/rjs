@@ -17,10 +17,10 @@ export const ktmb = {
   ],
 
   infrastructure: [
-    { src: "/ktmb/ia-1.jpg", caption: "Current app infrastructure" },
-    { src: "/ktmb/ia-2.jpg", caption: "Current app infrastructure, booking flow" },
-    { src: "/ktmb/ia-3.jpg", caption: "Redesigned app infrastructure" },
-    { src: "/ktmb/ia-4.jpg", caption: "Redesigned app infrastructure, full map" },
+    { src: "/ktmb/ia-1.jpg", caption: "Current app: login and registration" },
+    { src: "/ktmb/ia-2.jpg", caption: "Current app: main menu" },
+    { src: "/ktmb/ia-3.jpg", caption: "Current app: ticket and seat booking" },
+    { src: "/ktmb/ia-4.jpg", caption: "Current app: passenger, booking details and payment" },
   ],
 
   problem: {
@@ -28,7 +28,7 @@ export const ktmb = {
       "The current information architecture and task flow of the KTMB app may not fully match users’ mental models and booking habits, causing friction during key tasks.",
     rationale:
       "The app has consistently low ratings and recurring negative feedback across platforms, which suggests a mismatch between the app’s structure and how people expect it to work.",
-    image: { src: "/ktmb/reviews.png", caption: "App store reviews" },
+    image: { src: "/ktmb/reviews.jpg", caption: "Ratings: 1.6 on the App Store, 3.2 on Google Play" },
   },
 
   research: {
@@ -85,10 +85,11 @@ export const ktmb = {
 
   ideation: {
     images: [
-      { src: "/ktmb/ideation-1.png", caption: "Ideation" },
-      { src: "/ktmb/ideation-2.png", caption: "Sketches" },
-      { src: "/ktmb/ideation-3.png", caption: "Sketches" },
-      { src: "/ktmb/ideation-4.gif", caption: "Early prototype" },
+      { src: "/ktmb/process.jpg", caption: "Our process: brainstorm, affinity mapping, impact vs. effort", wide: true },
+      { src: "/ktmb/brainstorm.jpg", caption: "Brainstormed ideas" },
+      { src: "/ktmb/affinity.jpg", caption: "Affinity map: clarity, control, errors, visibility, feedback, guidance" },
+      { src: "/ktmb/matrix.gif", caption: "Impact vs. effort matrix" },
+      { src: "/ktmb/sketches.jpg", caption: "Sketches" },
     ],
     buildList: [
       "Progress indicator: Search → Select → Seat → Details → Payment",
@@ -101,7 +102,6 @@ export const ktmb = {
   },
 
   flow: ["Search", "Select", "Seat", "Details", "Payment"],
-  flowImage: { src: "/ktmb/flow.png", caption: "The new 5-step booking flow" },
   decisions: [
     {
       title: "Booking summary on every screen",
@@ -122,7 +122,7 @@ export const ktmb = {
   ],
 
   round1: {
-    image: { src: "/ktmb/round-1.png", caption: "Round 1 prototype" },
+    image: { src: "/ktmb/round-1.jpg", caption: "Round 1 prototype: the 5-step flow" },
     stats: [
       ["~3:00", "average task time"],
       ["1–2", "errors per participant"],
@@ -164,8 +164,8 @@ export const ktmb = {
 
   round2: {
     images: [
-      { src: "/ktmb/round-2-gold.png", caption: "Round 2: Gold" },
-      { src: "/ktmb/round-2-silver.png", caption: "Round 2: Silver" },
+      { src: "/ktmb/round-2-gold.jpg", caption: "Round 2: Gold flow" },
+      { src: "/ktmb/round-2-silver.jpg", caption: "Round 2: Silver flow" },
     ],
     quotes: [
       { who: "P1, 23", quote: "Now it’s much clearer. I can easily see where things are, especially the facilities.", note: "Moved through seat selection without pausing." },
@@ -185,11 +185,11 @@ export const ktmb = {
     changed:
       "Between rounds the seat map gained orientation and facility icons, the duplicate cabin menu went, visual hierarchy tightened, train classes got colour-coding and seat types got explanations. Every Round 1 pain point was confirmed fixed.",
     screens: [
-      { src: "/ktmb/final-gold.png", caption: "Gold" },
-      { src: "/ktmb/final-silver.png", caption: "Silver" },
-      { src: "/ktmb/final-seat-info.png", caption: "Seat info prompt: seat types and wheelchair access explained" },
-      { src: "/ktmb/final-train-compare.png", caption: "Train comparison prompt: the difference between ETS ticket types" },
-      { src: "/ktmb/final-tickets.png", caption: "Simplified ticket access: view, search and open tickets in one place" },
+      { src: "/ktmb/final-gold.jpg", caption: "Final: Gold flow", wide: true },
+      { src: "/ktmb/final-silver.jpg", caption: "Final: Silver flow", wide: true },
+      { src: "/ktmb/final-seat-info.jpg", caption: "Seat info prompt: seat types and wheelchair access explained", wide: true },
+      { src: "/ktmb/final-train-compare.jpg", caption: "Train comparison prompt: the difference between ETS Gold and Platinum" },
+      { src: "/ktmb/final-tickets.jpg", caption: "Simplified ticket access: view, search and open tickets in one place" },
     ],
   },
 

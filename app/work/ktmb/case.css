@@ -50,7 +50,8 @@ html:has(.case) { scroll-padding-top: 120px; }
   background: radial-gradient(circle at 1px 1px, rgba(0, 12, 237, 0.18) 1.2px, transparent 1.6px) 0 0 / 14px 14px;
 }
 .case-img-missing span { background: #fff; padding: 4px 10px; border: 1.5px solid var(--ink); font-size: 0.9rem; }
-.case-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.case-grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+.case-grid-2 .wide { grid-column: 1 / -1; }
 
 .case-methods { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; border: 2px solid var(--ink); margin: 24px 0; }
 .case-methods > div { padding: 18px; }
