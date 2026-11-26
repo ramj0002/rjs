@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import "./case.css";
 import CaseImage from "@/components/CaseImage";
+import HighlightBlock from "@/components/Highlight";
+import { marks } from "@/components/marks";
 import { plates } from "@/components/plates";
 import { ktmb as k } from "@/content/ktmb";
 import { site } from "@/content/site";
@@ -80,12 +82,12 @@ export default function KtmbCase() {
       <section id="problem" className="case-sec">
         <h2 className="display">the problem</h2>
         <div className="case-two">
-          <div>
+          <HighlightBlock>
             <p className="label">hypothesis</p>
-            <p className="case-lead">{k.problem.hypothesis}</p>
+            <p className="case-lead">{marks(k.problem.hypothesis).nodes}</p>
             <p className="label">why we thought so</p>
-            <p>{k.problem.rationale}</p>
-          </div>
+            <p>{marks(k.problem.rationale, marks(k.problem.hypothesis).next).nodes}</p>
+          </HighlightBlock>
           <CaseImage {...k.problem.image} />
         </div>
       </section>

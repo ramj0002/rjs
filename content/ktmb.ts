@@ -1,4 +1,5 @@
 // ✏️ KTMB case study content (from the Notion write-up).
+// Wrap words in ==double equals== to highlight them as the section scrolls into view.
 // Images: put files in /public/ktmb/ with the names below. Until a file exists,
 // the page shows a labelled placeholder in its place.
 
@@ -25,9 +26,9 @@ export const ktmb = {
 
   problem: {
     hypothesis:
-      "The current information architecture and task flow of the KTMB app may not fully match users’ mental models and booking habits, causing friction during key tasks.",
+      "The current information architecture and task flow of the KTMB app may ==not fully match users’ mental models== and booking habits, causing ==friction during key tasks.==",
     rationale:
-      "The app has consistently low ratings and recurring negative feedback across platforms, which suggests a mismatch between the app’s structure and how people expect it to work.",
+      "The app has consistently ==low ratings and recurring negative feedback== across platforms, which suggests a ==mismatch== between the app’s structure and how people expect it to work.",
     image: { src: "/ktmb/reviews.jpg", caption: "Ratings: 1.6 on the App Store, 3.2 on Google Play" },
   },
 
