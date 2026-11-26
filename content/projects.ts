@@ -101,7 +101,7 @@ export const projects: Project[] = [
       "A full online fashion store: shopping and checkout for customers, plus an admin dashboard with live stock and order emails.",
     facts: [["Full stack", "front end to database"], ["Live", "stock tracking"]],
     tools: ["Database design", "Admin dashboard", "Wireframes", "Email automation"],
-    link: OLD + "full-stack-fashion-e-commerce-platform",
+    link: "/xyr/",
     linkLabel: "Tour the store",
   },
   {
