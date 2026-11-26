@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { categories, projects, type Category } from "@/content/projects";
 import { plates } from "./plates";
@@ -11,6 +12,14 @@ import BagPlate from "./BagPlate";
 
 export default function WorkGrid() {
   const [filter, setFilter] = useState<Category | "All">("All");
+  const router = useRouter();
+  // Click anywhere on a card to open the project (the link inside still works for keyboards).
+  const open = (e: React.MouseEvent, link: string, internal: boolean) => {
+    if ((e.target as HTMLElement).closest("a")) return;
+    if (window.getSelection()?.toString()) return; // don't hijack text selection
+    if (internal && !(e.metaKey || e.ctrlKey)) router.push(link);
+    else window.open(link, "_blank", "noopener");
+  };
   const shown = (p: (typeof projects)[number]) => filter === "All" || p.category === filter;
   const firstShown = projects.find(shown);
   const count = (c: Category | "All") => (c === "All" ? projects.length : projects.filter((p) => p.category === c).length);
@@ -46,6 +55,7 @@ export default function WorkGrid() {
               style={pin ? { gridArea: "1 / 1" } : undefined}
               aria-hidden={!visible}
               inert={!visible}
+              onClick={(e) => open(e, p.link, internal)}
             >
               <div className="plate">
                 {p.image ? (
