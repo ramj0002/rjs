@@ -73,3 +73,5 @@
 /* digits and words read the same height */
 .case .bag-overview .case-two .case-stats.vertical b { font-size: clamp(2.3rem, 3.6vw, 3.1rem); }
 .case .bag-overview .case-two .case-stats.vertical div > span { font-size: clamp(1.7rem, 2.6vw, 2.3rem); }
+/* stats sit in the middle of their column */
+.bag-overview .case-two .case-stats.vertical { grid-template-columns: max-content max-content; justify-content: center; }
