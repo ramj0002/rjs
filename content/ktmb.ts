@@ -102,6 +102,7 @@ export const ktmb = {
     ],
   },
 
+  oldFlow: ["Buy tickets", "Depart ticket", "Depart seat", "Return ticket", "Return seat", "Passenger details", "Takaful details", "Booking details", "Payment"],
   flow: ["Search", "Select", "Seat", "Details", "Payment"],
   decisions: [
     {
