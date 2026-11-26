@@ -200,3 +200,8 @@ html:has(.case) { scroll-padding-top: 120px; }
 .case-features h3 { font-size: clamp(1.9rem, 3vw, 2.6rem); margin-bottom: 10px; }
 .case-features p { font-size: 1.25rem; }
 @media (max-width: 760px) { .case-features > div { grid-template-columns: 1fr; gap: 16px; } }
+/* Overview numbers: label column sits just after the widest number (shared via subgrid), bigger labels */
+.case-two .case-stats.vertical { display: grid; grid-template-columns: max-content minmax(0, 1fr); column-gap: 26px; }
+.case-two .case-stats.vertical div { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; align-items: center; column-gap: 26px; row-gap: 0; }
+.case-two .case-stats.vertical b { width: auto; }
+.case-two .case-stats.vertical div > span { font-size: clamp(1.45rem, 2.3vw, 1.9rem); white-space: normal; }
