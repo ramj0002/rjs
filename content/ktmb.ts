@@ -51,26 +51,36 @@ export const ktmb = {
   findings: [
     {
       title: "Not beginner-friendly",
+      where: "Home screen",
+      step: 0,
       quote: "Like we need a PhD in Malaysian trains just to use this app.",
       text: "The home screen showed ETS, KTM Komuter and Shuttle Tebrau with no explanation of the difference. Station tags (ETS / Intercity) weren’t explained either, so users hesitated before every choice.",
     },
     {
       title: "Linear-only navigation",
+      where: "Going back from any step",
+      step: 5,
       quote: "It goes all the way back to the beginning if you need to change anything.",
       text: "Going back to change a departure time triggered a “Cancel Booking” warning that wiped all progress. One mistake meant starting over.",
     },
     {
       title: "Selections disappear",
+      where: "After seat selection",
+      step: 2,
       quote: "Why does it not tell me what I picked? There was a time I purchased the wrong ticket assuming I’d picked correctly.",
       text: "Your chosen train vanished after seat selection, so users had to remember their choices across 9 steps.",
     },
     {
       title: "Unclear train classes",
+      where: "Choosing a train",
+      step: 1,
       quote: "",
       text: "ETS Platinum and ETS Gold looked identical and the difference was never explained. All four test users either asked what it meant or picked at random.",
     },
     {
       title: "Cryptic errors",
+      where: "Logging in",
+      step: 0,
       quote: "",
       text: "Failed logins only said “Server didn’t give proper response.” Users didn’t know whether to retry, check their details or call support.",
     },
@@ -104,6 +114,15 @@ export const ktmb = {
 
   oldFlow: ["Buy tickets", "Depart ticket", "Depart seat", "Return ticket", "Return seat", "Passenger details", "Takaful details", "Booking details", "Payment"],
   flow: ["Search", "Select", "Seat", "Details", "Payment"],
+  // Each finding, what users needed, and what we changed.
+  fixes: [
+    { n: "01", problem: "Not beginner-friendly", need: "Understand options quickly", fix: "A simpler home screen with popular routes and quick actions" },
+    { n: "02", problem: "Linear-only navigation", need: "Edit without restarting", fix: "Going back doesn’t cancel: tap any step in the progress bar and your data stays" },
+    { n: "03", problem: "Selections disappear", need: "See selections clearly", fix: "A booking summary (train, times, seat, price) on every screen" },
+    { n: "04", problem: "Unclear train classes", need: "Understand options quickly", fix: "Comparison cards with ‘Best Value’ badges and a one-tap “What’s the difference?”" },
+    { n: "05", problem: "Cryptic errors", need: "Trust the system", fix: "Plain-English errors with what to do next, a reference code, and Retry" },
+  ],
+
   decisions: [
     {
       title: "Booking summary on every screen",
@@ -163,6 +182,34 @@ export const ktmb = {
       "Made key information stand out on booking screens",
     ],
   },
+
+  // The same issue, before and after: Round 1 complaint → fix → Round 2 reaction.
+  pairs: [
+    {
+      topic: "Seat map",
+      before: { quote: "When I reach the seat selection part, I a bit blur. I cannot really tell where the toilet or luggage area is.", who: "P1, 23" },
+      fix: "Added a FRONT/BACK bar and toilet and luggage icons",
+      after: { quote: "Now it’s much clearer. I can easily see where things are, especially the facilities.", who: "P1, 23" },
+    },
+    {
+      topic: "Cabin menus",
+      before: { quote: "Since got the one at the side already, the top one just makes the screen look more messy.", who: "P2, 20" },
+      fix: "Removed the duplicate top menu",
+      after: { quote: "Removing the top navigation really helps — feels less messy and easier to use.", who: "P2, 20" },
+    },
+    {
+      topic: "Next steps",
+      before: { quote: "I still need to think a bit where to go next.", who: "P3, 25" },
+      fix: "Clearer hierarchy, with a cabin position sidebar",
+      after: { quote: "I don’t need to keep guessing what to press next.", who: "P4, 30" },
+    },
+    {
+      topic: "First impression",
+      before: { quote: "Feels a bit cluttered. Some information doesn’t stand out clearly.", who: "P6, 34" },
+      fix: "Made price, class and times stand out",
+      after: { quote: "Feels clean, modern, and not cluttered. First impression is quite good.", who: "P6, 34" },
+    },
+  ],
 
   round2: {
     images: [

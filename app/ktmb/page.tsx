@@ -115,11 +115,30 @@ export default function KtmbCase() {
 
       <section id="findings" className="case-sec">
         <h2 className="display">key findings</h2>
+        <p className="case-lead">Where the old 9-step booking breaks down:</p>
+        <HighlightBlock className="pain-map">
+          <ol className="pain-flow">
+            {k.oldFlow.map((step, i) => {
+              const hits = k.findings.map((f, n) => ({ ...f, n: n + 1 })).filter((f) => f.step === i);
+              return (
+                <li key={step} style={{ ["--i" as string]: i }}>
+                  <span className="pill display">{step}</span>
+                  <span className="pins">
+                    {hits.map((f) => (
+                      <a key={f.n} href={`#finding-${f.n}`} className="pin display" title={f.title}>{String(f.n).padStart(2, "0")}</a>
+                    ))}
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
+        </HighlightBlock>
         <ol className="case-findings">
           {k.findings.map((f, i) => (
-            <li key={f.title}>
+            <li key={f.title} id={`finding-${i + 1}`}>
               <span className="num display">{String(i + 1).padStart(2, "0")}</span>
               <div>
+                <p className="where"><em>{f.where}</em></p>
                 <h3 className="display">{f.title}</h3>
                 {f.quote ? <blockquote>“{f.quote}”</blockquote> : <blockquote className="no-quote" aria-hidden>&nbsp;</blockquote>}
                 <p>{f.text}</p>
@@ -127,12 +146,6 @@ export default function KtmbCase() {
             </li>
           ))}
         </ol>
-        <h3 className="display case-h3">what users need</h3>
-        <dl className="case-needs">
-          {k.needs.map(([a, b]) => (
-            <div key={a}><dt className="display">{a}</dt><dd>{b}</dd></div>
-          ))}
-        </dl>
       </section>
 
       <section id="design" className="case-sec">
@@ -159,14 +172,16 @@ export default function KtmbCase() {
             ))}
           </ol>
         </HighlightBlock>
-        <div className="case-rows case-rows-big">
-          {k.decisions.map((d, i) => (
-            <div key={d.title}>
-              <div>
-                <p className="label">decision {i + 1}</p>
-                <h3 className="display">{d.title}</h3>
-              </div>
-              <div><p>{d.text}</p></div>
+        <h3 className="display case-h3">from problem to fix</h3>
+        <div className="fix-table" role="table" aria-label="Each problem, what users needed, and what we changed">
+          <div className="fix-head" role="row">
+            <span role="columnheader">problem</span><span role="columnheader">users needed to</span><span role="columnheader">so we</span>
+          </div>
+          {k.fixes.map((f) => (
+            <div key={f.n} className="fix-row" role="row">
+              <span role="cell" className="fix-problem"><b className="display">{f.n}</b><span className="display">{f.problem}</span></span>
+              <span role="cell" className="fix-need"><em>{f.need}</em></span>
+              <span role="cell" className="fix-fix">{f.fix}</span>
             </div>
           ))}
         </div>
@@ -178,43 +193,41 @@ export default function KtmbCase() {
         <h3 className="display case-h3">round 1</h3>
         <Stats items={k.round1.stats} />
         <CaseImage {...k.round1.image} />
-        <h4 className="display case-h4">comments</h4>
-        <div className="case-rows">
-          {k.round1.pains.map((p) => (
-            <div key={p.title}>
-              <h3 className="display">{p.title}</h3>
-              <div>
-                <blockquote>“{p.quote}” <cite>— {p.who}</cite></blockquote>
-                <p>{p.text}</p>
-              </div>
+        <h3 className="display case-h3">round 1 → round 2</h3>
+        <p>The same people, before and after the fixes:</p>
+        <div className="pairs">
+          {k.pairs.map((p) => (
+            <div key={p.topic} className="pair">
+              <p className="pair-topic display">{p.topic}</p>
+              <figure className="pair-q before">
+                <span className="tag"><em>round 1</em></span>
+                <blockquote>“{p.before.quote}”</blockquote>
+                <figcaption><cite>— {p.before.who}</cite></figcaption>
+              </figure>
+              <div className="pair-fix"><span className="arrow" aria-hidden>→</span><span>{p.fix}</span><span className="arrow" aria-hidden>→</span></div>
+              <figure className="pair-q after">
+                <span className="tag"><em>round 2</em></span>
+                <blockquote>“{p.after.quote}”</blockquote>
+                <figcaption><cite>— {p.after.who}</cite></figcaption>
+              </figure>
             </div>
           ))}
-        </div>
-        <div className="case-fixes">
-          <h4 className="display">fixes after round 1</h4>
-          <ol>{k.round1.fixes.map((f) => <li key={f}>{f}</li>)}</ol>
         </div>
 
         <h3 className="display case-h3">round 2</h3>
         <div className="case-grid-2">
           {k.round2.images.map((im) => <CaseImage key={im.src} src={im.src} caption={im.caption} className={"wide" in im && im.wide ? "wide" : ""} />)}
         </div>
-        <h4 className="display case-h4">comments</h4>
-        <div className="case-rows">
-          {k.round2.quotes.map((q) => (
-            <div key={q.who}>
-              <h3 className="display">{q.title}</h3>
-              <div>
-                <blockquote>“{q.quote}” <cite>— {q.who}</cite></blockquote>
-                <p>{q.note}</p>
-              </div>
-            </div>
-          ))}
-        </div>
       </section>
 
       <section id="results" className="case-sec">
         <h2 className="display">results</h2>
+        <HighlightBlock className="time-bars">
+          <p className="label">average time to book a ticket</p>
+          <div className="tbar before"><span className="tbar-name">round 1 prototype</span><span className="tbar-track"><span className="tbar-fill" style={{ ["--w" as string]: "100%" }} /></span><b className="display">~3:00</b></div>
+          <div className="tbar after"><span className="tbar-name">final design</span><span className="tbar-track"><span className="tbar-fill" style={{ ["--w" as string]: `${(99 / 180) * 100}%` }} /></span><b className="display">1:39</b></div>
+          <p className="tbar-note"><em>about 45% faster</em></p>
+        </HighlightBlock>
         <Stats items={k.final.stats} />
         <p className="case-lead">{k.final.changed}</p>
         <div className="case-grid-1 case-big">
