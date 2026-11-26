@@ -78,3 +78,6 @@
 .xyr-video .case-img-missing { aspect-ratio: 16 / 7; height: auto; min-height: 0; }
 .xyr-admin-imgs .case-img img { aspect-ratio: 4 / 3; object-fit: contain; }
 @media (max-width: 700px) { .xyr-screens { grid-template-columns: 1fr; } }
+/* real screenshots: same frame, show the top of the page */
+.xyr-screens .case-img img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border: 2px solid var(--ink); }
+.xyr-screens .case-img-missing { aspect-ratio: 16 / 10; }

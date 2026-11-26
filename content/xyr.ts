@@ -4,8 +4,7 @@
 export const xyr = {
   title: "XYR Fashion Store",
   tagline: "A full-stack, database-driven shop: the customer journey from catalogue to checkout, a secure admin dashboard, real-time stock tracking and automatic order emails.",
-  tags: ["PHP", "MySQL", "JavaScript", "React + Vite", "Tailwind CSS", "PHPMailer"],
-  team: "Team project with Yu Xiangyu · NTU IE4727",
+  tags: ["PHP", "MySQL", "JavaScript", "React + Vite", "Tailwind CSS", "PHPMailer", "Stripe"],
 
   stats: [
     ["4", "product categories"],
@@ -80,5 +79,22 @@ export const xyr = {
     ["6", "admin", "Prices, stock, new sizes, new products, sales report"],
   ] as [string, string, string][],
 
-  next: "Next steps: hashed passwords, order history, carts saved to the account, online payment, reviews and wishlists.",
+  next: "Next steps: hashed passwords, order history, carts saved to the account, reviews and wishlists.",
+
+  payments: {
+    intro: "The original checkout recorded the sale without taking any money. Afterwards I added real payments with Stripe, built around what goes wrong.",
+    repo: "https://github.com/ramj0002/xyr-payments-reliability",
+    stats: [
+      ["12", "failure scenarios handled"],
+      ["29", "automated tests"],
+      ["2", "PHP versions in CI"],
+    ] as [string, string][],
+    rows: [
+      ["Same payment sent twice", "Applied once. Each Stripe event is recorded with its effects, so a repeat does nothing."],
+      ["Fake or replayed request", "Rejected. Every webhook is signed and must be less than 5 minutes old."],
+      ["Wrong amount or sold out", "Set aside for review. No stock change, no sale."],
+      ["Webhook never arrives", "A scheduled job checks Stripe and repairs the missed payment."],
+      ["Network timeout", "Retried with the same key, so no duplicate charge."],
+    ] as [string, string][],
+  },
 };

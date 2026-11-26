@@ -27,6 +27,7 @@ const sections = [
   ["security", "security"],
   ["versions", "versions"],
   ["testing", "testing"],
+  ["payments", "payments"],
 ];
 
 export default function Xyr() {
@@ -52,7 +53,6 @@ export default function Xyr() {
         <div className="case-two">
           <div>
             <p className="case-lead">{x.intro}</p>
-            <p className="label">{x.team}</p>
           </div>
           <HighlightBlock className="pop-block">
             <div className="case-stats vertical">
@@ -85,9 +85,7 @@ export default function Xyr() {
             <video src={x.video} autoPlay muted loop playsInline />
             <figcaption>Walk the Future</figcaption>
           </figure>
-        ) : (
-          <CaseImage src={x.video} caption="Walk the Future (video)" className="xyr-video" />
-        )}
+        ) : null}
       </section>
 
       <section id="design" className="case-sec">
@@ -184,6 +182,32 @@ export default function Xyr() {
           </div>
         </HighlightBlock>
         <p className="case-note">{x.next}</p>
+      </section>
+
+      <section id="payments" className="case-sec">
+        <h2 className="display">then, real payments</h2>
+        <div className="case-two">
+          <p className="case-lead">{x.payments.intro}</p>
+          <HighlightBlock className="pop-block">
+            <div className="case-stats vertical">
+              {x.payments.stats.map(([big, small]) => (
+                <div key={small}><b className="display">{big}</b><span>{small}</span></div>
+              ))}
+            </div>
+          </HighlightBlock>
+        </div>
+        <div className="case-rows case-rows-big" style={{ marginTop: 28 }}>
+          {x.payments.rows.map(([title, text]) => (
+            <div key={title}>
+              <h3 className="display">{title}</h3>
+              <div><p>{text}</p></div>
+            </div>
+          ))}
+        </div>
+        <p className="case-note">
+          Stripe Checkout · PHPUnit · GitHub Actions on PHP 8.2 and 8.3 ·{" "}
+          <a href={x.payments.repo} target="_blank" rel="noreferrer">see the code on GitHub →</a>
+        </p>
       </section>
 
       <footer className="case-foot">
