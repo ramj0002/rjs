@@ -116,3 +116,4 @@
 @media (max-width: 900px) { .sol { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 520px) { .sol { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .sol li { opacity: 1; animation: none !important; } }
+.sol h3 { white-space: pre-line; min-height: 2.1em; }

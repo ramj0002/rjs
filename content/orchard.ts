@@ -21,10 +21,10 @@ export const orchard = {
   solution: {
     intro: "A sensing system built into the store’s own lights:",
     points: [
-      { icon: "heat", title: "Heat, not images", text: "Captures thermal data instead of video" },
-      { icon: "path", title: "Follows movement", text: "Tracks people through their heat signatures" },
-      { icon: "map", title: "Maps foot traffic", text: "Turns readings into heat maps of the floor" },
-      { icon: "server", title: "Sends it to the server", text: "Structured data, ready for analysis" },
+      { icon: "heat", title: "Heat,\nnot images", text: "Captures thermal data instead of video" },
+      { icon: "path", title: "Follows\nmovement", text: "Tracks people through their heat signatures" },
+      { icon: "map", title: "Maps foot\ntraffic", text: "Turns readings into heat maps of the floor" },
+      { icon: "server", title: "Sends it to\nthe server", text: "Structured data, ready for analysis" },
     ],
   },
 
