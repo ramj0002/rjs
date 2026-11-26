@@ -70,16 +70,15 @@
 }
 @media (max-width: 520px) { .db { grid-template-columns: 1fr; } .xyr-tests { grid-template-columns: 1fr !important; } }
 
-.xyr-video video { border: 2px solid var(--ink); border-radius: 0; aspect-ratio: 2084 / 1162; object-fit: cover; }
+.xyr-video video { border-radius: 0; aspect-ratio: 2084 / 1162; object-fit: cover; }
 
 /* pictures: one per row, full width */
-.xyr-screens .case-img img { aspect-ratio: 2998 / 1646; object-fit: cover; object-position: top; border: 2px solid var(--ink); }
-.xyr-big .case-img img { border: 2px solid var(--ink); }
+.xyr-screens .case-img img { aspect-ratio: 2998 / 1646; object-fit: cover; object-position: top; }
 .xyr-video { margin-top: 0; }
 
 /* full home page with the hero video laid over its banner, like the original site */
 .xyr-home { max-width: 820px; margin-left: auto; margin-right: auto; }
-.xyr-home-frame { position: relative; border: 2px solid var(--ink); }
+.xyr-home-frame { position: relative; }
 .xyr-home-frame img { width: 100%; display: block; }
 /* hero banner sits 91px–1535px down the 4096px-tall screenshot */
 .xyr-home-frame .xyr-hero-vid { position: absolute; left: 0; width: 100%; top: calc(91 / 4096 * 100%); height: calc(1444 / 4096 * 100%); object-fit: cover; }
@@ -91,3 +90,8 @@
 .xyr-hero-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.4cqw; color: #fff; font-family: Helvetica, Arial, sans-serif; text-shadow: 0 1px 12px rgba(0,0,0,.35); }
 .xyr-hero-text b { font-size: 4.8cqw; font-weight: 700; letter-spacing: -0.01em; }
 .xyr-hero-text span { background: #fff; color: #000; text-shadow: none; font-size: 1.3cqw; font-weight: 700; padding: 0.7cqw 2cqw; border-radius: 999px; }
+
+/* captions sit above each picture, no borders */
+.xyr .case-img { display: flex; flex-direction: column; }
+.xyr .case-img figcaption { order: -1; margin: 0 0 10px; }
+.xyr .case-img img { border: 0; }

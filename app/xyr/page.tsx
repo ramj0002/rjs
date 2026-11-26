@@ -33,7 +33,7 @@ const sections = [
 export default function Xyr() {
   const hasVideo = fs.existsSync(path.join(process.cwd(), "public", x.video));
   return (
-    <main className="case page-theme t-pink2">
+    <main className="case xyr page-theme t-pink2">
       <header className="case-hero">
         <div className="case-hero-text">
           <p className="case-kicker"><em>case study · Product / UX</em></p>
