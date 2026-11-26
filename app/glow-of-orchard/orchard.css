@@ -127,4 +127,3 @@
 .orch-hw-wrap .orch-hw > div { padding: 16px 0; }
 .orch-hw-wrap .orch-hw > div + div { border-left: 0; padding-left: 0; border-top: 1.5px solid color-mix(in srgb, var(--blue) 22%, transparent); }
 @media (max-width: 900px) { .orch-hw-wrap, .orch-hw-wrap.reverse { grid-template-columns: 1fr; gap: 20px; } .orch-photo img { max-height: 380px; } }
-.orch-photo img { border-radius: 18px; }

@@ -64,7 +64,7 @@ export const orchard = {
     "A custom 3D-printed mount holds the thermal sensor, keeping its angle and position steady.",
     "Sensor placement was calibrated to get the best field of view with the least noise in the readings.",
   ],
-  productionImage: { src: "/orchard/production.jpg", caption: "The custom 3D-printed sensor mount on the light housing" },
+  productionImage: { src: "/orchard/production.webp", caption: "The custom 3D-printed sensor mount on the light housing" },
   installImages: [
     { src: "/orchard/install-1.jpg", caption: "Installed in store" },
     { src: "/orchard/install-2.jpg", caption: "Installed in store" },
