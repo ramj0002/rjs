@@ -45,7 +45,6 @@ export const bag = {
     ],
   },
 
-  finished: { src: "/breathing-bag/finished.jpg", caption: "The finished bag" },
   build: [
     { src: "/breathing-bag/fringe.jpg", caption: "Cutting my own leather fringe" },
     { src: "/breathing-bag/wiring.jpg", caption: "Wiring ten servos" },

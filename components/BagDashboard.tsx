@@ -96,12 +96,11 @@ export default function BagDashboard() {
   return (
     <div className="bd">
       <div className="bd-bag">
-        <svg viewBox="40 0 320 400" fill="none" strokeLinecap="round" strokeLinejoin="round" aria-label="Drawing of the bag: three layered tiers of fringe over a sewn-in heart">
+        <svg viewBox="40 30 320 370" fill="none" strokeLinecap="round" strokeLinejoin="round" aria-label="Drawing of the bag: three layered tiers of fringe over a sewn-in heart">
           <ellipse cx="200" cy="388" rx="120" ry="7" fill="#0e3f45" opacity=".08" />
-          {/* shoulder straps */}
-          <path d="M128 114 C120 30 168 12 178 12 C186 12 184 30 184 114" stroke="#0f353b" strokeWidth="7" />
-          <path d="M216 114 C216 30 214 12 222 12 C232 12 280 30 272 114" stroke="#0f353b" strokeWidth="7" />
-          <path d="M128 114 C120 30 168 12 178 12 C186 12 184 30 184 114 M216 114 C216 30 214 12 222 12 C232 12 280 30 272 114" stroke="#3b9aa6" strokeWidth="1.2" opacity=".6" />
+          {/* handle: one semicircle */}
+          <path d="M138 114 A62 62 0 0 1 262 114" stroke="#0f353b" strokeWidth="8" />
+          <path d="M154 114 A46 46 0 0 1 246 114" stroke="#3b9aa6" strokeWidth="1.6" opacity=".6" />
           {/* body */}
           <path d={BODY} fill="#eef7f8" stroke="#0f353b" strokeWidth="2.5" />
           <path d={`M${leftAt(BODY_TOP) + 6} ${BODY_TOP + 6} H${400 - leftAt(BODY_TOP) - 6}`} stroke="#0f353b" strokeWidth="1.2" strokeDasharray="3 4" opacity=".5" />

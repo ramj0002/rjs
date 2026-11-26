@@ -132,10 +132,7 @@ export default function BreathingBag() {
 
       <section id="build" className="case-sec">
         <h2 className="display">the bag</h2>
-        <div className="case-grid-1 case-big">
-          <CaseImage {...b.finished} />
-        </div>
-        <div className="bag-three" style={{ marginTop: 36 }}>
+        <div className="bag-three">
           {b.videos.map((m) => <Media key={m.src} {...m} />)}
         </div>
       </section>
