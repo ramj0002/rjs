@@ -170,3 +170,7 @@ html:has(.case) { scroll-padding-top: 120px; }
 .pop-block.on .case-stats div:nth-child(3) { animation-delay: 0.5s; }
 @keyframes stat-pop { to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .pop-block .case-stats div { opacity: 1; transform: none; animation: none !important; } }
+/* Labels: larger, and centred on their numbers */
+.case-two .case-stats.vertical div { align-items: center; }
+.case-two .case-stats.vertical b { min-width: 0; width: 3.1em; flex: none; }
+.case-two .case-stats.vertical div > span { font-size: clamp(1.3rem, 2vw, 1.6rem); line-height: 1.2; }
