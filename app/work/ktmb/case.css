@@ -131,3 +131,6 @@ html:has(.case) { scroll-padding-top: 120px; }
 .case-stats .sym { display: inline-block; vertical-align: top; line-height: 1; }
 .case-stats .star { font-size: 0.74em; margin-top: 0.06em; }
 .case-stats .arrow { font-size: 0.8em; margin: 0 0.08em; position: relative; top: -0.1em; }
+.case-two .case-stats div > span { white-space: nowrap; font-size: 0.92rem; }
+.case-grid-1 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 36px; }
+.case-infra .case-img figcaption { font-size: clamp(1.2rem, 2vw, 1.5rem); margin-top: 10px; }

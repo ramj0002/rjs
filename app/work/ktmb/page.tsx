@@ -69,10 +69,10 @@ export default function KtmbCase() {
             <p className="case-lead">{k.intro}</p>
             <ul className="case-list">{k.appDoes.map((t) => <li key={t}>{t}</li>)}</ul>
           </div>
-          <Stats items={[["1.6 ★", "starting app rating"], ["9 → 5", "booking steps"], ["1:39", "average booking time after"]]} />
+          <Stats items={[["1.6 ★", "starting app rating"], ["9 → 5", "booking steps"], ["1:39", "avg. booking time after"]]} />
         </div>
         <h3 className="display case-h3">app infrastructure</h3>
-        <div className="case-grid-2">
+        <div className="case-grid-1 case-infra">
           {k.infrastructure.map((im) => <CaseImage key={im.src} src={im.src} caption={im.caption} className={"wide" in im && im.wide ? "wide" : ""} />)}
         </div>
       </section>
