@@ -27,9 +27,9 @@ html:has(.case) { scroll-padding-top: 120px; }
 .case-sec { max-width: 1240px; margin: 0 auto; padding: clamp(56px, 8vw, 110px) max(4vw, 18px) 0; }
 .case-sec h2 { font-size: clamp(3rem, 8vw, 6.5rem); margin-bottom: 28px; border-bottom: 2px solid var(--ink); padding-bottom: 10px; }
 .case-h3 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); margin: 56px 0 18px; }
-.case-sec p { font-size: 1.12rem; line-height: 1.55; max-width: 64ch; margin-bottom: 14px; }
-.case-sec .case-lead { font-size: clamp(1.3rem, 2.2vw, 1.7rem); line-height: 1.4; max-width: 40ch; }
-.case-two { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.case-sec p { font-size: 1.12rem; line-height: 1.55; margin-bottom: 14px; }
+.case-sec .case-lead { font-size: clamp(1.3rem, 2.2vw, 1.7rem); line-height: 1.4; }
+.case-two { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 40px; align-items: center; }
 
 .case-list { list-style: none; margin: 6px 0 16px; }
 .case-list li { font-size: 1.12rem; padding: 8px 0 8px 26px; border-bottom: 1px solid rgba(0, 12, 237, .25); position: relative; }
@@ -38,11 +38,11 @@ html:has(.case) { scroll-padding-top: 120px; }
 .case-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(10em, 1fr)); border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); margin-bottom: 24px; }
 .case-stats div { padding: 16px 14px 16px 0; }
 .case-stats div + div { border-left: 1px solid rgba(0, 12, 237, .3); padding-left: 16px; }
-.case-stats b { display: block; font-size: clamp(2.6rem, 5vw, 4rem); line-height: 1; }
+.case-stats b { display: block; font-size: clamp(2.6rem, 5vw, 4rem); line-height: 1; white-space: nowrap; }
 .case-stats span { font-style: italic; font-size: 1rem; }
 
 .case-img { margin: 0 0 24px; }
-.case-img img { width: 100%; display: block; border: 2px solid var(--ink); background: #fff; }
+.case-img img { width: 100%; display: block; background: #fff; }
 .case-img figcaption { font-style: italic; font-size: 0.95rem; margin-top: 6px; }
 .case-img-missing {
   aspect-ratio: 16 / 10; border: 2px dashed var(--ink);
@@ -65,7 +65,7 @@ html:has(.case) { scroll-padding-top: 120px; }
 .case-findings li { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: 16px; padding: 22px 0; border-bottom: 1px solid rgba(0, 12, 237, .3); }
 .case-findings .num { font-size: 2.6rem; color: var(--blue); line-height: 1; }
 .case-findings h3 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); margin-bottom: 8px; }
-.case blockquote { font-style: italic; font-size: 1.25rem; line-height: 1.4; margin: 0 0 10px; color: var(--blue); max-width: 60ch; }
+.case blockquote { font-style: italic; font-size: 1.25rem; line-height: 1.4; margin: 0 0 10px; color: var(--blue); }
 .case cite { font-style: normal; font-size: 0.95rem; color: var(--ink); }
 
 .case-needs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border: 2px solid var(--ink); }
@@ -86,11 +86,17 @@ html:has(.case) { scroll-padding-top: 120px; }
 
 .case-pains { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin: 12px 0 28px; }
 .case-pains h3 { font-size: 1.7rem; margin-bottom: 8px; }
-.case-fixes { background: var(--blue); color: #fff; padding: 22px 26px; }
+.case-fixes { background: var(--blue); color: #fff; padding: 26px 30px; border-radius: 22px; margin-top: 28px; }
+.case-fixes h4 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 10px; }
 .case-fixes .label { color: #fff; }
 .case-fixes ol { padding-left: 22px; }
 .case-fixes li { font-size: 1.1rem; padding: 4px 0; }
 
+.case-h4 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); margin: 28px 0 4px; color: var(--blue); }
+.case-rows { border-top: 2px solid var(--ink); }
+.case-rows > div { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 28px; padding: 22px 0; border-bottom: 1px solid rgba(0, 12, 237, .3); }
+.case-rows h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); line-height: 1.05; }
+.case-rows p { margin-bottom: 0; }
 .case-quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(16em, 1fr)); gap: 20px; }
 .case-quotes figure { margin: 0; border: 2px solid var(--ink); padding: 18px; }
 .case-quotes figcaption { font-size: 0.95rem; font-style: italic; }
@@ -110,8 +116,15 @@ html:has(.case) { scroll-padding-top: 120px; }
   .case-needs > div + div { border-left: 0; border-top: 2px solid var(--ink); }
 }
 @media (max-width: 640px) {
-  .case-grid-2, .case-pains, .case-decisions { grid-template-columns: 1fr; }
+  .case-grid-2, .case-pains, .case-decisions, .case-rows > div { grid-template-columns: 1fr; }
+  .case-rows > div { gap: 8px; }
   .case-decisions > div:nth-child(even) { padding-left: 0; border-left: 0; }
   .case-findings li { grid-template-columns: 48px minmax(0, 1fr); }
   .case-findings .num { font-size: 1.8rem; }
 }
+
+/* Stats beside text: a little smaller so "9 → 5" fits on one line with room around it */
+.case-two .case-stats b { font-size: clamp(2rem, 3.2vw, 2.9rem); }
+.case-two .case-stats div { padding-right: 10px; }
+.case-two .case-stats div + div { padding-left: 12px; }
+.case-sec h2 + .case-rows { border-top: 0; }

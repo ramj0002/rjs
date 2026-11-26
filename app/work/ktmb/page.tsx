@@ -152,17 +152,20 @@ export default function KtmbCase() {
         <h3 className="display case-h3">round 1</h3>
         <Stats items={k.round1.stats} />
         <CaseImage {...k.round1.image} />
-        <div className="case-pains">
+        <h4 className="display case-h4">comments</h4>
+        <div className="case-rows">
           {k.round1.pains.map((p) => (
             <div key={p.title}>
               <h3 className="display">{p.title}</h3>
-              <blockquote>“{p.quote}” <cite>— {p.who}</cite></blockquote>
-              <p>{p.text}</p>
+              <div>
+                <blockquote>“{p.quote}” <cite>— {p.who}</cite></blockquote>
+                <p>{p.text}</p>
+              </div>
             </div>
           ))}
         </div>
         <div className="case-fixes">
-          <p className="label">fixes after round 1</p>
+          <h4 className="display">fixes after round 1</h4>
           <ol>{k.round1.fixes.map((f) => <li key={f}>{f}</li>)}</ol>
         </div>
 
@@ -170,12 +173,16 @@ export default function KtmbCase() {
         <div className="case-grid-2">
           {k.round2.images.map((im) => <CaseImage key={im.src} src={im.src} caption={im.caption} className={"wide" in im && im.wide ? "wide" : ""} />)}
         </div>
-        <div className="case-quotes">
+        <h4 className="display case-h4">comments</h4>
+        <div className="case-rows">
           {k.round2.quotes.map((q) => (
-            <figure key={q.who}>
-              <blockquote>“{q.quote}”</blockquote>
-              <figcaption><cite>{q.who}</cite> · {q.note}</figcaption>
-            </figure>
+            <div key={q.who}>
+              <h3 className="display">{q.title}</h3>
+              <div>
+                <blockquote>“{q.quote}” <cite>— {q.who}</cite></blockquote>
+                <p>{q.note}</p>
+              </div>
+            </div>
           ))}
         </div>
       </section>
@@ -191,11 +198,11 @@ export default function KtmbCase() {
 
       <section id="learned" className="case-sec">
         <h2 className="display">what I learned</h2>
-        <div className="case-decisions">
+        <div className="case-rows">
           {k.lessons.map((l) => (
             <div key={l.title}>
               <h3 className="display">{l.title}</h3>
-              <p>{l.text}</p>
+              <div><p>{l.text}</p></div>
             </div>
           ))}
         </div>

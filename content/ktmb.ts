@@ -168,11 +168,11 @@ export const ktmb = {
       { src: "/ktmb/round-2-silver.jpg", caption: "Round 2: Silver flow" },
     ],
     quotes: [
-      { who: "P1, 23", quote: "Now it’s much clearer. I can easily see where things are, especially the facilities.", note: "Moved through seat selection without pausing." },
-      { who: "P2, 20", quote: "Removing the top navigation really helps — feels less messy and easier to use.", note: "Noticed the cleaner navigation straight away." },
-      { who: "P4, 30", quote: "Compared to the old KTMB app, this one much better. I don’t need to keep guessing what to press next.", note: "Far fewer pauses mid-flow." },
-      { who: "P5, 22", quote: "Wah this one really easy to use sia. Booking feels very smooth.", note: "Fastest run: 1:30, with no second-guessing." },
-      { who: "P6, 34", quote: "Feels clean, modern, and not cluttered. First impression is quite good.", note: "Went from “cluttered” to “clean and modern”." },
+      { title: "Seat screen confusion resolved", who: "P1, 23", quote: "Now it’s much clearer. I can easily see where things are, especially the facilities.", note: "Moved through seat selection without pausing." },
+      { title: "Cleaner navigation", who: "P2, 20", quote: "Removing the top navigation really helps — feels less messy and easier to use.", note: "Noticed the cleaner navigation straight away." },
+      { title: "Flow feels natural", who: "P4, 30", quote: "Compared to the old KTMB app, this one much better. I don’t need to keep guessing what to press next.", note: "Far fewer pauses mid-flow." },
+      { title: "Smoothest experience", who: "P5, 22", quote: "Wah this one really easy to use sia. Booking feels very smooth.", note: "Fastest run: 1:30, with no second-guessing." },
+      { title: "Strong first impression", who: "P6, 34", quote: "Feels clean, modern, and not cluttered. First impression is quite good.", note: "Went from “cluttered” to “clean and modern”." },
     ],
   },
 
