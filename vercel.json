@@ -1,0 +1,8 @@
+{
+  "redirects": [
+    { "source": "/work/ktmb", "destination": "/ktmb/", "permanent": true },
+    { "source": "/work/ktmb/", "destination": "/ktmb/", "permanent": true },
+    { "source": "/work/fashion-zine", "destination": "/fashion-zine/", "permanent": true },
+    { "source": "/work/fashion-zine/", "destination": "/fashion-zine/", "permanent": true }
+  ]
+}

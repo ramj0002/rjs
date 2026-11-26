@@ -36,7 +36,7 @@ export const projects: Project[] = [
       "Malaysia’s rail app was rated 1.6 stars. I mapped how it works today and redesigned it around what riders actually need.",
     facts: [["1.6 ★", "starting rating"], ["2", "app structures mapped"]],
     tools: ["UX research", "Information architecture", "UI design"],
-    link: "/work/ktmb/",
+    link: "/ktmb/",
     linkLabel: "Read the case study",
   },
   {
@@ -124,7 +124,7 @@ export const projects: Project[] = [
       "A hand-made fashion zine about identity, in Punjabi and English, printed in just red and white.",
     facts: [["2", "scripts, one voice"], ["1", "colour"]],
     tools: ["Illustration", "Photography", "Editorial layout"],
-    link: "/work/fashion-zine/",
+    link: "/fashion-zine/",
     linkLabel: "Flip through",
   },
   {
