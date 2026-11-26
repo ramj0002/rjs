@@ -2,7 +2,7 @@
 
 export const site = {
   name: "Ram Jeet",
-  title: "rjportfolio",
+  title: "Ram Jeet Singh",
   tagline: "part engineer, part designer.",
   bio: "I try to build things that look good, work well, and just…make sense.",
   email: "z.ramjeet@gmail.com",

@@ -10,7 +10,7 @@ import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: site.title,
-  description: `${site.name} — ${site.tagline}`,
+  description: `${site.title}: ${site.tagline} ${site.bio}`,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
