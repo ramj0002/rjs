@@ -11,7 +11,8 @@ import BagPlate from "./BagPlate";
 
 export default function WorkGrid() {
   const [filter, setFilter] = useState<Category | "All">("All");
-  const list = projects.filter((p) => filter === "All" || p.category === filter);
+  const shown = (p: (typeof projects)[number]) => filter === "All" || p.category === filter;
+  const firstShown = projects.find(shown);
   const count = (c: Category | "All") => (c === "All" ? projects.length : projects.filter((p) => p.category === c).length);
 
   return (
@@ -29,12 +30,23 @@ export default function WorkGrid() {
       </div>
 
       <div className="cards">
-        {list.map((p) => {
+        {/* Every card is always rendered. Hidden ones are stacked invisibly in the first
+            row so they still count toward the shared row height: every card keeps the
+            same size whichever filter is on. */}
+        {projects.map((p) => {
           const fig = projects.indexOf(p) + 1;
+          const visible = shown(p);
+          const pin = !visible || p === firstShown;
           const internal = p.link.startsWith("/");
           const LinkEl = internal ? Link : "a";
           return (
-            <article key={p.id} className="card">
+            <article
+              key={p.id}
+              className={`card${visible ? "" : " ghost"}`}
+              style={pin ? { gridArea: "1 / 1" } : undefined}
+              aria-hidden={!visible}
+              inert={!visible}
+            >
               <div className="plate">
                 {p.image ? (
                   <Halftone src={p.image} alt={p.title} color="#000CED" cell={6} />
