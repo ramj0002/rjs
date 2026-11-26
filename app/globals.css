@@ -123,6 +123,54 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .more:hover { color: var(--blue); }
 .more:hover span { transform: translateX(6px); }
 
+/* ---------- plate animations ---------- */
+.plate-svg [class^="a-"], .plate-svg [class*=" a-"] { transform-box: fill-box; transform-origin: center; }
+.a-travel { animation: a-travel 3.2s cubic-bezier(.6,0,.4,1) infinite; }
+.a-nudge { animation: a-nudge 1.6s ease-in-out infinite; }
+.a-pulse { animation: a-pulse 2.4s ease-in-out infinite; }
+.a-fade { animation: a-fade 3.2s ease-in-out infinite; }
+.a-heat { animation: a-heat 2.6s ease-in-out infinite; }
+.a-blink { animation: a-blink 2s ease-in-out infinite; }
+.a-march { animation: a-march 1.2s linear infinite; }
+.a-walk { animation: a-walk 3.2s ease-in-out infinite; }
+.a-float { animation: a-float 4s ease-in-out infinite; }
+.a-bar { animation: a-bar 1.8s ease-in-out infinite alternate; transform-origin: bottom !important; }
+.a-sway { animation: a-sway 2s ease-in-out infinite; transform-origin: top !important; }
+.a-draw-loop, .a-draw-loop path { stroke-dasharray: 1 1; animation: a-draw 4s ease-in-out infinite; }
+.a-pop { animation: a-pop 4s ease-in-out infinite; }
+.a-scan { animation: a-scan 5s cubic-bezier(.7,0,.3,1) infinite; transform-origin: left !important; }
+.a-spin-slow, .a-hand-min, .a-hand-hr { transform-box: view-box !important; transform-origin: 200px 150px !important; }
+.a-spin-slow { animation: a-spin 30s linear infinite; }
+.a-hand-min { animation: a-spin 6s linear infinite; }
+.a-hand-hr { animation: a-spin 72s linear infinite; }
+.a-sketch path { stroke-dasharray: 1 1; animation: a-sketch 6s ease-in-out infinite; }
+.a-sketch path:nth-child(2) { animation-delay: 0.35s; }
+.a-sketch path:nth-child(3) { animation-delay: 0.7s; }
+.a-sketch path:nth-child(4) { animation-delay: 1.05s; }
+
+@keyframes a-travel { 0%, 10% { transform: translateX(0); } 55%, 75% { transform: translateX(74px); } 100% { transform: translateX(0); } }
+@keyframes a-nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }
+@keyframes a-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.07); } }
+@keyframes a-fade { 0%, 100% { opacity: .45; } 50% { opacity: .15; } }
+@keyframes a-heat { 0%, 100% { transform: scale(.6); } 50% { transform: scale(1.12); } }
+@keyframes a-blink { 0%, 100% { opacity: 1; } 50% { opacity: .3; } }
+@keyframes a-march { to { stroke-dashoffset: -22; } }
+@keyframes a-walk { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(18px); } }
+@keyframes a-float { 0%, 100% { transform: translate(0, 0); } 33% { transform: translate(3px, -3px); } 66% { transform: translate(-2px, 2px); } }
+@keyframes a-bar { from { transform: scaleY(.35); } to { transform: scaleY(1); } }
+@keyframes a-sway { 0%, 100% { transform: rotate(-6deg); } 50% { transform: rotate(6deg); } }
+@keyframes a-draw { 0% { stroke-dashoffset: 1; } 40%, 80% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -1; } }
+@keyframes a-pop { 0%, 38% { opacity: 0; transform: scale(.85); } 48%, 82% { opacity: 1; transform: scale(1); } 95%, 100% { opacity: 0; transform: scale(.95); } }
+@keyframes a-scan {
+  0%, 20% { transform: translateX(0); } 25%, 45% { transform: translateX(74px); }
+  50%, 70% { transform: translateX(148px); } 75%, 95% { transform: translateX(222px); } 100% { transform: translateX(0); }
+}
+@keyframes a-spin { to { transform: rotate(360deg); } }
+@keyframes a-sketch { 0% { stroke-dashoffset: 1; } 35%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: -1; } }
+@media (prefers-reduced-motion: reduce) {
+  .plate-svg [class^="a-"], .plate-svg [class*=" a-"], .plate-svg [class^="a-"] path { animation: none !important; stroke-dashoffset: 0 !important; opacity: inherit; }
+}
+
 /* ---------- footer ---------- */
 .footer {
   border-top: 2px solid var(--ink);
