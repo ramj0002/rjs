@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "@fontsource/texturina/400-italic.css";
-import "@fontsource/noto-serif-gurmukhi/500.css";
 import "./zine.css";
 import Zine3D from "@/components/Zine3D";
 import RevealText from "@/components/RevealText";

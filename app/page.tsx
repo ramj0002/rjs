@@ -1,6 +1,6 @@
 import Link from "next/link";
 import HalftoneHero from "@/components/HalftoneHero";
-import WorkIndex from "@/components/WorkIndex";
+import WorkGrid from "@/components/WorkGrid";
 import Flower from "@/components/Flower";
 import { site } from "@/content/site";
 import { categories } from "@/content/projects";
@@ -27,7 +27,7 @@ export default function Home() {
         </div>
       </div>
 
-      <WorkIndex />
+      <WorkGrid />
 
       <footer className="footer">
         <span>© {new Date().getFullYear()} {site.name}</span>

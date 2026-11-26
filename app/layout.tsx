@@ -3,6 +3,7 @@ import "@fontsource/anton";
 import "@fontsource/baskervville/400.css";
 import "@fontsource/baskervville/400-italic.css";
 import "@fontsource/caveat-brush";
+import "@fontsource/noto-serif-gurmukhi/500.css";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import { site } from "@/content/site";
