@@ -36,7 +36,7 @@ export const projects: Project[] = [
       "Malaysia’s rail app was rated 1.6 stars. I mapped how it works today and redesigned it around what riders actually need.",
     facts: [["1.6 ★", "starting rating"], ["2", "app structures mapped"]],
     tools: ["UX research", "Information architecture", "UI design"],
-    link: OLD + "ktmb-mobile-app-case-study",
+    link: "/work/ktmb/",
     linkLabel: "Read the case study",
   },
   {

@@ -1,0 +1,213 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import "./case.css";
+import CaseImage from "@/components/CaseImage";
+import { plates } from "@/components/plates";
+import { ktmb as k } from "@/content/ktmb";
+import { site } from "@/content/site";
+
+export const metadata: Metadata = {
+  title: `KTMB case study — ${site.title}`,
+  description: k.tagline,
+};
+
+const sections = [
+  ["overview", "overview"],
+  ["problem", "problem"],
+  ["research", "research"],
+  ["findings", "findings"],
+  ["design", "design"],
+  ["testing", "testing"],
+  ["results", "results"],
+  ["learned", "learned"],
+];
+
+function Stats({ items }: { items: [string, string][] }) {
+  return (
+    <div className="case-stats">
+      {items.map(([big, small]) => (
+        <div key={big}>
+          <b className="display">{big}</b>
+          <span>{small}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default function KtmbCase() {
+  return (
+    <main className="case">
+      <header className="case-hero">
+        <div className="case-hero-text">
+          <p className="case-kicker"><em>case study · Product / UX</em></p>
+          <h1 className="display">{k.title}</h1>
+          <p className="case-tagline">{k.tagline}</p>
+          <ul className="tools">{k.tags.map((t) => <li key={t}>{t}</li>)}</ul>
+        </div>
+        <div className="case-hero-plate plate-svg" aria-hidden dangerouslySetInnerHTML={{ __html: plates.ktmb() }} />
+      </header>
+
+      <nav className="case-nav" aria-label="Sections">
+        {sections.map(([id, label]) => <a key={id} href={`#${id}`}>{label}</a>)}
+      </nav>
+
+      <section id="overview" className="case-sec">
+        <h2 className="display">overview</h2>
+        <div className="case-two">
+          <div>
+            <p className="case-lead">{k.intro}</p>
+            <ul className="case-list">{k.appDoes.map((t) => <li key={t}>{t}</li>)}</ul>
+          </div>
+          <Stats items={[["1.6 ★", "starting app rating"], ["9 → 5", "booking steps"], ["1:39", "average booking time after"]]} />
+        </div>
+        <h3 className="display case-h3">app infrastructure</h3>
+        <div className="case-grid-2">
+          {k.infrastructure.map((im) => <CaseImage key={im.src} {...im} />)}
+        </div>
+      </section>
+
+      <section id="problem" className="case-sec">
+        <h2 className="display">the problem</h2>
+        <div className="case-two">
+          <div>
+            <p className="label">hypothesis</p>
+            <p className="case-lead">{k.problem.hypothesis}</p>
+            <p className="label">why we thought so</p>
+            <p>{k.problem.rationale}</p>
+          </div>
+          <CaseImage {...k.problem.image} />
+        </div>
+      </section>
+
+      <section id="research" className="case-sec">
+        <h2 className="display">understanding the users</h2>
+        <p className="case-lead">{k.research.objective}</p>
+        <div className="case-methods">
+          {k.research.methods.map((m) => (
+            <div key={m.label}>
+              <b className="display">{m.n}</b>
+              <span className="m-label"><em>{m.label}</em></span>
+              <p>{m.text}</p>
+            </div>
+          ))}
+        </div>
+        <p className="case-note">{k.research.audience}</p>
+        <h3 className="display case-h3">usability testing of the current app</h3>
+        <Stats items={k.research.stats} />
+      </section>
+
+      <section id="findings" className="case-sec">
+        <h2 className="display">key findings</h2>
+        <ol className="case-findings">
+          {k.findings.map((f, i) => (
+            <li key={f.title}>
+              <span className="num display">{String(i + 1).padStart(2, "0")}</span>
+              <div>
+                <h3 className="display">{f.title}</h3>
+                {f.quote && <blockquote>“{f.quote}”</blockquote>}
+                <p>{f.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+        <h3 className="display case-h3">what users need</h3>
+        <dl className="case-needs">
+          {k.needs.map(([a, b]) => (
+            <div key={a}><dt className="display">{a}</dt><dd>{b}</dd></div>
+          ))}
+        </dl>
+      </section>
+
+      <section id="design" className="case-sec">
+        <h2 className="display">ideation &amp; design</h2>
+        <div className="case-grid-2">
+          {k.ideation.images.map((im) => <CaseImage key={im.src} {...im} />)}
+        </div>
+        <h3 className="display case-h3">what we built first</h3>
+        <p>The high-impact, feasible ideas from our impact vs. effort map:</p>
+        <ul className="case-list">{k.ideation.buildList.map((t) => <li key={t}>{t}</li>)}</ul>
+
+        <h3 className="display case-h3">9 steps became 5</h3>
+        <ol className="case-flow">
+          {k.flow.map((s, i) => (
+            <li key={s}><span className="display">{s}</span>{i < k.flow.length - 1 && <i aria-hidden>→</i>}</li>
+          ))}
+        </ol>
+        <p>Every screen has the same progress bar at the top and a booking summary at the bottom, so you always know where you are and what you picked.</p>
+        <CaseImage {...k.flowImage} />
+        <div className="case-decisions">
+          {k.decisions.map((d, i) => (
+            <div key={d.title}>
+              <p className="label">decision {i + 1}</p>
+              <h3 className="display">{d.title}</h3>
+              <p>{d.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="testing" className="case-sec">
+        <h2 className="display">testing &amp; iteration</h2>
+        <p className="case-lead">Two rounds of usability testing on the prototype: one on the first build, one after fixing what we learned.</p>
+        <h3 className="display case-h3">round 1</h3>
+        <Stats items={k.round1.stats} />
+        <CaseImage {...k.round1.image} />
+        <div className="case-pains">
+          {k.round1.pains.map((p) => (
+            <div key={p.title}>
+              <h3 className="display">{p.title}</h3>
+              <blockquote>“{p.quote}” <cite>— {p.who}</cite></blockquote>
+              <p>{p.text}</p>
+            </div>
+          ))}
+        </div>
+        <div className="case-fixes">
+          <p className="label">fixes after round 1</p>
+          <ol>{k.round1.fixes.map((f) => <li key={f}>{f}</li>)}</ol>
+        </div>
+
+        <h3 className="display case-h3">round 2</h3>
+        <div className="case-grid-2">
+          {k.round2.images.map((im) => <CaseImage key={im.src} {...im} />)}
+        </div>
+        <div className="case-quotes">
+          {k.round2.quotes.map((q) => (
+            <figure key={q.who}>
+              <blockquote>“{q.quote}”</blockquote>
+              <figcaption><cite>{q.who}</cite> · {q.note}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section id="results" className="case-sec">
+        <h2 className="display">results</h2>
+        <Stats items={k.final.stats} />
+        <p className="case-lead">{k.final.changed}</p>
+        <div className="case-grid-2">
+          {k.final.screens.map((im) => <CaseImage key={im.src} {...im} />)}
+        </div>
+      </section>
+
+      <section id="learned" className="case-sec">
+        <h2 className="display">what I learned</h2>
+        <div className="case-decisions">
+          {k.lessons.map((l) => (
+            <div key={l.title}>
+              <h3 className="display">{l.title}</h3>
+              <p>{l.text}</p>
+            </div>
+          ))}
+        </div>
+        <h3 className="display case-h3">what I’d do next</h3>
+        <ul className="tools">{k.next.map((t) => <li key={t}>{t}</li>)}</ul>
+      </section>
+
+      <footer className="case-foot">
+        <Link href="/#work" className="display">← all work</Link>
+        <Link href="/about/">about me →</Link>
+      </footer>
+    </main>
+  );
+}
