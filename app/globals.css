@@ -294,3 +294,8 @@ body { transition: color 0.3s; }
 .filters button { transition: background 0.2s, color 0.2s, border-color 0.2s; }
 .filters button[class*="t-"]:hover { color: var(--ci); border-color: var(--ci); background: color-mix(in srgb, var(--c) 14%, transparent); }
 .filters button[class*="t-"].on { background: var(--ci); border-color: var(--ci); color: #fff; }
+
+/* keep the flower dead centre: equal columns either side of it */
+.nav { display: grid; grid-template-columns: 1fr auto 1fr; }
+.nav > a:first-child { justify-self: end; }
+.nav > a:last-child { justify-self: start; }
