@@ -65,3 +65,6 @@
 .ev-steps button.on { background: var(--blue); border-color: var(--blue); }
 .case .ev-text { margin: 16px 0 0; font-size: clamp(1.3rem, 2.2vw, 1.8rem); min-height: 2.6em; }
 .ev-text b { font-weight: 400; margin-right: 10px; }
+/* Bloom & Rise heading: the lighter serif from the original page */
+.case h2.rd-bloom { font-family: var(--serif); font-weight: 400; text-transform: none; letter-spacing: 0; }
+.case h2.rd-bloom em { font-style: italic; }

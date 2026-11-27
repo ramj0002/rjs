@@ -80,7 +80,7 @@ export default function Renders() {
       </section>
 
       <section id="bloom" className="case-sec">
-        <h2 className="display">bloom &amp; <em className="rd-rise">rise</em></h2>
+        <h2 className="rd-bloom">Bloom &amp; <em>Rise</em></h2>
         <HighlightBlock>
           <p className="case-lead">
             Bloom &amp; Rise started with a simple question: <mark className="hl" style={{ ["--i" as string]: 0 }}><em>{r.bloom.question}</em></mark>
