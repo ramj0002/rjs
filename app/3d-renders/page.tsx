@@ -10,6 +10,7 @@ import HighlightBlock from "@/components/Highlight";
 import RenderViews from "@/components/RenderViews";
 import ClockParts from "@/components/ClockParts";
 import PickABox from "@/components/PickABox";
+import ClockEvolution from "@/components/ClockEvolution";
 import { plates } from "@/components/plates";
 import { renders as r } from "@/content/renders";
 import { site } from "@/content/site";
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
 const sections = [
   ["clock", "the clock"],
   ["renders", "renders"],
+  ["evolution", "evolution"],
   ["teardown", "teardown"],
   ["bloom", "bloom & rise"],
 ];
@@ -59,8 +61,13 @@ export default function Renders() {
         <RenderViews views={r.views.map((v) => ({ ...v, ok: exists(v.src) }))} />
         <div className="case-grid-1 case-big" style={{ marginTop: 40 }}>
           <CaseImage {...r.exploded} />
-          <CaseImage {...r.family} />
         </div>
+      </section>
+
+      <section id="evolution" className="case-sec">
+        <h2 className="display">one change at a time</h2>
+        <p className="case-lead">{r.evolution.text}</p>
+        <ClockEvolution src={r.evolution.src} />
       </section>
 
       <section id="teardown" className="case-sec">

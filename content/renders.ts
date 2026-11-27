@@ -16,11 +16,14 @@ export const renders = {
     { src: "/renders/side.jpg", label: "side" },
     { src: "/renders/back.jpg", label: "back" },
     { src: "/renders/inside.jpg", label: "inside" },
-    { src: "/renders/angle.jpg", label: "angle" },
-    { src: "/renders/battery.jpg", label: "battery lid" },
+    { src: "/renders/angle.jpg", label: "top" },
+    { src: "/renders/battery.jpg", label: "battery lid off" },
   ],
   exploded: { src: "/renders/exploded.jpg", caption: "Exploded view" },
-  family: { src: "/renders/sizes.jpg", caption: "The same clock in different sizes" },
+  evolution: {
+    src: "/renders/sizes.jpg",
+    text: "An assignment: evolve the IKEA clock into something new by changing just one part in each iteration.",
+  },
 
   analysis: {
     intro: "A syntactic analysis breaks the clock into its parts to see how materials, assembly and structure decide how well it works, lasts and gets made.",
