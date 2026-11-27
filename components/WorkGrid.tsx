@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { categories, projects, type Category } from "@/content/projects";
@@ -11,7 +11,27 @@ import BagPlate from "./BagPlate";
 // One project per row: plate on the left, details on the right.
 
 export default function WorkGrid() {
-  const [filter, setFilter] = useState<Category | "All">("All");
+  const [filter, setFilterState] = useState<Category | "All">("All");
+  // Remember the chosen filter (in the address and for this tab), so going back to the
+  // home page from a project returns to the same filtered list.
+  const slug = (c: string) => c.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const all: (Category | "All")[] = ["All", ...categories];
+  useLayoutEffect(() => {
+    const fromUrl = new URLSearchParams(location.search).get("f");
+    let saved: string | null = null;
+    try { saved = sessionStorage.getItem("work-filter"); } catch {}
+    const want = fromUrl ?? saved;
+    const match = all.find((c) => slug(c) === want);
+    if (match && match !== "All") setFilterState(match);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  const setFilter = (c: Category | "All") => {
+    setFilterState(c);
+    try { sessionStorage.setItem("work-filter", slug(c)); } catch {}
+    const url = new URL(location.href);
+    if (c === "All") url.searchParams.delete("f"); else url.searchParams.set("f", slug(c));
+    history.replaceState(history.state, "", url.pathname + url.search + url.hash);
+  };
   const router = useRouter();
   // Click anywhere on a card to open the project (the link inside still works for keyboards).
   const open = (e: React.MouseEvent, link: string, internal: boolean) => {
