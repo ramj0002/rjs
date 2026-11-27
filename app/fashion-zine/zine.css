@@ -137,3 +137,10 @@
 .zine-book { cursor: pointer; }
 .zine-sticky.spinning, .zine-sticky.spinning .zine-book { cursor: grabbing; }
 .zine-process h3 { white-space: pre-line; line-height: 1.05; }
+
+/* section titles match the other case-study pages (e.g. "overview") */
+.zine-about, .zine-process { max-width: 1240px; padding-left: max(4vw, 18px); padding-right: max(4vw, 18px); }
+.zine-about h2, .zine-process h2 {
+  font-size: clamp(3rem, 8vw, 6.5rem); margin-bottom: 28px;
+  border-bottom: 2px solid var(--red-ink); padding-bottom: 10px;
+}
