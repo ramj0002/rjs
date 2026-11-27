@@ -13,27 +13,20 @@ export default function Zine3D({ pages }: { pages: string[] }) {
   const tapRef = useRef<(d: number) => void>(() => {});
   const resetSpin = useRef<() => void>(() => {});
 
-  // Scroll → page progress.
+  // Pages turn only when asked (buttons, tapping a page, arrow keys), easing to the next spread.
+  const [target, setTarget] = useState(0);
+  const pRef = useRef(0);
   useEffect(() => {
-    const el = section.current!;
     let raf = 0;
-    const update = () => {
-      raf = 0;
-      const b = el.getBoundingClientRect();
-      const run = b.height - window.innerHeight;
-      const t = Math.max(0, Math.min(1, -b.top / Math.max(1, run)));
-      setP(t * leaves);
+    const step = () => {
+      const d = target - pRef.current;
+      pRef.current = Math.abs(d) < 0.002 ? target : pRef.current + d * 0.12;
+      setP(pRef.current);
+      if (pRef.current !== target) raf = requestAnimationFrame(step);
     };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      cancelAnimationFrame(raf);
-    };
-  }, [leaves]);
+    raf = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf);
+  }, [target]);
 
   // Cursor / device tilt.
   useEffect(() => {
@@ -92,19 +85,12 @@ export default function Zine3D({ pages }: { pages: string[] }) {
     };
   }, []);
 
-  // Jump to a page by scrolling the section.
-  const go = (dir: number) => {
-    const el = section.current!;
-    const target = Math.max(0, Math.min(leaves, Math.round(p) + dir));
-    const top = el.getBoundingClientRect().top + window.scrollY;
-    const run = el.offsetHeight - window.innerHeight;
-    window.scrollTo({ top: top + (target / leaves) * run + 1, behavior: "smooth" });
-  };
+  const go = (dir: number) => setTarget((t) => Math.max(0, Math.min(leaves, t + dir)));
   tapRef.current = go;
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
       const b = section.current!.getBoundingClientRect();
-      if (b.top > 0 || b.bottom < window.innerHeight) return;
+      if (b.bottom < 120 || b.top > window.innerHeight - 120) return;
       if (e.key === "ArrowRight") go(1);
       if (e.key === "ArrowLeft") go(-1);
     };
@@ -116,14 +102,14 @@ export default function Zine3D({ pages }: { pages: string[] }) {
   const open = Math.min(1, p);
   const close = Math.max(0, p - (leaves - 1));
   const shift = -50 * (1 - open) + 50 * close; // % of one page width
-  const spread = Math.round(p);
+  const spread = target;
   // an empty string in pages = no page on that side (it isn't drawn and isn't counted)
   const nums = [spread * 2 - 1, spread * 2].filter((n) => pages[n]);
   const label =
     spread === 0 ? "cover" : spread === leaves ? "back cover" : nums.length === 1 ? `page ${nums[0]}` : `pages ${nums[0]}–${nums[1]}`;
 
   return (
-    <section ref={section} className="zine-stage" style={{ height: `${(leaves + 1) * 90}vh` }}>
+    <section ref={section} className="zine-stage">
       <div className="zine-sticky">
         <div className="zine-float">
           <div ref={tilt} className="zine-tilt">
@@ -153,7 +139,7 @@ export default function Zine3D({ pages }: { pages: string[] }) {
           <span>{label}</span>
           <button onClick={() => go(1)} aria-label="next page" disabled={spread === leaves}>→</button>
         </div>
-        <p className="zine-hint"><em>scroll or tap a page to turn it · drag sideways to spin it round</em></p>
+        <p className="zine-hint"><em>tap a page or the arrows to turn it · drag sideways to spin it round</em></p>
       </div>
     </section>
   );

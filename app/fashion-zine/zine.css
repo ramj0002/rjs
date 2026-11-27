@@ -32,7 +32,7 @@
 /* ---------- the floating zine ---------- */
 .zine-stage { position: relative; }
 .zine-sticky {
-  position: sticky; top: 56px; height: calc(100svh - 56px);
+  position: relative; height: calc(100svh - 56px); min-height: 640px;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   overflow: hidden;
   background:
@@ -136,3 +136,4 @@
 .zine-sticky { touch-action: pan-y; user-select: none; }
 .zine-book { cursor: pointer; }
 .zine-sticky.spinning, .zine-sticky.spinning .zine-book { cursor: grabbing; }
+.zine-process h3 { white-space: pre-line; line-height: 1.05; }
