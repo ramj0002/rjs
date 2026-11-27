@@ -19,19 +19,19 @@ export const zine = {
   ],
   process: [
     {
-      step: "01 — Research",
+      step: "01 - Research",
       title: "Concept development",
       text: "Exploring futuristic fashion, sustainability, and the idea of perspective as a recurring theme.",
     },
     {
-      step: "02 — Visual language",
+      step: "02 - Visual language",
       title: "Duotone constraint",
-      text: "Committing to a strict red-on-white palette with halftone textures. The constraint forced every element (type, image, illustration) to carry its own visual weight.",
+      text: "Committing to a strict red-on-white palette with halftone textures. The constraint forced every element, type, image, illustration; to carry its own visual weight.",
     },
     {
-      step: "03 — Production",
+      step: "03 - Production",
       title: "Bilingual layout",
-      text: "Weaving Punjabi script and English typography throughout, not as decoration but as a statement of dual identity. Each spread is a balance of script, image, and space.",
+      text: "Weaving Punjabi script and English typography throughout - not as decoration but as a statement of dual identity. Each spread is a balance of script, image, and space.",
     },
   ],
 };

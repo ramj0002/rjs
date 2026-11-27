@@ -128,3 +128,6 @@
 .face.empty::after { display: none; }
 /* the shared case-study header sits flush under the nav */
 .zine-page { padding-top: 0; }
+/* process: steps, titles and text start on the same lines across all three */
+.zine-process ol { grid-template-rows: auto auto 1fr; }
+.zine-process li { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; }
