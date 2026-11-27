@@ -10,6 +10,8 @@ export default function Zine3D({ pages }: { pages: string[] }) {
   const tilt = useRef<HTMLDivElement>(null);
   const leaves = Math.ceil(pages.length / 2);
   const [p, setP] = useState(0); // 0 = closed cover … leaves = closed back cover
+  const tapRef = useRef<(d: number) => void>(() => {});
+  const resetSpin = useRef<() => void>(() => {});
 
   // Scroll → page progress.
   useEffect(() => {
@@ -46,17 +48,46 @@ export default function Zine3D({ pages }: { pages: string[] }) {
       tx = Math.max(-1, Math.min(1, e.gamma / 30));
       ty = Math.max(-1, Math.min(1, (e.beta - 40) / 30));
     };
+    // Drag the zine sideways to spin it all the way round; a tap (no drag) turns the page instead.
+    let spin = 0, spinV = 0, dragging = false, startX = 0, lastX = 0, moved = 0;
+    const stage = el.closest(".zine-sticky") as HTMLElement;
+    const down = (e: PointerEvent) => {
+      if ((e.target as HTMLElement).closest("button")) return;
+      dragging = true; startX = lastX = e.clientX; moved = 0; spinV = 0;
+    };
+    const drag = (e: PointerEvent) => {
+      if (!dragging) return;
+      const dx = e.clientX - lastX; lastX = e.clientX; moved = Math.max(moved, Math.abs(e.clientX - startX));
+      if (moved > 6) { spin += dx * 0.5; spinV = dx * 0.5; stage.classList.add("spinning"); }
+    };
+    const up = (e: PointerEvent) => {
+      if (!dragging) return;
+      dragging = false; stage.classList.remove("spinning");
+      const face = (e.target as HTMLElement).closest(".face");
+      if (moved <= 6 && face) {
+        // tap a right-hand page to turn forward, a left-hand page to turn back
+        tapRef.current(face.classList.contains("front") ? 1 : -1);
+      }
+    };
     const loop = () => {
       x += (tx - x) * 0.07; y += (ty - y) * 0.07;
-      el.style.transform = `rotateX(${12 - y * 10}deg) rotateY(${x * 16}deg)`;
+      if (!dragging) { spin += spinV; spinV *= 0.92; }
+      el.style.transform = `rotateX(${12 - y * 10}deg) rotateY(${x * 16 + spin}deg)`;
       raf = requestAnimationFrame(loop);
     };
+    resetSpin.current = () => { spinV = 0; spin = Math.round(spin / 360) * 360; };
+    stage.addEventListener("pointerdown", down);
+    window.addEventListener("pointermove", drag);
+    window.addEventListener("pointerup", up);
     window.addEventListener("pointermove", move);
     window.addEventListener("deviceorientation", orient);
     loop();
     return () => {
       window.removeEventListener("pointermove", move);
       window.removeEventListener("deviceorientation", orient);
+      stage.removeEventListener("pointerdown", down);
+      window.removeEventListener("pointermove", drag);
+      window.removeEventListener("pointerup", up);
       cancelAnimationFrame(raf);
     };
   }, []);
@@ -69,6 +100,7 @@ export default function Zine3D({ pages }: { pages: string[] }) {
     const run = el.offsetHeight - window.innerHeight;
     window.scrollTo({ top: top + (target / leaves) * run + 1, behavior: "smooth" });
   };
+  tapRef.current = go;
   useEffect(() => {
     const key = (e: KeyboardEvent) => {
       const b = section.current!.getBoundingClientRect();
@@ -105,7 +137,7 @@ export default function Zine3D({ pages }: { pages: string[] }) {
                   <div
                     key={i}
                     className="leaf"
-                    style={{ transform: `rotateY(${-180 * turn}deg)`, zIndex: z }}
+                    style={{ transform: `rotateY(${-180 * turn}deg) translateZ(${((leaves - i) * (1 - turn) - i * turn) * 0.6}px)`, zIndex: z }}
                   >
                     <div className={`face front ${front ? "" : "empty"}`}>{front && <img src={front} alt={`page ${i * 2}`} draggable={false} />}</div>
                     <div className={`face back ${back ? "" : "empty"}`}>{back && <img src={back} alt={`page ${i * 2 + 1}`} draggable={false} />}</div>
@@ -121,7 +153,7 @@ export default function Zine3D({ pages }: { pages: string[] }) {
           <span>{label}</span>
           <button onClick={() => go(1)} aria-label="next page" disabled={spread === leaves}>→</button>
         </div>
-        <p className="zine-hint"><em>scroll to turn the pages</em></p>
+        <p className="zine-hint"><em>scroll or tap a page to turn it · drag sideways to spin it round</em></p>
       </div>
     </section>
   );

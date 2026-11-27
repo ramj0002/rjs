@@ -41,7 +41,7 @@
 .zine-float { animation: zine-bob 5s ease-in-out infinite; perspective: 1800px; position: relative; }
 .zine-tilt { transform-style: preserve-3d; will-change: transform; }
 .zine-book {
-  --w: min(32vw, 330px, calc((100svh - 340px) / 1.414));
+  --w: min(38vw, 430px, calc((100svh - 250px) / 1.414));
   position: relative; width: var(--w); height: calc(var(--w) * 1.414);
   margin-left: var(--w); /* spine sits at the centre of the stage */
   transform-style: preserve-3d;
@@ -75,7 +75,7 @@
 @keyframes zine-shadow { 0%, 100% { opacity: 0.6; scale: 0.9; } 50% { opacity: 1; scale: 1; } }
 
 .zine-controls {
-  margin-top: 90px; display: flex; align-items: center; gap: 20px; font-size: 1.1rem;
+  margin-top: 70px; display: flex; align-items: center; gap: 20px; font-size: 1.1rem;
 }
 .zine-controls button {
   width: 44px; height: 44px; border-radius: 50%;
@@ -131,3 +131,8 @@
 /* process: steps, titles and text start on the same lines across all three */
 .zine-process ol { grid-template-rows: auto auto 1fr; }
 .zine-process li { display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 0; }
+
+/* tap to turn, drag to spin */
+.zine-sticky { touch-action: pan-y; user-select: none; }
+.zine-book { cursor: pointer; }
+.zine-sticky.spinning, .zine-sticky.spinning .zine-book { cursor: grabbing; }
