@@ -26,6 +26,20 @@ export default function FashionZine() {
 
       <Zine3D pages={zine.pages} />
 
+      <section className="zine-about">
+        <h2 className="display">about the zine</h2>
+        <p>{zine.about}</p>
+        <div className="zine-sketches">
+          {zine.sketches.map((im) => (
+            <figure key={im.src}>
+              <figcaption><em>{im.caption}</em></figcaption>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={im.src} alt={im.caption} loading="lazy" />
+            </figure>
+          ))}
+        </div>
+      </section>
+
       <section className="zine-process">
         <h2 className="display">process</h2>
         <ol>

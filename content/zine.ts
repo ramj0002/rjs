@@ -9,15 +9,13 @@ export const zine = {
   pronunciation: "/pər·spek·tiv/ · noun",
   intro: "A personal fashion zine exploring identity, perspective, and style as a form of storytelling.",
   tagline: "bilingual, bold, and entirely hand-made.",
-  pages: [
-    "/zine/page-0.svg",
-    "/zine/page-1.svg",
-    "/zine/page-2.svg",
-    "/zine/page-3.svg",
-    "/zine/page-4.svg",
-    "/zine/page-5.svg",
-    "/zine/page-6.svg",
-    "/zine/page-7.svg",
+  // cover, then spreads, a blank inside back cover, then the back cover
+  pages: Array.from({ length: 10 }, (_, i) => `/zine/page-${i}.jpg`),
+  about:
+    "Through illustrations, photography and written reflections, the zine captures how everyday textures, moods and memories shape the way I dress and see the world. The process was intuitive and layered: sketching, collage and minimal graphic design, made into a visual diary of my inspirations and identity.",
+  sketches: [
+    { src: "/zine/sketch-layout.jpg", caption: "Layout sketches" },
+    { src: "/zine/sketch-fashion.jpg", caption: "Fashion sketches: futuristic fashion and sustainability" },
   ],
   process: [
     {

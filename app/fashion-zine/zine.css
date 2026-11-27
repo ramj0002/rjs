@@ -17,16 +17,16 @@
 .zine-band h1 { font-size: clamp(2.6rem, 8vw, 7rem); text-transform: none; line-height: 1; }
 .zine-band p { font-size: clamp(1.2rem, 2.4vw, 2rem); margin-top: 16px; }
 
-.zine-intro { max-width: 1100px; margin: 0 auto; padding: 80px 32px 40px; }
+.zine-intro { max-width: 1300px; margin: 0 auto; padding: 80px 32px 40px; }
 .zine-title {
   font-family: var(--gurmukhi); font-weight: 500;
-  font-size: clamp(4rem, 14vw, 11rem); line-height: 1.15;
+  font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: 1.2;
 }
 .zine-pron {
   font-family: var(--texturina); font-style: italic;
   font-size: clamp(1.3rem, 2.6vw, 2rem); letter-spacing: 0.35em; margin: 12px 0 32px;
 }
-.zine-def { font-size: clamp(1.6rem, 3.6vw, 3rem); line-height: 1.25; color: var(--red-ink); max-width: 22ch; }
+.zine-def { font-size: clamp(1.6rem, 3.6vw, 3rem); line-height: 1.25; color: var(--red-ink); }
 .zine-tag { font-size: clamp(1.2rem, 2vw, 1.6rem); margin-top: 24px; }
 
 /* ---------- the floating zine ---------- */
@@ -86,6 +86,16 @@
 .zine-controls button:disabled { opacity: 0.3; cursor: default; }
 .zine-controls span { min-width: 9em; text-align: center; font-style: italic; }
 .zine-hint { position: absolute; bottom: 20px; font-size: 0.95rem; opacity: 0.7; }
+
+/* ---------- about + sketches ---------- */
+.zine-about { max-width: 1300px; margin: 0 auto; padding: 100px 32px 0; }
+.zine-about h2 { font-size: clamp(3rem, 9vw, 7rem); margin-bottom: 24px; }
+.zine-about > p { font-size: clamp(1.25rem, 2vw, 1.6rem); line-height: 1.5; }
+.zine-sketches { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 40px; }
+.zine-sketches figure { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.zine-sketches img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: #fff; border: 1.5px solid rgba(224, 31, 31, 0.25); display: block; }
+.zine-sketches figcaption { font-size: 1.1rem; }
+@media (max-width: 760px) { .zine-sketches { grid-template-columns: 1fr; } .zine-about { padding-left: 18px; padding-right: 18px; } }
 
 /* ---------- process ---------- */
 .zine-process { max-width: 1300px; margin: 0 auto; padding: 100px 32px; }

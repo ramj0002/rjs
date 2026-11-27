@@ -38,6 +38,6 @@ const zinePages=[
 ];
 zinePages.forEach((body,i)=>{
  const out=`public/zine/page-${i}.svg`;
- if(fs.existsSync(out)) return;
+ if(fs.existsSync(out) || fs.existsSync(`public/zine/page-${i}.jpg`)) return; // real pages win
  fs.writeFileSync(out,`<svg xmlns="http://www.w3.org/2000/svg" width="620" height="877" viewBox="0 0 620 877"><defs>${dots}</defs>${body}</svg>`);
 });
