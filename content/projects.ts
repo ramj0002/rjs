@@ -87,9 +87,9 @@ export const projects: Project[] = [
     category: "AI / Data",
     summary:
       "A tool that spots sarcasm in Reddit comments, built on BERT, with a dashboard and a chatbot to try it live.",
-    facts: [["75.56%", "accuracy, MLP + BERT"], ["4,249", "labelled comments"]],
+    facts: [["73.56%", "accuracy, MLP + BERT"], ["4,249", "labelled comments"]],
     tools: ["Python", "Reddit API", "BERT", "MLP", "SVM", "Streamlit"],
-    link: OLD + "sarcasm-detection",
+    link: "/sarcasm-detection/",
     linkLabel: "See the app",
   },
   {
