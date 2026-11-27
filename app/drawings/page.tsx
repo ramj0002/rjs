@@ -6,7 +6,7 @@ import ArtGallery from "@/components/ArtGallery";
 import { plates } from "@/components/plates";
 import { site } from "@/content/site";
 
-const tagline = "Pencil drawings, a lino print, a paper collage, a poster and a logo. Where I practise composition, line and tone.";
+const tagline = "Pencil drawings, a lino print, a paper collage, a poster and a logo. Where I practise composition, line, tone and colour theory.";
 
 export const metadata: Metadata = { title: `Drawings — ${site.title}`, description: tagline };
 
