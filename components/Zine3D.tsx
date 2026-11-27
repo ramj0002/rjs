@@ -85,8 +85,10 @@ export default function Zine3D({ pages }: { pages: string[] }) {
   const close = Math.max(0, p - (leaves - 1));
   const shift = -50 * (1 - open) + 50 * close; // % of one page width
   const spread = Math.round(p);
+  // an empty string in pages = no page on that side (it isn't drawn and isn't counted)
+  const nums = [spread * 2 - 1, spread * 2].filter((n) => pages[n]);
   const label =
-    spread === 0 ? "cover" : spread === leaves ? "back cover" : `pages ${spread * 2 - 1}–${spread * 2}`;
+    spread === 0 ? "cover" : spread === leaves ? "back cover" : nums.length === 1 ? `page ${nums[0]}` : `pages ${nums[0]}–${nums[1]}`;
 
   return (
     <section ref={section} className="zine-stage" style={{ height: `${(leaves + 1) * 90}vh` }}>
@@ -105,8 +107,8 @@ export default function Zine3D({ pages }: { pages: string[] }) {
                     className="leaf"
                     style={{ transform: `rotateY(${-180 * turn}deg)`, zIndex: z }}
                   >
-                    <div className="face front">{front && <img src={front} alt={`page ${i * 2}`} draggable={false} />}</div>
-                    <div className="face back">{back && <img src={back} alt={`page ${i * 2 + 1}`} draggable={false} />}</div>
+                    <div className={`face front ${front ? "" : "empty"}`}>{front && <img src={front} alt={`page ${i * 2}`} draggable={false} />}</div>
+                    <div className={`face back ${back ? "" : "empty"}`}>{back && <img src={back} alt={`page ${i * 2 + 1}`} draggable={false} />}</div>
                   </div>
                 );
               })}

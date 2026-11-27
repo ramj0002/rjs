@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import "@fontsource/texturina/400-italic.css";
+import "../ktmb/case.css";
 import "./zine.css";
+import { plates } from "@/components/plates";
 import Zine3D from "@/components/Zine3D";
 import RevealText from "@/components/RevealText";
 import { zine } from "@/content/zine";
@@ -12,10 +14,17 @@ export const metadata: Metadata = { title: `fashion zine — ${site.title}` };
 export default function FashionZine() {
   return (
     <main className="zine-page page-theme t-red">
-      <header className="zine-band">
-        <h1 className="display">{zine.heading}</h1>
-        <p>{zine.subheading}</p>
-      </header>
+      <div className="case">
+        <header className="case-hero">
+          <div className="case-hero-text">
+            <p className="case-kicker"><em>case study · Visual / Artwork</em></p>
+            <h1 className="display">{zine.heading}</h1>
+            <p className="case-tagline">{zine.subheading}</p>
+            <ul className="tools"><li>Illustration</li><li>Photography</li><li>Editorial layout</li></ul>
+          </div>
+          <div className="case-hero-plate plate-svg" aria-hidden dangerouslySetInnerHTML={{ __html: plates.zine() }} />
+        </header>
+      </div>
 
       <section className="zine-intro">
         <p className="zine-title" lang="pa">{zine.title}</p>

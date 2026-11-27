@@ -122,3 +122,9 @@
 @media (prefers-reduced-motion: reduce) {
   .zine-float, .zine-shadow { animation: none; }
 }
+
+/* a page that isn't there: nothing drawn on that side */
+.face.empty { background: none; box-shadow: none; }
+.face.empty::after { display: none; }
+/* the shared case-study header sits flush under the nav */
+.zine-page { padding-top: 0; }
