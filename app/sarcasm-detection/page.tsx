@@ -64,7 +64,7 @@ export default function Sarcasm() {
 
       <section id="try" className="case-sec">
         <h2 className="display">sarcastic or sincere?</h2>
-        <p className="case-lead">You can probably tell. Most tools can’t.</p>
+        <p className="case-lead">Six real comments from our data. You can probably tell. Most tools can’t.</p>
         <SarcasmQuiz items={s.quiz} />
       </section>
 
@@ -77,10 +77,12 @@ export default function Sarcasm() {
                 <span className="num display">{String(i + 1).padStart(2, "0")}</span>
                 <h3 className="display">{p.title}</h3>
                 <p>{p.text}</p>
+                <div className="sd-ex"><code>{p.ex}</code><em>{p.exLabel}</em></div>
               </li>
             ))}
           </ol>
         </HighlightBlock>
+        <p className="case-note">Follow one real comment from our data through every step.</p>
       </section>
 
       <section id="data" className="case-sec">
@@ -94,10 +96,28 @@ export default function Sarcasm() {
             </div>
           ))}
         </div>
-        <p className="case-lead" style={{ marginTop: 40 }}>{s.datasetsText}</p>
-        <div className="sd-three">
-          {s.datasets.map((im) => <CaseImage key={im.src} {...im} />)}
-        </div>
+        <h3 className="display sd-sub">three topics, three moods</h3>
+        <HighlightBlock className="sd-three sd-topics">
+          {s.datasets.map((d) => {
+            const t = d.neg + d.neu + d.pos;
+            const pc = (x: number) => Math.round((x / t) * 100);
+            return (
+              <div key={d.name} className="sd-topic">
+                <p className="display sd-topic-name">{d.name}</p>
+                <p className="sd-topic-n"><em>{d.n.toLocaleString()} comments</em></p>
+                <p className="sd-topic-sarc"><b className="display">{d.sarc}%</b> <em>sarcastic</em></p>
+                <div className="sd-stack" aria-label={`${pc(d.neg)}% negative, ${pc(d.neu)}% neutral, ${pc(d.pos)}% positive`}>
+                  <span className="neg" style={{ ["--w" as string]: `${pc(d.neg)}%` }} />
+                  <span className="neu" style={{ ["--w" as string]: `${pc(d.neu)}%` }} />
+                  <span className="pos" style={{ ["--w" as string]: `${pc(d.pos)}%` }} />
+                </div>
+                <p className="sd-stack-key"><span>{pc(d.neg)}% negative</span><span>{pc(d.neu)}% neutral</span><span>{pc(d.pos)}% positive</span></p>
+                <CaseImage src={d.src} caption={d.caption} />
+              </div>
+            );
+          })}
+        </HighlightBlock>
+        <p className="case-note">{s.datasetsText}</p>
       </section>
 
       <section id="models" className="case-sec">

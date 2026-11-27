@@ -18,20 +18,23 @@ export const sarcasm = {
 
   role: "Group project of eight. My part: turning comments into BERT embeddings, building and tuning the MLP model, and training both the MLP and SVM.",
 
+  // Real comments from our labelled Reddit data, with the label our team gave them.
   quiz: [
-    { text: "Oh great, another Monday. Love it.", sarcastic: true },
-    { text: "The new library hours really helped me during exams.", sarcastic: false },
-    { text: "Of course, nothing says genius like bragging constantly!", sarcastic: true },
-    { text: "Wow, a 40 minute wait for the shuttle bus. Truly world class.", sarcastic: true },
-    { text: "Honestly the food at this hall is better than I expected.", sarcastic: false },
+    { text: "Y’all would really rather do this than fork out $1 to take 179? LOL this one is on you.", topic: "NTU", sarcastic: true },
+    { text: "serious qs, why ppl prefer take ntu shuttle bus compared to 179? i think 179 q fast as well", topic: "NTU", sarcastic: false },
+    { text: "My how the turns have tabled", topic: "TikTok cringe", sarcastic: true },
+    { text: "I’d like to point out that even when it was his turn to speak, she was speaking almost as much as he was.", topic: "TikTok cringe", sarcastic: false },
+    { text: "Just because I have people in my family that are tall, it doesn’t mean I’m not short. Just sayin’", topic: "US election", sarcastic: true },
+    { text: "A lot of geniuses compared to what?! Lol.", topic: "US election", sarcastic: false },
   ],
 
+  // one real comment followed through every step
   pipeline: [
-    { title: "Collect", text: "A Python scraper pulls comments from Reddit threads through the API" },
-    { title: "Label", text: "Every comment hand-labelled for sarcasm and for sentiment" },
-    { title: "Embed", text: "BERT turns each comment into 768 numbers that hold its meaning" },
-    { title: "Train", text: "An MLP and an SVM learn sarcastic vs sincere from those numbers" },
-    { title: "Show", text: "A web app with a dashboard, graphs and a live chatbot" },
+    { title: "Collect", text: "A Python scraper pulls comments from Reddit threads through the API", ex: "“My how the turns have tabled”", exLabel: "r/TikTokCringe" },
+    { title: "Label", text: "Every comment hand-labelled for sarcasm and for sentiment", ex: "sarcasm 1 · sentiment 0", exLabel: "sarcastic, neutral" },
+    { title: "Embed", text: "BERT turns each comment into 768 numbers that hold its meaning", ex: "[0.12, −0.48, 0.91, …]", exLabel: "768 numbers" },
+    { title: "Train", text: "An MLP and an SVM learn sarcastic vs sincere from those numbers", ex: "768 → 10 → 2", exLabel: "the MLP’s layers" },
+    { title: "Show", text: "A web app with a dashboard, graphs and a live chatbot", ex: "sarcastic", exLabel: "the chatbot’s answer" },
   ],
 
   labels: [
@@ -39,10 +42,11 @@ export const sarcasm = {
     { name: "Sentiment", values: [["1", "positive"], ["0", "neutral"], ["2", "negative"]] },
   ],
 
+  // counts from the labelled files: Book2.csv (US election), TikTokCringe.xlsx (cleaned), ntubus.csv (NTU)
   datasets: [
-    { src: "/sarcasm/graph-trump.jpg", caption: "US election: mostly negative" },
-    { src: "/sarcasm/graph-tiktok.jpg", caption: "TikTok cringe: mostly neutral" },
-    { src: "/sarcasm/graph-ntu.jpg", caption: "NTU: mostly neutral" },
+    { name: "US election", n: 1387, sarc: 12.3, neg: 679, neu: 541, pos: 169, src: "/sarcasm/graph-trump.jpg", caption: "US election graph" },
+    { name: "TikTok cringe", n: 1631, sarc: 20.2, neg: 495, neu: 987, pos: 150, src: "/sarcasm/graph-tiktok.jpg", caption: "TikTok cringe graph" },
+    { name: "NTU", n: 1206, sarc: 10.7, neg: 201, neu: 964, pos: 41, src: "/sarcasm/graph-ntu.jpg", caption: "NTU graph" },
   ],
   datasetsText: "Each comment is a dot coloured by its sentiment and sarcasm, with lines to the comments it replies to.",
 

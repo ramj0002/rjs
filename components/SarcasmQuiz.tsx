@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // "Sarcastic or sincere?" — a quick feel for why the task is hard.
-type Q = { text: string; sarcastic: boolean };
+type Q = { text: string; sarcastic: boolean; topic?: string };
 
 export default function SarcasmQuiz({ items }: { items: Q[] }) {
   const [i, setI] = useState(0);
@@ -23,7 +23,7 @@ export default function SarcasmQuiz({ items }: { items: Q[] }) {
     <div className="sq">
       {!done ? (
         <>
-          <p className="sq-count"><em>comment {i + 1} of {items.length}</em></p>
+          <p className="sq-count"><em>real comment {i + 1} of {items.length}{q.topic ? ` · ${q.topic}` : ""}</em></p>
           <blockquote className="sq-bubble" key={i}>“{q.text}”</blockquote>
           <div className="sq-btns">
             <button onClick={() => answer(true)} className={pick === true ? "on" : ""} disabled={pick !== null}>sarcastic</button>
@@ -33,7 +33,7 @@ export default function SarcasmQuiz({ items }: { items: Q[] }) {
             {pick !== null && (
               <>
                 <b className="display">{pick === q.sarcastic ? "right" : "not quite"}</b>{" "}
-                it’s {q.sarcastic ? "sarcastic" : "sincere"}.{" "}
+                our team labelled it {q.sarcastic ? "sarcastic" : "sincere"}.{" "}
                 <button className="sq-next" onClick={next}>{i + 1 < items.length ? "next →" : "see score →"}</button>
               </>
             )}
@@ -42,7 +42,7 @@ export default function SarcasmQuiz({ items }: { items: Q[] }) {
       ) : (
         <div className="sq-end">
           <p className="display sq-score">{score} / {items.length}</p>
-          <p>Easy for a person who reads the tone. A keyword-based tool sees “great”, “love” and “genius” and calls them positive. That’s the gap the model is trained to close.</p>
+          <p>Some are easy, some you’d argue about. That’s the problem: sarcasm hides in tone and context, and even our labellers didn’t always agree. A keyword-based tool has no chance; the model has to learn it from thousands of examples.</p>
           <button className="sq-next" onClick={again}>try again ↻</button>
         </div>
       )}
