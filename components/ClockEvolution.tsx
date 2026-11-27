@@ -5,13 +5,13 @@ import { useEffect, useRef, useState } from "react";
 // Steps through the seven clocks in the render, spotlighting one at a time.
 
 const STEPS = [
-  { x: [2.5, 13.3], text: "The original TJINGA clock" },
+  { x: [0, 13.3], text: "The original TJINGA clock" },
   { x: [13.3, 23.5], text: "The snooze button moves to the front corner" },
-  { x: [23.5, 37.5], text: "The body stretches wider" },
-  { x: [38.5, 53.3], text: "It’s lifted onto a tapered stand" },
+  { x: [23.5, 38], text: "The body stretches wider" },
+  { x: [38, 53.3], text: "It’s lifted onto a tapered stand" },
   { x: [53.3, 68], text: "The stand becomes a post on a square base" },
   { x: [68, 82.8], text: "The post slims down onto a round base" },
-  { x: [82.8, 97.2], text: "The body softens into a rounded pill" },
+  { x: [82.8, 100], text: "The body softens into a rounded pill" },
 ];
 
 export default function ClockEvolution({ src }: { src: string }) {
@@ -45,7 +45,8 @@ export default function ClockEvolution({ src }: { src: string }) {
       </div>
       <div className="ev-steps">
         {STEPS.map((t, k) => (
-          <button key={k} className={k === i ? "on" : ""} onClick={() => pick(k)} aria-pressed={k === i}>
+          <button key={k} className={k === i ? "on" : ""} onClick={() => pick(k)} aria-pressed={k === i}
+            style={{ left: `calc(${t.x[0]}% + 4px)`, width: `calc(${t.x[1] - t.x[0]}% - 8px)` }}>
             <span className="display">{String(k + 1).padStart(2, "0")}</span>
           </button>
         ))}
