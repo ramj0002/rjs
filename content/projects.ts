@@ -143,13 +143,13 @@ export const projects: Project[] = [
   {
     id: "drawings",
     theme: "red",
-    title: "Digital illustration",
+    title: "Drawings",
     category: "Visual / Artwork",
     summary:
-      "A collection of digital drawings, from quick studies to finished pieces.",
+      "Pencil drawings, a lino print, a paper collage, a poster and a logo.",
     facts: [["6", "pieces"]],
-    tools: ["Digital drawing"],
-    link: OLD + "drawings",
+    tools: ["Pencil", "Lino print", "Collage", "Digital"],
+    link: "/drawings/",
     linkLabel: "See the drawings",
   },
 ];

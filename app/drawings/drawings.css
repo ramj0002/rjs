@@ -1,0 +1,35 @@
+/* gallery: equal frames per row; the whole piece always shows */
+.ag { display: grid; gap: 20px; }
+.ag-wide { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ag-tall { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 28px; }
+.ag-tile { display: flex; flex-direction: column; gap: 10px; padding: 0; border: 0; background: none; color: var(--ink); cursor: zoom-in; text-align: left; }
+.ag-cap { display: flex; align-items: baseline; gap: 10px; min-height: 1.6em; }
+.ag-cap b { font-size: 1.4rem; font-weight: 400; }
+.ag-cap em { font-size: 1rem; opacity: 0.8; }
+.ag-frame { display: block; background: color-mix(in srgb, var(--blue) 8%, #fff); border-radius: 10px; overflow: hidden; }
+.ag-wide .ag-frame { aspect-ratio: 1510 / 1070; }
+.ag-tall .ag-frame { aspect-ratio: 2 / 3; }
+.ag-frame img { width: 100%; height: 100%; object-fit: contain; display: block; transition: transform 0.35s ease; }
+.ag-tall .ag-frame img { padding: 6%; }
+.ag-tile:hover .ag-frame img { transform: scale(1.03); }
+
+/* lightbox */
+.ag-box { position: fixed; inset: 0; z-index: 100; background: rgba(20, 10, 10, 0.92); display: flex; align-items: center; justify-content: center; padding: 4vh 6vw; }
+.ag-box figure { margin: 0; display: flex; flex-direction: column; align-items: center; gap: 12px; max-height: 100%; }
+.ag-box img { max-width: 88vw; max-height: 82vh; object-fit: contain; display: block; }
+.ag-box figcaption { color: #fff; display: flex; gap: 12px; align-items: baseline; font-size: 1.1rem; }
+.ag-box figcaption b { font-weight: 400; font-size: 1.5rem; }
+.ag-box figcaption span { opacity: 0.6; font-size: 0.95rem; }
+.ag-nav, .ag-close { position: absolute; background: none; border: 1.5px solid rgba(255,255,255,.6); color: #fff; border-radius: 999px; width: 48px; height: 48px; font-size: 1.4rem; cursor: pointer; }
+.ag-nav:hover, .ag-close:hover { background: rgba(255,255,255,.15); }
+.ag-nav.prev { left: 2vw; top: 50%; transform: translateY(-50%); }
+.ag-nav.next { right: 2vw; top: 50%; transform: translateY(-50%); }
+.ag-close { top: 3vh; right: 2vw; }
+
+@media (max-width: 900px) {
+  .ag-wide { grid-template-columns: 1fr; }
+  .ag-tall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* captions on one line each so every frame starts at the same height; plain white frames */
+.ag-cap { flex-wrap: nowrap; white-space: nowrap; overflow: hidden; }
+.ag-frame { background: #fff; border: 1.5px solid color-mix(in srgb, var(--ink) 18%, transparent); }
