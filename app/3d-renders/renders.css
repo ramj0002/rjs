@@ -1,15 +1,24 @@
 /* 3D renders page extras */
 .case .rd-rise { font-family: var(--serif); font-style: italic; font-weight: 400; text-transform: none; }
 
-/* render viewer: one big view, six thumbnails in a row, all the same shape */
-.rv-stage img, .rv-stage .case-img-missing { width: 100%; aspect-ratio: 1024 / 850; object-fit: cover; display: block; }
-.rv-thumbs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
-.rv-thumbs button { padding: 0; border: 0; background: none; cursor: pointer; color: var(--ink); text-align: left; opacity: 0.55; transition: opacity 0.2s; }
+/* render viewer: the chosen view beside a 2 x 3 grid of all six, so everything fits on one screen */
+.rv { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 20px; align-items: stretch; }
+.rv-main { margin: 0; display: flex; flex-direction: column; }
+.case .rv-main figcaption { font-size: 1.4rem; }
+.rv-stage img, .rv-stage .case-img-missing { width: 100%; aspect-ratio: 1024 / 850; object-fit: cover; display: block; border-radius: 14px; }
+.rv-thumbs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 12px; padding-top: 2.1rem; }
+.rv-thumbs button { position: relative; padding: 0; border: 2px solid transparent; border-radius: 12px; overflow: hidden; background: none; cursor: pointer;
+  color: var(--ink); opacity: 0.6; transition: opacity 0.2s, border-color 0.2s; }
 .rv-thumbs button.on, .rv-thumbs button:hover { opacity: 1; }
-.rv-thumbs img, .rv-empty { display: block; width: 100%; aspect-ratio: 1024 / 850; object-fit: cover; border-bottom: 3px solid transparent; }
-.rv-empty { border: 2px dashed color-mix(in srgb, var(--ink) 35%, transparent); border-radius: 8px; }
-.rv-thumbs button.on img, .rv-thumbs button.on .rv-empty { border-bottom: 3px solid var(--ink); }
-.rv-thumbs em { display: block; margin-top: 6px; font-size: 0.95rem; }
+.rv-thumbs button.on { border-color: var(--ink); }
+.rv-thumbs img, .rv-empty { display: block; width: 100%; height: 100%; object-fit: cover; }
+.rv-empty { border: 2px dashed color-mix(in srgb, var(--ink) 35%, transparent); }
+.rv-thumbs em { position: absolute; left: 8px; bottom: 6px; font-size: 0.95rem; background: rgba(255,255,255,.85); padding: 1px 8px; border-radius: 999px; }
+@media (max-width: 900px) {
+  .rv { grid-template-columns: 1fr; }
+  .rv-thumbs { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: none; padding-top: 0; }
+  .rv-thumbs button { aspect-ratio: 1024 / 850; }
+}
 
 /* parts explorer */
 .cp { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 24px; align-items: stretch; margin-top: 8px; }
@@ -51,7 +60,6 @@
 
 @media (max-width: 900px) {
   .cp { grid-template-columns: 1fr; }
-  .rv-thumbs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .pab-boxes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
