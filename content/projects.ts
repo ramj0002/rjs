@@ -77,7 +77,7 @@ export const projects: Project[] = [
       "Teaching a model to spot diseases from only one to five examples. What mattered most was how different the classes look, not which model I used.",
     facts: [["88%", "OrganAMNIST, 1-shot"], ["52%", "DermaMNIST, 1-shot"], ["600", "episodes × 3 seeds"]],
     tools: ["ProtoNet", "FGSM", "MedMNIST", "miniImageNet"],
-    link: OLD + "few-shot-medical-image-classification",
+    link: "/few-shot/",
     linkLabel: "Read the findings",
   },
   {
