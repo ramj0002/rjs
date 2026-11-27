@@ -122,10 +122,10 @@ export const projects: Project[] = [
     title: "Technical drawings",
     category: "Spatial / 3D",
     summary:
-      "Precise, dimensioned CAD drawings that someone else can build from.",
-    facts: [["CAD", "fabrication sets"]],
-    tools: ["CAD", "Orthographic projection"],
-    link: OLD + "technical-drawings",
+      "Everyday products modelled in Autodesk Inventor: an IKEA clock, a soap dispenser, a tap and a lamp.",
+    facts: [["5", "models"]],
+    tools: ["Autodesk Inventor", "3D modelling"],
+    link: "/technical-drawings/",
     linkLabel: "View the drawings",
   },
   {

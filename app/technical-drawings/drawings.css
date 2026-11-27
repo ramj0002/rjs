@@ -1,0 +1,26 @@
+/* model sheet: grid paper + title block, like a drawing sheet */
+.ms-sheet { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 300px); border: 2px solid var(--ink); border-radius: 4px; background: #fff; }
+.ms-paper { position: relative; border-right: 2px solid var(--ink);
+  background-image: linear-gradient(color-mix(in srgb, var(--blue) 16%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in srgb, var(--blue) 16%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px; }
+.ms-paper::before { content: ""; position: absolute; inset: 8px; border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent); pointer-events: none; }
+.ms-paper img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; animation: ms-in 0.35s ease-out; }
+@keyframes ms-in { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
+.ms-fig { position: absolute; left: 20px; bottom: 16px; font-size: 1rem; background: #fff; padding: 2px 10px; border: 1px solid color-mix(in srgb, var(--ink) 30%, transparent); }
+.ms-block { margin: 0; display: grid; grid-template-rows: auto 1fr auto auto auto; }
+.ms-block > div { padding: 14px 18px; border-bottom: 1.5px solid var(--ink); }
+.ms-block > div:last-child { border-bottom: 0; }
+.ms-block dt { font-size: 0.9rem; font-style: italic; opacity: 0.75; }
+.ms-block dd { margin: 2px 0 0; font-size: 1.1rem; }
+.ms-block .ms-title dd { font-size: clamp(1.7rem, 2.6vw, 2.3rem); line-height: 1.05; }
+.ms-thumbs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+.ms-thumbs button { padding: 0; border: 2px solid color-mix(in srgb, var(--ink) 25%, transparent); border-radius: 10px; background: #fff; cursor: pointer;
+  color: var(--ink); overflow: hidden; opacity: 0.7; transition: opacity 0.2s, border-color 0.2s; }
+.ms-thumbs button.on, .ms-thumbs button:hover { opacity: 1; border-color: var(--ink); }
+.ms-thumbs img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; }
+.ms-thumbs em { display: block; padding: 4px 10px 8px; font-size: 0.95rem; text-align: left; }
+@media (max-width: 900px) {
+  .ms-sheet { grid-template-columns: 1fr; }
+  .ms-paper { border-right: 0; border-bottom: 2px solid var(--ink); }
+  .ms-thumbs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}

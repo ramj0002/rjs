@@ -120,7 +120,7 @@ ${D(30, 42, "bloom &amp; rise")}${T(30, 60, "kids’ alarm clock", 'fill="var(--
     S(`<path d="M50 70 H170 V110 H120 V180 H50 Z"/><path d="M50 200 H170 V230 H50 Z"/><path d="M220 70 H300 V180 H220 Z"/><circle cx="85" cy="140" r="12"/><path d="M85 122 V158 M67 140 H103" stroke-dasharray="3 4" opacity=".6"/>
 <path class="a-march" d="M260 70 V180" stroke-dasharray="10 4 2 4" opacity=".6"/>
 <g class="a-draw-loop" stroke="var(--accent)" stroke-width="1.4"><path pathLength="1" d="M50 52 V62 M170 52 V62 M50 57 H170"/><path pathLength="1" d="M320 70 H330 M320 180 H330 M325 70 V180"/></g>
-<g class="a-pop">${T(110, 46, "120", 'text-anchor="middle" fill="var(--accent)"')}${T(338, 130, "110", 'fill="var(--accent)"')}</g>${T(50, 270, "front, plan and side, dimensioned for fabrication", 'fill="var(--soft)" font-style="italic"')}`),
+<g class="a-pop">${T(110, 46, "120", 'text-anchor="middle" fill="var(--accent)"')}${T(338, 130, "110", 'fill="var(--accent)"')}</g>${T(50, 270, "modelled in Autodesk Inventor", 'fill="var(--soft)" font-style="italic"')}`),
 
   // The zine flips: the halftone page turns over to reveal the next spread.
   zine: () => {
