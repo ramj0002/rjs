@@ -112,8 +112,8 @@ export const projects: Project[] = [
     summary:
       "Bloom & Rise, a flower-shaped alarm clock for kids, plus a breakdown of how an alarm clock is built.",
     facts: [["3", "product studies"]],
-    tools: ["3D modelling", "Rendering", "Product analysis"],
-    link: OLD + "3d-rendered-visualisations",
+    tools: ["Autodesk Inventor", "KeyShot", "Product analysis"],
+    link: "/3d-renders/",
     linkLabel: "View the renders",
   },
   {

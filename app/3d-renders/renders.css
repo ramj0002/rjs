@@ -1,0 +1,56 @@
+/* 3D renders page extras */
+.case .rd-rise { font-family: var(--serif); font-style: italic; font-weight: 400; text-transform: none; }
+
+/* render viewer: one big view, six thumbnails in a row, all the same shape */
+.rv-stage img, .rv-stage .case-img-missing { width: 100%; aspect-ratio: 412 / 342; object-fit: cover; display: block; }
+.rv-thumbs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+.rv-thumbs button { padding: 0; border: 0; background: none; cursor: pointer; color: var(--ink); text-align: left; opacity: 0.55; transition: opacity 0.2s; }
+.rv-thumbs button.on, .rv-thumbs button:hover { opacity: 1; }
+.rv-thumbs img, .rv-empty { display: block; width: 100%; aspect-ratio: 412 / 342; object-fit: cover; border-bottom: 3px solid transparent; }
+.rv-empty { border: 2px dashed color-mix(in srgb, var(--ink) 35%, transparent); border-radius: 8px; }
+.rv-thumbs button.on img, .rv-thumbs button.on .rv-empty { border-bottom: 3px solid var(--ink); }
+.rv-thumbs em { display: block; margin-top: 6px; font-size: 0.95rem; }
+
+/* parts explorer */
+.cp { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 24px; align-items: stretch; margin-top: 8px; }
+.cp-list { display: grid; grid-template-rows: repeat(6, 1fr); gap: 8px; }
+.cp-list button { display: grid; grid-template-columns: 44px 1fr; align-items: center; text-align: left; gap: 10px;
+  border: 2px solid var(--ink); border-radius: 14px; padding: 10px 16px; background: transparent; color: var(--ink); cursor: pointer; font-size: 1.35rem; }
+.cp-list button .num { font-size: 1.1rem; opacity: 0.7; }
+.cp-list button:hover { background: color-mix(in srgb, var(--blue) 18%, transparent); }
+.cp-list button.on { background: var(--blue); border-color: var(--blue); color: var(--ink); }
+.cp-detail { border: 2px solid var(--ink); border-radius: 22px; padding: 24px 28px; animation: flow-pop 0.4s cubic-bezier(.2, 1.4, .4, 1); }
+.case .cp-mat { margin: 0 0 14px; font-size: 1.2rem; }
+.case .cp-mat b { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 400; display: block; line-height: 1.05; }
+.cp-detail ul { list-style: none; }
+.cp-detail li { font-size: 1.15rem; padding: 10px 0; border-top: 1.5px solid color-mix(in srgb, var(--ink) 18%, transparent); }
+
+/* posters: same frame */
+.rd-posters .case-img img { aspect-ratio: 460 / 600; object-fit: cover; }
+.case .rd-try { font-size: clamp(2rem, 4vw, 3rem); margin: 56px 0 8px; }
+
+/* pick a box */
+.pab { border: 2px solid var(--ink); border-radius: 24px; padding: clamp(18px, 3vw, 30px); margin-top: 12px; }
+.pab-boxes { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
+.pab-box { aspect-ratio: 3 / 4; border: 0; background: none; padding: 0; cursor: pointer; perspective: 600px; }
+.pab-closed { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; border-radius: 14px;
+  background: var(--bx); color: #fff; box-shadow: inset 0 -12px 0 rgba(0,0,0,.15); transition: transform 0.2s; }
+.pab-closed span { font-size: 3rem; }
+.pab-box:hover .pab-closed { transform: translateY(-4px) rotate(-2deg); }
+.pab-flower { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 100%;
+  border-radius: 14px; background: #fff8e1; animation: pab-pop 0.5s cubic-bezier(.2, 1.5, .4, 1); }
+.pab-flower svg { width: 85%; height: auto; }
+.pab-flower em { color: #3b2a1e; font-size: 1rem; }
+@keyframes pab-pop { from { transform: scale(0.6) rotate(-8deg); opacity: 0; } to { transform: none; opacity: 1; } }
+.pab-foot { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 18px; flex-wrap: wrap; }
+.case .pab-collection { margin: 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.pab-dot { width: 22px; height: 22px; border-radius: 50%; border: 2px dashed color-mix(in srgb, var(--ink) 45%, transparent); display: inline-block; }
+.pab-dot.got { border: 2px solid #3b2a1e; }
+.pab-count { font-size: 1rem; margin-left: 6px; }
+.pab-again { border: 1.5px dashed var(--ink); border-radius: 999px; padding: 6px 16px; background: transparent; color: var(--ink); cursor: pointer; font-size: 1rem; }
+
+@media (max-width: 900px) {
+  .cp { grid-template-columns: 1fr; }
+  .rv-thumbs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pab-boxes { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
