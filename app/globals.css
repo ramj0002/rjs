@@ -237,17 +237,20 @@ body { transition: color 0.3s; }
 
 /* ---------- about ---------- */
 .about { background: var(--blue); min-height: 100vh; padding: 88px 32px 64px; overflow: hidden; }
-.about { padding: 0 0 0; }
-.about-intro { position: relative; min-height: max(118svh, 900px); padding: 80px max(4vw, 20px) 0; }
+.about { padding: 0; }
+.about-intro { --ph: min(calc(100svh - 56px), 1000px); position: relative; min-height: calc(100svh - 56px); margin-top: 56px; }
 .about-me {
-  position: absolute; left: 0; bottom: 0; height: min(94%, 1150px); width: auto; max-width: 60vw;
-  object-fit: contain; object-position: left bottom; pointer-events: none; z-index: 0;
+  position: absolute; left: 0; bottom: 0; height: var(--ph); width: auto; display: block; pointer-events: none;
 }
-.about-title { position: relative; z-index: 1; text-align: center; text-transform: uppercase; font-size: clamp(3rem, 8vw, 6.5rem); color: var(--ink); }
-.about-copy { position: relative; z-index: 1; max-width: 1150px; margin: 8px 0 0 6vw; }
-.reveal { font-size: clamp(2.4rem, 5.6vw, 5.2rem); color: var(--ink); line-height: 1.02; }
+.about-side {
+  margin-left: calc(var(--ph) * 0.574 + 3vw); padding: 28px max(4vw, 20px) 40px 0;
+  min-height: calc(100svh - 56px); display: flex; flex-direction: column;
+}
+.about-title { text-transform: uppercase; font-size: clamp(2.6rem, 6vw, 5.5rem); color: var(--ink); line-height: 1; }
+.about-copy { margin-top: 18px; }
+.reveal { font-size: clamp(2rem, 4.4vw, 4.6rem); color: var(--ink); line-height: 1.04; }
 .reveal span { transition: opacity 0.15s linear; }
-.hello { position: absolute; right: 1vw; bottom: 12%; width: min(56vw, 980px); z-index: 1; }
+.hello { margin-top: auto; padding-top: 16px; width: 100%; max-width: 820px; align-self: flex-end; }
 .hello video { width: 100%; height: auto; display: block;
   -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%); }
 .about-skills { padding: 72px max(4vw, 20px) 0; }
@@ -262,21 +265,15 @@ body { transition: color 0.3s; }
 .about-skills p { color: var(--white); font-size: clamp(1.05rem, 1.5vw, 1.4rem); line-height: 1.55; }
 .about-skills li:hover { padding-left: 18px; }
 .about-skills li:hover h3 { color: var(--white); }
-.about-contact { position: relative; min-height: min(70vw, 640px); margin-top: 72px; overflow: hidden; }
+.about-contact { position: relative; min-height: min(44vw, 640px); margin-top: 72px; overflow: hidden; }
 .card-hand { position: absolute; left: 0; bottom: 0; display: block; width: min(62vw, 980px); transform-origin: 0% 100%; transform: translateX(-6%); transition: transform .45s cubic-bezier(.3,1.4,.5,1); }
 .card-hand img { width: 100%; height: auto; display: block; }
 .card-word {
-  position: absolute; left: 73.5%; top: 25%; transform: translate(-50%, -50%) rotate(-14deg);
-  font-size: clamp(1.8rem, 5.4vw, 5rem); letter-spacing: .02em; color: var(--ink); text-transform: uppercase; transition: color .25s;
+  position: absolute; left: 71.5%; top: 28%; transform: translate(-50%, -50%) rotate(-14deg);
+  font-size: clamp(1.4rem, 4vw, 3.8rem); letter-spacing: .02em; color: var(--ink); text-transform: uppercase; transition: color .25s;
 }
 .card-hand:hover, .card-hand:focus-visible { transform: translateX(-2%) rotate(-3deg) translateY(-12px); }
 .card-hand:hover .card-word, .card-hand:focus-visible .card-word { color: var(--white); }
-.about-contact .email { position: absolute; right: max(4vw, 20px); top: 38%; display: flex; flex-direction: column; align-items: center; color: var(--white); text-decoration: none; z-index: 1; }
-.about-contact .email::before { content: ""; position: absolute; inset: -30% 10%; background: url("/about/flower-faint.svg") center / contain no-repeat; opacity: .28; z-index: -1; transition: transform .8s; }
-.about-contact .email:hover::before { transform: rotate(45deg); }
-.about-contact .email .display { font-size: clamp(2rem, 4.6vw, 4.4rem); line-height: 1.05; transition: color .25s; }
-.about-contact .email .label { text-transform: uppercase; font-size: clamp(2rem, 4vw, 3.6rem); letter-spacing: 0; margin: 0 0 .4em; }
-.about-contact .email:hover .display:last-child { color: var(--ink); }
 
 /* ---------- small screens ---------- */
 @media (max-width: 760px) {
@@ -287,14 +284,14 @@ body { transition: color 0.3s; }
   .card { grid-template-columns: 1fr; }
   .plate { border-right: 0; border-bottom: 2px solid var(--ink); aspect-ratio: 4 / 3; min-height: 0; }
   .card:hover { transform: none; box-shadow: none; }
-  .about-intro { min-height: 0; padding-bottom: 0; display: flex; flex-direction: column; }
-  .about-copy { margin-left: 0; }
-  .about-me { position: relative; order: 3; height: auto; width: 78vw; max-width: none; margin: 24px 0 0 -20px; }
-  .hello { position: relative; order: 2; right: auto; bottom: auto; width: 100%; margin-top: 16px; }
+  .about-intro { min-height: 0; display: flex; flex-direction: column; }
+  .about-me { order: 2; }
+  .about-side { margin-left: 0; min-height: 0; padding: 24px 18px 0; }
+  .hello { margin-top: 8px; }
+  .about-me { position: relative; height: auto; width: 74vw; }
   .about-skills li { grid-template-columns: 1fr; }
-  .about-contact { min-height: 560px; }
+  .about-contact { min-height: 78vw; }
   .card-hand { width: 112vw; transform: translateX(-12%); }
-  .about-contact .email { top: 8%; left: 20px; right: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track, .spin { animation: none; }

@@ -11,13 +11,15 @@ export default function About() {
       <div className="about">
         <section className="about-intro">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="about-me" src="/about/me.avif" alt={`${site.title}, taking a mirror selfie`} width={611} height={1076} />
-          <h1 className="about-title display">about me</h1>
-          <div className="about-copy">
-            <RevealText className="display" text={`${site.tagline} ${site.bio}`} />
-          </div>
-          <div className="hello">
+          <img className="about-me" src="/about/me.webp" alt={`${site.title}, taking a mirror selfie`} width={543} height={946} />
+          <div className="about-side">
+            <h1 className="about-title display">about me</h1>
+            <div className="about-copy">
+              <RevealText className="display" text={`${site.tagline} ${site.bio}`} />
+            </div>
+            <div className="hello">
             <video src="/about/hello.mp4" poster="/about/hello-poster.jpg" autoPlay muted loop playsInline aria-label="hello! my name is ram, in my handwriting" />
+            </div>
           </div>
         </section>
 
@@ -38,10 +40,6 @@ export default function About() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/about/hand.png" alt="" width={1024} height={694} />
             <span className="card-word display" aria-hidden>RESUME</span>
-          </a>
-          <a className="email" href={`mailto:${site.email}`}>
-            <span className="label display">EMAIL</span>
-            <span className="display">{site.email}</span>
           </a>
         </section>
       </div>
