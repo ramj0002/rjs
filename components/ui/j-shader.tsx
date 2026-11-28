@@ -309,7 +309,7 @@ const UNIFORMS = {
 
 const pendingContextReleases = new WeakMap<HTMLCanvasElement, number>()
 
-export function ShaderBackground({ className }: { className?: string }) {
+export function ShaderBackground({ className, themed = false }: { className?: string; themed?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
@@ -358,7 +358,22 @@ export function ShaderBackground({ className }: { className?: string }) {
       space: gl.getUniformLocation(program, "u_space"),
       cursor: gl.getUniformLocation(program, "u_cursor"),
     }
-    gl.uniform3fv(uni.colors, new Float32Array(UNIFORMS.colors.flat()))
+    const colors = UNIFORMS.colors.map((c) => [...c])
+    if (themed) {
+      // tint the silk with the page's own colour (--blue is overridden per project theme)
+      const probe = document.createElement("span")
+      probe.style.color = "var(--blue)"
+      canvas.parentElement?.appendChild(probe)
+      const m = getComputedStyle(probe).color.match(/\d+(\.\d+)?/g)
+      probe.remove()
+      if (m && m.length >= 3) {
+        const [r, g, b] = m.slice(0, 3).map((v) => Number(v) / 255)
+        colors[1] = [r, g, b]
+        colors[3] = [r + (1 - r) * 0.8, g + (1 - g) * 0.8, b + (1 - b) * 0.8]
+        colors[2] = [r + (1 - r) * 0.92, g + (1 - g) * 0.92, b + (1 - b) * 0.92]
+      }
+    }
+    gl.uniform3fv(uni.colors, new Float32Array(colors.flat()))
     gl.uniform4f(
       uni.shape,
       UNIFORMS.scale,

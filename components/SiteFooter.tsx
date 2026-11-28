@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import Flower from "./Flower";
 import { site } from "@/content/site";
+import { ShaderBackground } from "./ui/j-shader";
 
 /* A little garden of flower friends, one per project colour.
    They sway, watch the cursor, and hop when you poke them. */
@@ -16,7 +17,8 @@ const FRIENDS: { kind: Kind; c: string; dark: string; h: number }[] = [
   { kind: "tulip", c: "#ff3333", dark: "#d41f1f", h: 160 },
 ];
 
-function Head({ kind, c, dark }: { kind: Kind; c: string; dark: string }) {
+function Head({ kind, id }: { kind: Kind; id: string }) {
+  const c = `url(#${id}-p)`, dark = `url(#${id}-d)`;
   const ring = (n: number, d: string, rot = 0, fill = c) =>
     Array.from({ length: n }, (_, i) => (
       <path key={i} d={d} fill={fill} transform={`rotate(${rot + (360 / n) * i} 60 60)`} />
@@ -25,13 +27,13 @@ function Head({ kind, c, dark }: { kind: Kind; c: string; dark: string }) {
     case "daisy":
       return <g className="petals">{ring(10, "M60 60 C 48 44, 50 14, 60 8 C 70 14, 72 44, 60 60 Z")}<circle cx="60" cy="60" r="27" fill={dark} /></g>;
     case "sun":
-      return <g className="petals">{ring(16, "M60 60 L 53 14 Q 60 4 67 14 Z", 0, c)}{ring(16, "M60 60 L 54 20 Q 60 12 66 20 Z", 11.25, dark)}<circle cx="60" cy="60" r="29" fill="#8a5a12" /></g>;
+      return <g className="petals">{ring(16, "M60 60 L 53 14 Q 60 4 67 14 Z", 0, c)}{ring(16, "M60 60 L 54 20 Q 60 12 66 20 Z", 11.25, dark)}<circle cx="60" cy="60" r="29" fill={`url(#${id}-b)`} /></g>;
     case "violet":
       return <g className="petals">{ring(5, "M60 60 C 34 50, 34 12, 60 14 C 86 12, 86 50, 60 60 Z")}<circle cx="60" cy="60" r="26" fill={dark} /></g>;
     case "bell":
-      return <g className="petals"><path d="M22 62 C 22 26, 98 26, 98 62 L 92 92 L 80 80 L 68 94 L 60 82 L 52 94 L 40 80 L 28 92 Z" fill={c} /><circle cx="60" cy="58" r="26" fill={dark} opacity=".35" /></g>;
+      return <g className="petals"><path d="M22 62 C 22 26, 98 26, 98 62 L 92 92 L 80 80 L 68 94 L 60 82 L 52 94 L 40 80 L 28 92 Z" fill={c} /><circle cx="60" cy="58" r="26" fill={dark} /></g>;
     case "tulip":
-      return <g className="petals"><path d="M24 40 L 40 56 L 60 26 L 80 56 L 96 40 C 100 80, 86 98, 60 98 C 34 98, 20 80, 24 40 Z" fill={c} /><path d="M60 26 L 80 56 L 60 70 L 40 56 Z" fill={dark} opacity=".35" /></g>;
+      return <g className="petals"><path d="M24 40 L 40 56 L 60 26 L 80 56 L 96 40 C 100 80, 86 98, 60 98 C 34 98, 20 80, 24 40 Z" fill={c} /><path d="M60 26 L 80 56 L 60 70 L 40 56 Z" fill={dark} /></g>;
   }
 }
 
@@ -40,6 +42,7 @@ function Friend({ f, i }: { f: (typeof FRIENDS)[number]; i: number }) {
   const headY = 30;
   const stemTop = headY + 60;
   const total = stemTop + f.h;
+  const id = `gf${i}`;
   return (
     <div
       className={`garden-friend${hop ? " hop" : ""}`}
@@ -47,10 +50,16 @@ function Friend({ f, i }: { f: (typeof FRIENDS)[number]; i: number }) {
       onPointerDown={() => { setHop(Date.now()); window.setTimeout(() => setHop(0), 650); }}
     >
       <svg viewBox={`0 0 120 ${total}`} width="100%" aria-hidden>
-        <path d={`M60 ${stemTop} C 54 ${stemTop + f.h * 0.4}, 66 ${stemTop + f.h * 0.7}, 60 ${total}`} stroke="#3f9b47" strokeWidth="7" fill="none" strokeLinecap="round" />
-        <path d={`M60 ${stemTop + f.h * 0.55} C 80 ${stemTop + f.h * 0.4}, 98 ${stemTop + f.h * 0.48}, 104 ${stemTop + f.h * 0.38} C 96 ${stemTop + f.h * 0.62}, 76 ${stemTop + f.h * 0.66}, 60 ${stemTop + f.h * 0.6} Z`} fill="#55b85e" />
+        <defs>
+          <pattern id={`${id}-p`} width="5" height="5" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r="1.75" fill={f.c} /></pattern>
+          <pattern id={`${id}-d`} width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="2.5" cy="2.5" r="2.25" fill={f.dark} /></pattern>
+          <pattern id={`${id}-b`} width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="2.5" cy="2.5" r="2.3" fill="#7a4d0c" /></pattern>
+          <pattern id={`${id}-g`} width="5" height="5" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r="1.8" fill="#3f9b47" /></pattern>
+        </defs>
+        <path d={`M60 ${stemTop} C 54 ${stemTop + f.h * 0.4}, 66 ${stemTop + f.h * 0.7}, 60 ${total}`} stroke="#3f9b47" strokeWidth="5" strokeDasharray="0 7" fill="none" strokeLinecap="round" />
+        <path d={`M60 ${stemTop + f.h * 0.55} C 80 ${stemTop + f.h * 0.4}, 98 ${stemTop + f.h * 0.48}, 104 ${stemTop + f.h * 0.38} C 96 ${stemTop + f.h * 0.62}, 76 ${stemTop + f.h * 0.66}, 60 ${stemTop + f.h * 0.6} Z`} fill={`url(#${id}-g)`} />
         <g className="garden-head" transform={`translate(0 ${headY - 30})`}>
-          <Head kind={f.kind} c={f.c} dark={f.dark} />
+          <Head kind={f.kind} id={id} />
           <g className="eyes">
             <ellipse cx="49" cy="60" rx="6.5" ry="9" fill="#111" />
             <ellipse cx="71" cy="60" rx="6.5" ry="9" fill="#111" />
@@ -87,25 +96,22 @@ export default function SiteFooter({ back = false }: { back?: boolean }) {
     return () => { window.removeEventListener("pointermove", onMove); cancelAnimationFrame(raf); };
   }, []);
 
-  const github = site.github;
   return (
     <footer className="site-foot">
+      <ShaderBackground className="foot-shader" themed />
       <div className="site-foot-top">
         <Link href="/" aria-label="home" className="site-foot-mark"><Flower size={46} /></Link>
-        <nav aria-label="Footer">
-          {back && <Link href="/#work">← all work</Link>}
-          <a href={github} target="_blank" rel="noreferrer">github ↗</a>
-          <a href={site.linkedin} target="_blank" rel="noreferrer">linkedin ↗</a>
-          <a href={`mailto:${site.email}`}>email</a>
-          <a href={site.resume} target="_blank" rel="noreferrer">resume ↗</a>
-        </nav>
+        {back && (
+          <nav aria-label="Footer">
+            <Link href="/#work">← all work</Link>
+          </nav>
+        )}
       </div>
       <div className="garden" ref={ref}>
         {FRIENDS.map((f, i) => <Friend key={f.kind} f={f} i={i} />)}
       </div>
       <div className="site-foot-bottom">
         <small>© {new Date().getFullYear()} {site.title}</small>
-        <p>{site.bio}</p>
       </div>
     </footer>
   );
