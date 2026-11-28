@@ -1,5 +1,6 @@
 import Link from "next/link";
 import HalftoneHero from "@/components/HalftoneHero";
+import { ShaderBackground } from "@/components/ui/j-shader";
 import WorkGrid from "@/components/WorkGrid";
 import { site } from "@/content/site";
 
@@ -7,6 +8,7 @@ export default function Home() {
   return (
     <main>
       <section className="hero">
+        <ShaderBackground className="hero-shader" />
         <HalftoneHero />
       </section>
 
