@@ -375,6 +375,7 @@ input[type="range"] { min-height: 28px; cursor: pointer; }
   background: #fff; color: var(--ink); isolation: isolate;
   padding: 56px max(4vw, 20px) 28px;
 }
+.site-foot.on-silk { background: transparent; }
 .site-foot > :not(.foot-shader) { position: relative; z-index: 1; }
 .site-foot .foot-shader { position: absolute !important; inset: 0; z-index: 0; opacity: .45; pointer-events: none;
   -webkit-mask-image: linear-gradient(transparent, #000 45%); mask-image: linear-gradient(transparent, #000 45%); }

@@ -74,7 +74,7 @@ function Friend({ f, i }: { f: (typeof FRIENDS)[number]; i: number }) {
   );
 }
 
-export default function SiteFooter({ back = false }: { back?: boolean }) {
+export default function SiteFooter({ back = false, onSilk = false }: { back?: boolean; onSilk?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const root = ref.current;
@@ -97,8 +97,8 @@ export default function SiteFooter({ back = false }: { back?: boolean }) {
   }, []);
 
   return (
-    <footer className="site-foot">
-      <ShaderBackground className="foot-shader" themed />
+    <footer className={`site-foot${onSilk ? " on-silk" : ""}`}>
+      {!onSilk && <ShaderBackground className="foot-shader" themed />}
       <div className="site-foot-top">
         <Link href="/" aria-label="home" className="site-foot-mark"><Flower size={46} /></Link>
         {back && (
