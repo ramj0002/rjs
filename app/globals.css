@@ -409,7 +409,7 @@ input[type="range"] { min-height: 28px; cursor: pointer; }
 .garden-friend:hover .garden-head { transform: scale(1.08); }
 .garden-friend:hover .petals { transform: rotate(18deg); }
 .garden-friend .eyes { transition: transform .12s linear; }
-.garden-friend .eyes ellipse { transform-box: fill-box; transform-origin: 50% 50%; animation: blink 5s infinite; animation-delay: var(--delay); }
+.garden-friend .eyes { transform-box: fill-box; }
 .garden-friend.hop svg { animation: hop .6s cubic-bezier(.3,1.5,.5,1); }
 .garden-friend.hop .petals { transform: rotate(200deg); }
 @keyframes sway { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
@@ -429,7 +429,7 @@ input[type="range"] { min-height: 28px; cursor: pointer; }
   .site-foot nav { align-items: flex-end; text-align: right; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .garden-friend, .garden-friend .eyes ellipse, .garden-friend.hop svg { animation: none; }
+  .garden-friend, .garden-friend.hop svg { animation: none; }
 }
 .site-foot .foot-icons { flex-direction: row; align-items: center; gap: 22px; }
 .site-foot { margin-top: 24px; }

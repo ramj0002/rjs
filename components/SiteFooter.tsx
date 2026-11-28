@@ -1,48 +1,56 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import Flower from "./Flower";
 import { site } from "@/content/site";
 import { ShaderBackground } from "./ui/j-shader";
 
-/* A little garden of flower friends, one per project colour.
+import { PETAL } from "./Flower";
+
+/* A garden of logo-flowers in halftone dots, one per project colour.
    They sway, watch the cursor, and hop when you poke them. */
 
-type Kind = "daisy" | "sun" | "bell" | "violet" | "tulip";
-const FRIENDS: { kind: Kind; c: string; dark: string; h: number }[] = [
-  { kind: "daisy", c: "#fb4bb6", dark: "#d92a92", h: 150 },
-  { kind: "bell", c: "#5dc1cf", dark: "#1e93a6", h: 118 },
-  { kind: "sun", c: "#f1bd04", dark: "#c99a00", h: 176 },
-  { kind: "violet", c: "#9f49be", dark: "#7c2f9a", h: 128 },
-  { kind: "tulip", c: "#ff3333", dark: "#d41f1f", h: 160 },
+// bend: how far the stem curves (and which way); leaves: [where on the stem 0–1, side, size]
+const FRIENDS: { c: string; h: number; rot: number; s: number; bend: [number, number]; leaves: [number, number, number][] }[] = [
+  { c: "#fb4bb6", h: 150, rot: 0, s: 1, bend: [-7, 6], leaves: [[0.5, 1, 1], [0.74, -1, 0.7]] },
+  { c: "#5dc1cf", h: 112, rot: 12, s: 0.86, bend: [6, -3], leaves: [[0.62, -1, 0.85]] },
+  { c: "#f1bd04", h: 176, rot: 22, s: 1.08, bend: [-3, 9], leaves: [[0.35, -1, 0.75], [0.55, 1, 1.15], [0.78, -1, 0.9]] },
+  { c: "#9f49be", h: 128, rot: 6, s: 0.92, bend: [9, 2], leaves: [[0.68, 1, 0.8], [0.42, 1, 0.55]] },
+  { c: "#ff3333", h: 160, rot: 30, s: 0.98, bend: [-10, -4], leaves: [[0.58, -1, 1.05]] },
 ];
+const LEAF_D = "M0 0 C 12 -14, 30 -14, 40 -22 C 36 0, 16 8, 0 2 Z";
 
-function Head({ kind, id }: { kind: Kind; id: string }) {
-  const c = `url(#${id}-p)`, dark = `url(#${id}-d)`;
-  const ring = (n: number, d: string, rot = 0, fill = c) =>
-    Array.from({ length: n }, (_, i) => (
-      <path key={i} d={d} fill={fill} transform={`rotate(${rot + (360 / n) * i} 60 60)`} />
-    ));
-  switch (kind) {
-    case "daisy":
-      return <g className="petals">{ring(10, "M60 60 C 48 44, 50 14, 60 8 C 70 14, 72 44, 60 60 Z")}<circle cx="60" cy="60" r="27" fill={dark} /></g>;
-    case "sun":
-      return <g className="petals">{ring(16, "M60 60 L 53 14 Q 60 4 67 14 Z", 0, c)}{ring(16, "M60 60 L 54 20 Q 60 12 66 20 Z", 11.25, dark)}<circle cx="60" cy="60" r="29" fill={`url(#${id}-b)`} /></g>;
-    case "violet":
-      return <g className="petals">{ring(5, "M60 60 C 34 50, 34 12, 60 14 C 86 12, 86 50, 60 60 Z")}<circle cx="60" cy="60" r="26" fill={dark} /></g>;
-    case "bell":
-      return <g className="petals"><path d="M22 62 C 22 26, 98 26, 98 62 L 92 92 L 80 80 L 68 94 L 60 82 L 52 94 L 40 80 L 28 92 Z" fill={c} /><circle cx="60" cy="58" r="26" fill={dark} /></g>;
-    case "tulip":
-      return <g className="petals"><path d="M24 40 L 40 56 L 60 26 L 80 56 L 96 40 C 100 80, 86 98, 60 98 C 34 98, 20 80, 24 40 Z" fill={c} /><path d="M60 26 L 80 56 L 60 70 L 40 56 Z" fill={dark} /></g>;
+type Dot = [number, number, number, number]; // x, y, r, opacity
+// Halftone field: dots are biggest at the centre and fade out to the petal tips.
+function field(cx: number, cy: number, R: number, step: number, max: number, min = 0.25): Dot[] {
+  const out: Dot[] = [];
+  for (let y = cy - R; y <= cy + R; y += step) {
+    const row = Math.round((y - (cy - R)) / step);
+    for (let x = cx - R + (row % 2 ? step / 2 : 0); x <= cx + R; x += step) {
+      const t = Math.hypot(x - cx, y - cy) / R;
+      if (t > 1) continue;
+      const k = Math.pow(1 - t, 0.7);
+      out.push([+x.toFixed(2), +y.toFixed(2), +(min + (max - min) * k).toFixed(2), +(0.6 + 0.4 * k).toFixed(2)]);
+    }
   }
+  return out;
 }
+const HEAD = field(60, 60, 50, 3.2, 1.7, 0.55);
+const EYE = field(0, 0, 5, 1.9, 1.05, 0.4);
+const LEAF = field(22, -6, 22, 3.2, 1.25, 0.3);
 
 function Friend({ f, i }: { f: (typeof FRIENDS)[number]; i: number }) {
   const [hop, setHop] = useState(0);
-  const headY = 30;
-  const stemTop = headY + 60;
+  const stemTop = 92;
   const total = stemTop + f.h;
   const id = `gf${i}`;
+  const [b1, b2] = f.bend;
+  // cubic stem from (60, stemTop) to (60, total)
+  const P = [[60, stemTop], [60 + b1, stemTop + f.h * 0.35], [60 + b2, stemTop + f.h * 0.7], [60, total - 2]];
+  const at = (t: number) => {
+    const u = 1 - t;
+    const w = [u * u * u, 3 * u * u * t, 3 * u * t * t, t * t * t];
+    return [0, 1].map((k) => w.reduce((acc, wi, j) => acc + wi * P[j][k], 0));
+  };
   return (
     <div
       className={`garden-friend${hop ? " hop" : ""}`}
@@ -51,22 +59,34 @@ function Friend({ f, i }: { f: (typeof FRIENDS)[number]; i: number }) {
     >
       <svg viewBox={`0 0 120 ${total}`} width="100%" aria-hidden>
         <defs>
-          <pattern id={`${id}-p`} width="5" height="5" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r="1.75" fill={f.c} /></pattern>
-          <pattern id={`${id}-d`} width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="2.5" cy="2.5" r="2.25" fill={f.dark} /></pattern>
-          <pattern id={`${id}-b`} width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><circle cx="2.5" cy="2.5" r="2.3" fill="#7a4d0c" /></pattern>
-          <pattern id={`${id}-g`} width="5" height="5" patternUnits="userSpaceOnUse"><circle cx="2.5" cy="2.5" r="1.8" fill="#3f9b47" /></pattern>
+          <clipPath id={`${id}-petals`}>
+            {[0, 45, 90, 135, 180, 225, 270, 315].map((r) => (
+              <path key={r} d={PETAL} transform={`translate(10 10) rotate(${r + f.rot} 50 50) translate(50 50) scale(1.18) translate(-50 -50)`} />
+            ))}
+            <circle cx="60" cy="60" r="16" />
+          </clipPath>
+          <clipPath id={`${id}-leaf`}><path d={LEAF_D} /></clipPath>
         </defs>
-        <path d={`M60 ${stemTop} C 54 ${stemTop + f.h * 0.4}, 66 ${stemTop + f.h * 0.7}, 60 ${total}`} stroke="#3f9b47" strokeWidth="5" strokeDasharray="0 7" fill="none" strokeLinecap="round" />
-        <path d={`M60 ${stemTop + f.h * 0.55} C 80 ${stemTop + f.h * 0.4}, 98 ${stemTop + f.h * 0.48}, 104 ${stemTop + f.h * 0.38} C 96 ${stemTop + f.h * 0.62}, 76 ${stemTop + f.h * 0.66}, 60 ${stemTop + f.h * 0.6} Z`} fill={`url(#${id}-g)`} />
-        <g className="garden-head" transform={`translate(0 ${headY - 30})`}>
-          <Head kind={f.kind} id={id} />
-          <g className="eyes">
-            <ellipse cx="49" cy="60" rx="6.5" ry="9" fill="#111" />
-            <ellipse cx="71" cy="60" rx="6.5" ry="9" fill="#111" />
-            <g className="pupils">
-              <circle cx="51" cy="56" r="2.4" fill="#fff" />
-              <circle cx="73" cy="56" r="2.4" fill="#fff" />
+        <path d={`M${P[0]} C ${P[1]}, ${P[2]}, ${P[3]}`} stroke="#3f9b47" strokeWidth="2.6" strokeDasharray="0 5" fill="none" strokeLinecap="round" opacity=".8" />
+        {f.leaves.map(([t, side, size], li) => {
+          const [x, y] = at(t);
+          return (
+            <g key={li} transform={`translate(${x.toFixed(1)} ${y.toFixed(1)}) scale(${side * size} ${size}) rotate(${li % 2 ? 8 : -4})`}>
+              <g clipPath={`url(#${id}-leaf)`} fill="#3f9b47">
+                {LEAF.map(([lx, lyy, r, o], k) => <circle key={k} cx={lx} cy={lyy} r={r} opacity={o * 0.85} />)}
+              </g>
             </g>
+          );
+        })}
+        <g className="garden-head" transform={`scale(${f.s})`} style={{ transformOrigin: "60px 60px" }}>
+          <g className="petals" clipPath={`url(#${id}-petals)`} fill={f.c}>
+            {HEAD.map(([x, y, r, o], k) => <circle key={k} cx={x} cy={y} r={r} opacity={o} />)}
+          </g>
+          <g className="eyes" fill="#14142b">
+            <circle cx="51" cy="60" r="6.4" fill="#fff" opacity=".55" />
+            <circle cx="69" cy="60" r="6.4" fill="#fff" opacity=".55" />
+            {EYE.map(([x, y, r, o], k) => <circle key={`l${k}`} cx={51 + x} cy={60 + y} r={r} opacity={o * 0.9} />)}
+            {EYE.map(([x, y, r, o], k) => <circle key={`r${k}`} cx={69 + x} cy={60 + y} r={r} opacity={o * 0.9} />)}
           </g>
         </g>
       </svg>
@@ -100,7 +120,6 @@ export default function SiteFooter({ back = false, onSilk = false }: { back?: bo
     <footer className={`site-foot${onSilk ? " on-silk" : ""}`}>
       {!onSilk && <ShaderBackground className="foot-shader" themed />}
       <div className="site-foot-top">
-        <Link href="/" aria-label="back to top" className="site-foot-mark" onClick={(e) => { if (location.pathname === "/") { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); } }}><Flower size={46} /></Link>
         {back && (
           <nav aria-label="Footer">
             <Link href="/#work">← all work</Link>
@@ -108,7 +127,7 @@ export default function SiteFooter({ back = false, onSilk = false }: { back?: bo
         )}
       </div>
       <div className="garden" ref={ref}>
-        {FRIENDS.map((f, i) => <Friend key={f.kind} f={f} i={i} />)}
+        {FRIENDS.map((f, i) => <Friend key={f.c} f={f} i={i} />)}
       </div>
       <div className="site-foot-bottom">
         <small>© {new Date().getFullYear()} {site.title}</small>
