@@ -18,6 +18,39 @@ let seed = 7;
 const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
 
 export const plates: Record<string, () => string> = {
+  // The agent builds a level; the player hops over the pit to the exit.
+  tilemap: () => {
+    let g = "";
+    for (let x = 0; x < 16; x++) {
+      if (x >= 6 && x <= 8) continue;
+      g += `<rect x="${40 + x * 20}" y="200" width="19" height="19" fill="currentColor" fill-opacity=".85" stroke="none"/><rect x="${40 + x * 20}" y="220" width="19" height="19" fill="currentColor" fill-opacity=".5" stroke="none"/>`;
+    }
+    const plats = [[9, 7], [10, 7], [12, 5], [13, 5]].map(([x, y]) => `<rect x="${40 + x * 20}" y="${80 + (9 - y) * 20 - 40}" width="19" height="9" fill="var(--accent)" stroke="none"/>`).join("");
+    return S(`<rect x="36" y="36" width="328" height="208" stroke-dasharray="3 5" opacity=".35"/>${g}${plats}
+<path d="M70 196 Q 150 120 210 196" stroke="var(--accent)" stroke-dasharray="5 6" class="a-march"/>
+<rect class="a-pulse" x="60" y="180" width="16" height="16" rx="3" fill="var(--panel)"/>${D(68, 175, "S", 'text-anchor="middle" font-size="14"')}
+<rect x="324" y="180" width="16" height="16" rx="3" fill="currentColor"/>${D(332, 175, "E", 'text-anchor="middle" font-size="14"')}
+${T(40, 30, "fill_rect · clear_area · place_marker", 'fill="var(--soft)" font-style="italic"')}${D(360, 268, "6 / 6 reachable", 'text-anchor="end" fill="var(--accent)"')}`);
+  },
+
+  // A resume: rule checks flag lines first, then the AI review streams in.
+  resume: () =>
+    S(`<rect x="50" y="34" width="150" height="214" rx="6" fill="var(--panel)"/>
+${[64, 84, 104, 132, 152, 172, 200, 220].map((y, i) => `<path d="M68 ${y} H${[170, 150, 176, 160, 182, 140, 168, 150][i]}" opacity=".55"/>`).join("")}
+<rect class="a-pulse" x="62" y="96" width="122" height="16" rx="3" fill="var(--accent)" fill-opacity=".18" stroke="var(--accent)"/>
+${D(232, 70, "checks", 'fill="currentColor"')}${T(232, 92, "60% of 4 = 2.4 people", 'fill="var(--accent)"')}${T(232, 112, "buzzword: “passionate”", 'fill="var(--soft)"')}
+${D(232, 160, "review", 'fill="currentColor"')}
+${[182, 200, 218].map((y, i) => `<path class="a-stream" ${delay(i * 0.3)} d="M232 ${y} H${[350, 330, 300][i]}"/>`).join("")}<rect class="a-blink" x="304" y="212" width="8" height="12" fill="currentColor" stroke="none"/>`),
+
+  // A heart and the risk factors that matter most.
+  cardio: () => {
+    const f = [["BMI", 211], ["age", 173], ["systolic BP", 152], ["diastolic BP", 84], ["cholesterol", 74]] as const;
+    return S(`<path class="a-pulse" d="M110 210 C60 175 40 140 52 110 C64 82 100 80 110 108 C120 80 156 82 168 110 C180 140 160 175 110 210 Z" fill="var(--panel)" stroke-width="2.5"/>
+<path d="M56 140 H86 L94 124 L104 158 L114 132 L120 140 H164" stroke="var(--accent)" stroke-width="2.5" class="a-march"/>
+${f.map(([n, v], i) => `${T(206, 86 + i * 34, n, 'font-size="14"')}<rect class="a-hbar" ${delay(-i * 0.35)} x="206" y="${92 + i * 34}" width="${(v / 211) * 150}" height="10" rx="3" fill="${i < 3 ? "var(--accent)" : "currentColor"}" stroke="none"/>`).join("")}
+${D(110, 250, "73.4% accuracy", 'text-anchor="middle"')}${T(110, 270, "XGBoost, 68,583 people", 'text-anchor="middle" fill="var(--soft)" font-style="italic"')}`);
+  },
+
   // The old app's 1.6 ★ pops out, then the redesign earns its 5 stars.
   ktmb: () =>
     S(`<rect x="70" y="40" width="110" height="220" rx="16"/><rect x="220" y="40" width="110" height="220" rx="16" stroke-width="2.5"/>

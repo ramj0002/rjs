@@ -93,6 +93,42 @@ export const projects: Project[] = [
     linkLabel: "See the app",
   },
   {
+    id: "tilemap",
+    theme: "purple",
+    title: "Tilemap agent + evaluation viewer",
+    category: "AI / Data",
+    summary:
+      "An AI agent that builds game levels only through tool calls, plus checks that test whether each level can actually be played.",
+    facts: [["6/6", "levels pass"], ["57", "tests in CI"]],
+    tools: ["Anthropic API", "Tool calling", "Unity C#", "React + TypeScript"],
+    link: "/tilemap-agent/",
+    linkLabel: "See the agent",
+  },
+  {
+    id: "resume",
+    theme: "purple",
+    title: "AI resume reviewer",
+    category: "AI / Data",
+    summary:
+      "Reviews a resume against a job ad. Rule-based checks catch factual errors first, then Claude gives a recruiter-style review.",
+    facts: [["3", "resumes with the same error caught"], ["36", "tests in CI"]],
+    tools: ["React", "FastAPI", "Claude", "Server-Sent Events"],
+    link: "/resume-reviewer/",
+    linkLabel: "See the reviewer",
+  },
+  {
+    id: "cardio",
+    theme: "purple",
+    title: "Cardiovascular disease prediction",
+    category: "AI / Data",
+    summary:
+      "Which health factors matter most for heart disease? Four models on 68,583 people, with a personal risk report explained by SHAP.",
+    facts: [["73.4%", "accuracy, XGBoost"], ["68,583", "people"]],
+    tools: ["Python", "XGBoost", "Random Forest", "SHAP"],
+    link: "/cardiovascular/",
+    linkLabel: "See the findings",
+  },
+  {
     id: "xyr",
     theme: "pink2",
     title: "XYR Fashion Store",
