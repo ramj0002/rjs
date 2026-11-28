@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import RevealText from "@/components/RevealText";
+import LineReveal from "@/components/LineReveal";
 import { site } from "@/content/site";
 import { skills } from "@/content/skills";
 
@@ -16,11 +16,7 @@ export default function About() {
           <div className="hello">
             <video src="/about/hello.mp4" poster="/about/hello-poster.jpg" autoPlay muted loop playsInline aria-label="hello! my name is ram, in my handwriting" />
           </div>
-          <div className="about-lines">
-            {["part engineer, part designer.", "I try to build things that look good,", "work well,", "and just…make sense."].map((l, i) => (
-              <RevealText key={i} className={`display line-${i}`} text={l} />
-            ))}
-          </div>
+          <LineReveal lines={["part engineer, part designer.", "I try to build things that look good,", "work well,", "and just…make sense."]} />
         </section>
 
         <section className="about-skills" aria-labelledby="skills-h">

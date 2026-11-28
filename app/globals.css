@@ -244,7 +244,8 @@ body { transition: color 0.3s; }
 }
 .about-title { position: relative; z-index: 1; text-align: center; text-transform: uppercase; font-size: clamp(3.6rem, 10vw, 10rem); color: var(--ink); line-height: 1; margin-top: 8px; }
 .about-lines { position: absolute; left: 0; right: 0; bottom: 7%; z-index: 1; }
-.about-lines .reveal { font-size: clamp(2.2rem, 5.6vw, 6rem); color: var(--ink); line-height: 1.02; white-space: nowrap; }
+.about-lines .line { font-size: clamp(2.2rem, 5.6vw, 6rem); color: var(--ink); opacity: .45; line-height: 1.02; white-space: nowrap; transition: color .45s, opacity .45s; }
+.about-lines .line.lit { color: var(--white); opacity: 1; }
 .about-lines .line-0 { margin-left: 5.5vw; }
 .about-lines .line-1 { margin-left: 11vw; }
 .about-lines .line-2 { margin-left: 24vw; }
@@ -289,7 +290,7 @@ body { transition: color 0.3s; }
   .card:hover { transform: none; box-shadow: none; }
   .about-intro { min-height: 0; display: flex; flex-direction: column; padding-bottom: 0; }
   .about-lines { position: relative; bottom: auto; margin-top: 8px; }
-  .about-lines .reveal { white-space: normal; font-size: clamp(1.3rem, 6.4vw, 2rem); }
+  .about-lines .line { white-space: normal; font-size: clamp(1.3rem, 6.4vw, 2rem); }
   .about-lines .line-0 { margin-left: 14px; } .about-lines .line-1 { margin-left: 24px; } .about-lines .line-2 { margin-left: 56px; } .about-lines .line-3 { margin-left: 84px; }
   .hello { width: 100%; margin: 8px 0 0; }
   .about-me { position: relative; order: 3; height: auto; width: 86vw; margin-top: -40px; }
