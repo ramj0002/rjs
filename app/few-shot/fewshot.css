@@ -139,3 +139,6 @@
   .fc-dl-grid { grid-template-columns: 110px repeat(3, minmax(0, 1fr)) !important; }
 }
 .fc-db-row { min-height: 72px; } .fc-db-name b { font-size: 1.5rem; }
+
+/* every section title on one line: sized so the longest one fits the column */
+.fs .case-sec > h2 { white-space: nowrap; font-size: min(clamp(3rem, 8vw, 6.5rem), calc((min(100vw, 1240px) - 8vw) / 13.5)); }
