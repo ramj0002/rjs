@@ -371,9 +371,9 @@ input[type="range"] { min-height: 28px; cursor: pointer; }
 
 /* ---------- site footer: flower garden ---------- */
 .site-foot {
-  margin-top: 120px; position: relative; overflow: hidden;
+  margin-top: 64px; position: relative; overflow: hidden;
   background: #fff; color: var(--ink); isolation: isolate;
-  padding: 56px max(4vw, 20px) 28px;
+  padding: 32px max(4vw, 20px) 22px;
 }
 .site-foot.on-silk { background: transparent; }
 .site-foot > :not(.foot-shader) { position: relative; z-index: 1; }
@@ -392,7 +392,7 @@ input[type="range"] { min-height: 28px; cursor: pointer; }
 .site-foot nav a:hover, .site-foot nav a:focus-visible { background-size: 100% 3px; }
 .garden {
   display: flex; justify-content: center; align-items: flex-end;
-  gap: clamp(6px, 3vw, 48px); margin: 36px auto 0; max-width: 980px; min-height: 200px;
+  gap: clamp(6px, 3vw, 48px); margin: -24px auto 0; max-width: 980px;
 }
 .garden-friend {
   width: clamp(64px, 14vw, 150px); cursor: pointer; touch-action: manipulation;
@@ -417,8 +417,11 @@ input[type="range"] { min-height: 28px; cursor: pointer; }
 @keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(.1); } }
 .site-foot-bottom {
   display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: baseline;
-  border-top: 2px solid var(--ink); margin-top: 18px; padding-top: 16px; font-size: 1rem;
+  border-top: 2px solid var(--ink); margin-top: 14px; padding-top: 14px; font-size: 1rem; align-items: center;
 }
+.foot-icons { display: flex; gap: 18px; }
+.foot-icons a { color: var(--ink); display: inline-flex; padding: 8px; margin: -8px; transition: transform .2s; }
+.foot-icons a:hover, .foot-icons a:focus-visible { transform: translateY(-3px) rotate(-6deg); }
 .site-foot-bottom small { font-size: 1rem; }
 .site-foot-bottom p { font-style: italic; }
 @media (min-width: 900px) {
@@ -428,3 +431,11 @@ input[type="range"] { min-height: 28px; cursor: pointer; }
 @media (prefers-reduced-motion: reduce) {
   .garden-friend, .garden-friend .eyes ellipse, .garden-friend.hop svg { animation: none; }
 }
+.site-foot .foot-icons { flex-direction: row; align-items: center; gap: 22px; }
+.site-foot { margin-top: 24px; }
+.site-foot-top { position: absolute !important; top: 28px; left: max(4vw, 20px); right: max(4vw, 20px); z-index: 2 !important; pointer-events: none; }
+.site-foot-top a { pointer-events: auto; }
+.garden { margin-top: 24px; }
+.work { padding-bottom: 32px; }
+.site-foot-top:has(nav) { position: relative !important; top: auto; left: auto; right: auto; pointer-events: auto; flex-direction: row; justify-content: space-between; align-items: center; }
+.site-foot-top:has(nav) nav a { font-size: clamp(1.8rem, 4vw, 3rem); }
