@@ -244,8 +244,11 @@ body { transition: color 0.3s; }
 }
 .about-title { position: relative; z-index: 1; text-align: center; text-transform: uppercase; font-size: clamp(3.6rem, 10vw, 10rem); color: var(--ink); line-height: 1; margin-top: 8px; }
 .about-lines { position: absolute; left: 0; right: 0; bottom: 7%; z-index: 1; }
-.about-lines .line { font-size: clamp(2.2rem, 5.6vw, 6rem); color: var(--ink); opacity: .45; line-height: 1.02; white-space: nowrap; transition: color .45s, opacity .45s; }
-.about-lines .line.lit { color: var(--white); opacity: 1; }
+.about-lines .line {
+  --f: 0; width: fit-content; font-size: clamp(2.2rem, 5.6vw, 6rem); line-height: 1.02; white-space: nowrap;
+  color: transparent; -webkit-background-clip: text; background-clip: text;
+  background-image: linear-gradient(90deg, #fff calc(var(--f) * 112% - 12%), color-mix(in srgb, var(--ink) 55%, transparent) calc(var(--f) * 112%));
+}
 .about-lines .line-0 { margin-left: 5.5vw; }
 .about-lines .line-1 { margin-left: 11vw; }
 .about-lines .line-2 { margin-left: 24vw; }
