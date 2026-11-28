@@ -35,7 +35,6 @@ function field(cx: number, cy: number, R: number, step: number, max: number, min
   return out;
 }
 const HEAD = field(60, 60, 50, 3.2, 1.7, 0.55);
-const EYE = field(0, 0, 5, 1.9, 1.05, 0.4);
 const LEAF = field(22, -6, 22, 3.2, 1.25, 0.3);
 
 function Friend({ f, i }: { f: (typeof FRIENDS)[number]; i: number }) {
@@ -81,12 +80,6 @@ function Friend({ f, i }: { f: (typeof FRIENDS)[number]; i: number }) {
         <g className="garden-head" transform={`scale(${f.s})`} style={{ transformOrigin: "60px 60px" }}>
           <g className="petals" clipPath={`url(#${id}-petals)`} fill={f.c}>
             {HEAD.map(([x, y, r, o], k) => <circle key={k} cx={x} cy={y} r={r} opacity={o} />)}
-          </g>
-          <g className="eyes" fill="#14142b">
-            <circle cx="51" cy="60" r="6.4" fill="#fff" opacity=".55" />
-            <circle cx="69" cy="60" r="6.4" fill="#fff" opacity=".55" />
-            {EYE.map(([x, y, r, o], k) => <circle key={`l${k}`} cx={51 + x} cy={60 + y} r={r} opacity={o * 0.9} />)}
-            {EYE.map(([x, y, r, o], k) => <circle key={`r${k}`} cx={69 + x} cy={60 + y} r={r} opacity={o * 0.9} />)}
           </g>
         </g>
       </svg>

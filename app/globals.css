@@ -237,49 +237,46 @@ body { transition: color 0.3s; }
 
 /* ---------- about ---------- */
 .about { background: var(--blue); min-height: 100vh; padding: 88px 32px 64px; overflow: hidden; }
-.about-title { text-align: center; text-transform: uppercase; font-size: clamp(3rem, 8vw, 6.5rem); color: var(--ink); }
-.about-grid {
-  display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; align-items: start;
-  max-width: 1300px; margin: 32px auto 0;
+.about { padding: 0 0 0; }
+.about-intro { position: relative; min-height: max(118svh, 900px); padding: 80px max(4vw, 20px) 0; }
+.about-me {
+  position: absolute; left: 0; bottom: 0; height: min(94%, 1150px); width: auto; max-width: 60vw;
+  object-fit: contain; object-position: left bottom; pointer-events: none; z-index: 0;
 }
-.reveal { font-size: clamp(2.6rem, 6.5vw, 6rem); color: var(--ink); }
+.about-title { position: relative; z-index: 1; text-align: center; text-transform: uppercase; font-size: clamp(3rem, 8vw, 6.5rem); color: var(--ink); }
+.about-copy { position: relative; z-index: 1; max-width: 1150px; margin: 8px 0 0 6vw; }
+.reveal { font-size: clamp(2.4rem, 5.6vw, 5.2rem); color: var(--ink); line-height: 1.02; }
 .reveal span { transition: opacity 0.15s linear; }
-.about-photo { position: sticky; top: 90px; max-width: 380px; justify-self: end; width: 100%; transform: rotate(2deg); transition: transform 0.5s; }
-.about-photo img { width: 100%; height: auto; display: block; }
-.about-photo:hover { transform: rotate(0deg) scale(1.02); }
-.hello { max-width: 900px; margin: 72px auto 32px; }
+.hello { position: absolute; right: 1vw; bottom: 12%; width: min(56vw, 980px); z-index: 1; }
 .hello video { width: 100%; height: auto; display: block;
   -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%); }
-.about-skills { max-width: 1300px; margin: 0 auto; }
+.about-skills { padding: 72px max(4vw, 20px) 0; }
 .about-skills .label { color: var(--white); font-size: 1.2rem; margin-bottom: 12px; font-weight: 400; }
 .about-skills ul { list-style: none; }
 .about-skills li {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 12px 40px; align-items: baseline;
+  display: grid; grid-template-columns: minmax(14rem, 22%) minmax(0, 1fr); gap: 10px 4vw; align-items: baseline;
   border-top: 2px solid var(--ink); padding: 18px 0; transition: padding 0.25s;
 }
 .about-skills li:last-child { border-bottom: 2px solid var(--ink); }
-.about-skills h3 { font-size: clamp(1.9rem, 4vw, 3.4rem); color: var(--ink); line-height: 1; transition: color .25s; }
-.about-skills p { color: var(--white); font-size: 1.15rem; line-height: 1.6; max-width: 68ch; }
+.about-skills h3 { font-size: clamp(1.9rem, 3.4vw, 3.2rem); color: var(--ink); line-height: 1; transition: color .25s; }
+.about-skills p { color: var(--white); font-size: clamp(1.05rem, 1.5vw, 1.4rem); line-height: 1.55; }
 .about-skills li:hover { padding-left: 18px; }
 .about-skills li:hover h3 { color: var(--white); }
-.about-contact {
-  max-width: 1300px; margin: 96px auto 0;
-  display: flex; justify-content: space-between; align-items: center; gap: 32px; flex-wrap: wrap;
-  color: var(--white);
-}
-.card-hand { position: relative; display: block; width: min(560px, 100%); transform-origin: 10% 90%; transition: transform .45s cubic-bezier(.3,1.4,.5,1); }
+.about-contact { position: relative; min-height: min(70vw, 640px); margin-top: 72px; overflow: hidden; }
+.card-hand { position: absolute; left: 0; bottom: 0; display: block; width: min(62vw, 980px); transform-origin: 0% 100%; transform: translateX(-6%); transition: transform .45s cubic-bezier(.3,1.4,.5,1); }
 .card-hand img { width: 100%; height: auto; display: block; }
 .card-word {
   position: absolute; left: 73.5%; top: 25%; transform: translate(-50%, -50%) rotate(-14deg);
-  font-size: clamp(1.6rem, 4.2vw, 3rem); letter-spacing: .12em; color: var(--ink); text-transform: uppercase; transition: color .25s;
+  font-size: clamp(1.8rem, 5.4vw, 5rem); letter-spacing: .02em; color: var(--ink); text-transform: uppercase; transition: color .25s;
 }
-.card-hand:hover, .card-hand:focus-visible { transform: rotate(-4deg) translate(10px, -10px); }
+.card-hand:hover, .card-hand:focus-visible { transform: translateX(-2%) rotate(-3deg) translateY(-12px); }
 .card-hand:hover .card-word, .card-hand:focus-visible .card-word { color: var(--white); }
-.about-contact .email { display: flex; flex-direction: column; align-items: flex-end; color: var(--white); text-decoration: none; }
-.about-contact .email .display { font-size: clamp(1.8rem, 3.6vw, 2.8rem); transition: color .25s; }
-.about-contact .email:hover .display { color: var(--ink); }
-.about-contact .label { font-size: 0.85rem; letter-spacing: 0.4em; margin-top: 4px; }
-.about-page .site-foot { margin-top: 0; }
+.about-contact .email { position: absolute; right: max(4vw, 20px); top: 38%; display: flex; flex-direction: column; align-items: center; color: var(--white); text-decoration: none; z-index: 1; }
+.about-contact .email::before { content: ""; position: absolute; inset: -30% 10%; background: url("/about/flower-faint.svg") center / contain no-repeat; opacity: .28; z-index: -1; transition: transform .8s; }
+.about-contact .email:hover::before { transform: rotate(45deg); }
+.about-contact .email .display { font-size: clamp(2rem, 4.6vw, 4.4rem); line-height: 1.05; transition: color .25s; }
+.about-contact .email .label { text-transform: uppercase; font-size: clamp(2rem, 4vw, 3.6rem); letter-spacing: 0; margin: 0 0 .4em; }
+.about-contact .email:hover .display:last-child { color: var(--ink); }
 
 /* ---------- small screens ---------- */
 @media (max-width: 760px) {
@@ -290,11 +287,14 @@ body { transition: color 0.3s; }
   .card { grid-template-columns: 1fr; }
   .plate { border-right: 0; border-bottom: 2px solid var(--ink); aspect-ratio: 4 / 3; min-height: 0; }
   .card:hover { transform: none; box-shadow: none; }
-  .about { padding: 80px 18px 48px; }
-  .about-grid { grid-template-columns: 1fr; }
-  .about-photo { position: static; max-width: 360px; }
-  .about-contact .email { align-items: flex-start; }
+  .about-intro { min-height: 0; padding-bottom: 0; display: flex; flex-direction: column; }
+  .about-copy { margin-left: 0; }
+  .about-me { position: relative; order: 3; height: auto; width: 78vw; max-width: none; margin: 24px 0 0 -20px; }
+  .hello { position: relative; order: 2; right: auto; bottom: auto; width: 100%; margin-top: 16px; }
   .about-skills li { grid-template-columns: 1fr; }
+  .about-contact { min-height: 560px; }
+  .card-hand { width: 112vw; transform: translateX(-12%); }
+  .about-contact .email { top: 8%; left: 20px; right: 20px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .marquee-track, .spin { animation: none; }

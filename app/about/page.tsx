@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import RevealText from "@/components/RevealText";
-import SiteFooter from "@/components/SiteFooter";
 import { site } from "@/content/site";
 import { skills } from "@/content/skills";
 
@@ -10,21 +9,17 @@ export default function About() {
   return (
     <main className="about-page">
       <div className="about">
-        <h1 className="about-title display">about me</h1>
-
-        <div className="about-grid">
+        <section className="about-intro">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img className="about-me" src="/about/me.avif" alt={`${site.title}, taking a mirror selfie`} width={611} height={1076} />
+          <h1 className="about-title display">about me</h1>
           <div className="about-copy">
             <RevealText className="display" text={`${site.tagline} ${site.bio}`} />
           </div>
-          <div className="about-photo">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/about/me.avif" alt={`${site.title}, taking a mirror selfie`} width={611} height={1076} />
+          <div className="hello">
+            <video src="/about/hello.mp4" poster="/about/hello-poster.jpg" autoPlay muted loop playsInline aria-label="hello! my name is ram, in my handwriting" />
           </div>
-        </div>
-
-        <div className="hello">
-          <video src="/about/hello.mp4" poster="/about/hello-poster.jpg" autoPlay muted loop playsInline aria-label="hello! my name is ram, in my handwriting" />
-        </div>
+        </section>
 
         <section className="about-skills" aria-labelledby="skills-h">
           <h2 id="skills-h" className="label"><em>skills</em></h2>
@@ -45,12 +40,11 @@ export default function About() {
             <span className="card-word display" aria-hidden>RESUME</span>
           </a>
           <a className="email" href={`mailto:${site.email}`}>
+            <span className="label display">EMAIL</span>
             <span className="display">{site.email}</span>
-            <span className="label">EMAIL</span>
           </a>
         </section>
       </div>
-      <SiteFooter />
     </main>
   );
 }
