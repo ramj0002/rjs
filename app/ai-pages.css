@@ -95,3 +95,12 @@
   .case .orch-flow.ai-flow ol { grid-template-columns: 1fr; }
   .mb-row { grid-template-columns: 1fr 60px; } .mb-row .bar { grid-column: 1 / -1; grid-row: 2; }
 }
+/* tilemap: map never wider than the screen; marker letters readable */
+.tv-body > * { min-width: 0; }
+.tv-map { max-width: 100%; overflow: hidden; }
+.tv-c.t-s, .tv-key .t-s, .tv-checks li.ok b { background-color: #24734b; }
+.tv-checks li.ok b { background: none; color: #24734b; }
+.tv-verdict.ok { color: #24734b !important; }
+.tv-c.t-e { color: #3d2e00; }
+.rc-out .check .rc-tag { color: #3d2e00; }
+.ai-links a { padding: 10px 18px; }

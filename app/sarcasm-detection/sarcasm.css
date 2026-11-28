@@ -73,3 +73,5 @@
 .sd-stack-key span:nth-child(1) { color: #c0306a; }
 .sd-stack-key span:nth-child(3) { color: #2f8a5a; }
 .sd-topic .case-img { margin-top: auto; }
+.sd-stack-key span:nth-child(3), .fs-tr .up { color: #24734b; }
+.sd-model.best .sd-acc em { color: #5b2a86; }

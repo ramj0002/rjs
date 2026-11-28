@@ -53,7 +53,7 @@ export default function PickABox() {
         {opened.map((o, b) => (
           <button key={b} className={`pab-box ${o !== null ? "open" : ""}`} onClick={() => open(b)} aria-label={o === null ? `Mystery box ${b + 1}` : all[o].name}>
             {o === null ? (
-              <span className="pab-closed" style={{ ["--bx" as string]: BOX_COLORS[b] }}>
+              <span className="pab-closed" style={{ ["--bx" as string]: BOX_COLORS[b], color: ["#f2b632", "#3fae45"].includes(BOX_COLORS[b]) ? "#1f1300" : "#fff" }}>
                 <span className="display">?</span>
               </span>
             ) : (
