@@ -7,6 +7,7 @@ import "./fewshot.css";
 import CaseImage from "@/components/CaseImage";
 import HighlightBlock from "@/components/Highlight";
 import ProtoDemo from "@/components/ProtoDemo";
+import { DeltaBars, Dumbbell } from "@/components/FsCharts";
 import { marks } from "@/components/marks";
 import { plates } from "@/components/plates";
 import { fewshot as f } from "@/content/fewshot";
@@ -60,6 +61,13 @@ export default function FewShot() {
         </div>
       </section>
 
+      <section className="case-sec fs-short" aria-label="In short">
+        <h3 className="display fs-sub" style={{ marginTop: 0 }}>in short</h3>
+        <div className="case-rows case-rows-big">
+          {f.inShort.map(([t, d]) => <div key={t}><h3 className="display">{t}</h3><div><p>{d}</p></div></div>)}
+        </div>
+      </section>
+
       <section id="how" className="case-sec">
         <h2 className="display">learning from one example</h2>
         <p className="case-lead">{f.how}</p>
@@ -79,63 +87,30 @@ export default function FewShot() {
       </section>
 
       <section id="results" className="case-sec">
-        <h2 className="display">results</h2>
+        <h2 className="display">organs are easy, skin is hard</h2>
         <p className="case-lead">{f.resultsText}</p>
-        <HighlightBlock className="fs-bars">
-          <div className="fs-bars-key"><span><i className="one" /> 1 example per class</span><span><i className="five" /> 5 examples per class</span></div>
-          {f.results.map((r) => (
-            <div key={r.name} className="fs-bar-row">
-              <div className="fs-bar-name"><b className="display">{r.name}</b><em>{r.sub}</em></div>
-              <div className="fs-bar-pair">
-                {([["one", r.one], ["five", r.five]] as const).map(([k, v]) => (
-                  <div key={k} className={`fs-bar ${k}`}>
-                    <span style={{ ["--w" as string]: `${v}%` }} />
-                    <b className="display">{v.toFixed(1)}%</b>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-          <div className="fs-chance" aria-hidden><span>guessing 20%</span></div>
-        </HighlightBlock>
+        <Dumbbell a="1 example per class" b="5 examples per class" chance={20}
+          rows={f.results.map((r) => ({ name: r.name, sub: r.sub, a: r.one, b: r.five }))} />
+        <p className="case-lead fs-after">{f.resultsAfter}</p>
       </section>
 
       <section id="why" className="case-sec">
-        <h2 className="display">why organs beat skin</h2>
+        <h2 className="display">why: how the model sees them</h2>
         <p className="case-lead">{f.umapText}</p>
         <div className="case-grid-2 fs-umaps">
           {f.umaps.map((im) => <CaseImage key={im.src} {...im} />)}
         </div>
         <h3 className="display fs-sub">trained on the wrong pictures</h3>
         <p className="case-lead">{f.shiftText}</p>
-        <div className="fs-shift">
-          {f.shift.map((s) => (
-            <div key={s.name}>
-              <p className="display fs-shift-name">{s.name}</p>
-              <div className="fs-shift-row"><em>trained on photos</em><b className="display">{s.cross}%</b></div>
-              <div className="fs-shift-row"><em>trained on medical</em><b className="display">{s.inDomain}%</b></div>
-            </div>
-          ))}
-        </div>
+        <Dumbbell a="trained on everyday photos" b="trained on medical images" chance={20}
+          rows={f.shift.map((r) => ({ name: r.name, a: r.cross, b: r.inDomain }))} />
       </section>
 
       <section id="noise" className="case-sec">
-        <h2 className="display">adding noise</h2>
+        <h2 className="display">adding noise made it worse</h2>
         <HighlightBlock><p className="case-lead">{hl(f.fgsm.text)}</p></HighlightBlock>
-        <div className="fs-table" role="table" aria-label="1-shot accuracy with FGSM noise">
-          <div className="fs-tr head" role="row"><span role="columnheader" />{f.fgsm.heads.map((h) => <span key={h} role="columnheader"><em>{h}</em></span>)}</div>
-          {f.fgsm.rows.map((r) => (
-            <div key={r.name} className="fs-tr" role="row">
-              <span role="rowheader" className="display">{r.name}</span>
-              {r.vals.map((v, i) => (
-                <span key={i} role="cell" className={i === 0 ? "base" : v < r.vals[0] ? "down" : "up"}>
-                  {v.toFixed(1)}%{i > 0 && <small>{v < r.vals[0] ? " ↓" : " ↑"}</small>}
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-        <p className="case-note">1 example per class. Noise is only added in training; testing is always on clean images.</p>
+        <DeltaBars rows={f.fgsm.rows} heads={f.fgsm.heads} />
+        <p className="case-note">{f.fgsm.after}</p>
       </section>
 
       <section id="errors" className="case-sec">

@@ -16,6 +16,11 @@ export const fewshot = {
     ["600", "test episodes × 3 seeds"],
   ] as [string, string][],
   meta: "Final year project, NTU · supervised by A/P Wang Lipo",
+  inShort: [
+    ["Organs are easy, skin is hard", "With one example per class, organ scans reach 88%; skin lesions only 52%."],
+    ["More examples help, but not enough", "Five examples lift skin lesions to 66%, still below organs with just one."],
+    ["Adding noise backfired", "Training with adversarial noise lowered accuracy on skin lesions by up to 6.7 points."],
+  ] as [string, string][],
 
   how: "A Prototypical Network turns every image into a point. For each class it averages the few examples it’s given into one point, the prototype. A new image gets the class of the nearest prototype. Try it:",
 
@@ -31,7 +36,8 @@ export const fewshot = {
     { name: "Everyday photos", sub: "miniImageNet", one: 56.26, five: 75.88 },
     { name: "Skin lesions", sub: "DermaMNIST", one: 52.05, five: 66.24 },
   ],
-  resultsText: "Five-way tasks: pick the right class out of five. Guessing gets 20%.",
+  resultsText: "Each test shows the model five classes it has never seen, with one or five examples of each, and asks it to sort new images. Guessing gets 20%.",
+  resultsAfter: "More examples help most where it’s hardest. But skin lesions with five examples still land below organs with one: more data eases the problem, it doesn’t fix it.",
 
   umaps: [
     { src: "/few-shot/umap-derma.png", caption: "Skin lesions: classes mixed in one cloud" },
@@ -40,7 +46,8 @@ export const fewshot = {
   umapText: "Each dot is one test image, placed by what the model sees. Where classes overlap, one example can’t make a good prototype.",
 
   fgsm: {
-    text: "Adversarial noise is often used to make models tougher. Here it ==made things worse== wherever classes already overlap, and barely moved the organs.",
+    text: "FGSM adds a small, deliberately unhelpful nudge to training images, which is often used to make models tougher. Here it ==made things worse== wherever classes already overlap, and barely moved the organs.",
+    after: "Bigger ε means a stronger nudge. Changes are for one example per class; testing is always on clean images.",
     rows: [
       { name: "Skin lesions", vals: [52.05, 48.98, 47.59, 45.38] },
       { name: "Everyday photos", vals: [56.26, 54.35, 51.15, 52.49] },
@@ -53,7 +60,7 @@ export const fewshot = {
     { name: "Skin lesions", cross: 25.66, inDomain: 53.71 },
     { name: "Organ CT scans", cross: 37.08, inDomain: 89.5 },
   ],
-  shiftText: "A model trained only on everyday photos, tested straight on medical images, nearly falls to guessing.",
+  shiftText: "Train on everyday photos, then test straight on medical images, and accuracy nearly falls to guessing. The features it learnt from photos don’t fit scans.",
 
   derma: ["actinic keratosis", "basal cell carcinoma", "benign keratosis", "dermatofibroma", "melanoma", "mole (nevus)", "vascular lesion"],
   organ: ["bladder", "left femur", "right femur", "heart", "left kidney", "right kidney", "liver", "left lung", "right lung", "pancreas", "spleen"],
