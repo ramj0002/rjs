@@ -12,14 +12,14 @@ export default function About() {
         <section className="about-intro">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img className="about-me" src="/about/me.webp" alt={`${site.title}, taking a mirror selfie`} width={543} height={946} />
-          <div className="about-side">
-            <h1 className="about-title display">about me</h1>
-            <div className="about-copy">
-              <RevealText className="display" text={`${site.tagline} ${site.bio}`} />
-            </div>
-            <div className="hello">
+          <h1 className="about-title display">about me</h1>
+          <div className="hello">
             <video src="/about/hello.mp4" poster="/about/hello-poster.jpg" autoPlay muted loop playsInline aria-label="hello! my name is ram, in my handwriting" />
-            </div>
+          </div>
+          <div className="about-lines">
+            {["part engineer, part designer.", "I try to build things that look good,", "work well,", "and just…make sense."].map((l, i) => (
+              <RevealText key={i} className={`display line-${i}`} text={l} />
+            ))}
           </div>
         </section>
 

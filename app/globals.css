@@ -238,19 +238,19 @@ body { transition: color 0.3s; }
 /* ---------- about ---------- */
 .about { background: var(--blue); min-height: 100vh; padding: 88px 32px 64px; overflow: hidden; }
 .about { padding: 0; }
-.about-intro { --ph: min(calc(100svh - 56px), 1000px); position: relative; min-height: calc(100svh - 56px); margin-top: 56px; }
+.about-intro { position: relative; min-height: max(150svh, 1050px); padding-top: 56px; overflow: hidden; }
 .about-me {
-  position: absolute; left: 0; bottom: 0; height: var(--ph); width: auto; display: block; pointer-events: none;
+  position: absolute; left: 0; bottom: 0; height: min(112svh, 1250px); width: auto; display: block; pointer-events: none; z-index: 0;
 }
-.about-side {
-  margin-left: calc(var(--ph) * 0.574 + 3vw); padding: 28px max(4vw, 20px) 40px 0;
-  min-height: calc(100svh - 56px); display: flex; flex-direction: column;
-}
-.about-title { text-transform: uppercase; font-size: clamp(2.6rem, 6vw, 5.5rem); color: var(--ink); line-height: 1; }
-.about-copy { margin-top: 18px; }
-.reveal { font-size: clamp(2rem, 4.4vw, 4.6rem); color: var(--ink); line-height: 1.04; }
+.about-title { position: relative; z-index: 1; text-align: center; text-transform: uppercase; font-size: clamp(3.6rem, 10vw, 10rem); color: var(--ink); line-height: 1; margin-top: 8px; }
+.about-lines { position: absolute; left: 0; right: 0; bottom: 7%; z-index: 1; }
+.about-lines .reveal { font-size: clamp(2.2rem, 5.6vw, 6rem); color: var(--ink); line-height: 1.02; white-space: nowrap; }
+.about-lines .line-0 { margin-left: 5.5vw; }
+.about-lines .line-1 { margin-left: 11vw; }
+.about-lines .line-2 { margin-left: 24vw; }
+.about-lines .line-3 { margin-left: 34vw; }
 .reveal span { transition: opacity 0.15s linear; }
-.hello { margin-top: auto; padding-top: 16px; width: 100%; max-width: 820px; align-self: flex-end; }
+.hello { position: relative; z-index: 1; width: min(62vw, 1100px); margin: -1vw 2vw 0 auto; }
 .hello video { width: 100%; height: auto; display: block;
   -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%); }
 .about-skills { padding: 72px max(4vw, 20px) 0; }
@@ -284,11 +284,12 @@ body { transition: color 0.3s; }
   .card { grid-template-columns: 1fr; }
   .plate { border-right: 0; border-bottom: 2px solid var(--ink); aspect-ratio: 4 / 3; min-height: 0; }
   .card:hover { transform: none; box-shadow: none; }
-  .about-intro { min-height: 0; display: flex; flex-direction: column; }
-  .about-me { order: 2; }
-  .about-side { margin-left: 0; min-height: 0; padding: 24px 18px 0; }
-  .hello { margin-top: 8px; }
-  .about-me { position: relative; height: auto; width: 74vw; }
+  .about-intro { min-height: 0; display: flex; flex-direction: column; padding-bottom: 0; }
+  .about-lines { position: relative; bottom: auto; margin-top: 8px; }
+  .about-lines .reveal { white-space: normal; font-size: clamp(1.3rem, 6.4vw, 2rem); }
+  .about-lines .line-0 { margin-left: 14px; } .about-lines .line-1 { margin-left: 24px; } .about-lines .line-2 { margin-left: 56px; } .about-lines .line-3 { margin-left: 84px; }
+  .hello { width: 100%; margin: 8px 0 0; }
+  .about-me { position: relative; order: 3; height: auto; width: 86vw; margin-top: -40px; }
   .about-skills li { grid-template-columns: 1fr; }
   .about-contact { min-height: 78vw; }
   .card-hand { width: 112vw; transform: translateX(-12%); }
