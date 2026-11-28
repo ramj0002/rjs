@@ -250,7 +250,7 @@ body { transition: color 0.3s; }
 .about-lines .line-2 { margin-left: 24vw; }
 .about-lines .line-3 { margin-left: 34vw; }
 .reveal span { transition: opacity 0.15s linear; }
-.hello { position: relative; z-index: 1; width: min(62vw, 1100px); margin: -1vw 2vw 0 auto; }
+.hello { position: relative; z-index: 1; width: min(62vw, 1100px); margin: -6vw 10vw 0 auto; }
 .hello video { width: 100%; height: auto; display: block;
   -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%); }
 .about-skills { padding: 72px max(4vw, 20px) 0; }
