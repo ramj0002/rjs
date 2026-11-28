@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import fs from "node:fs";
 import path from "node:path";
@@ -95,9 +96,7 @@ export default function Renders() {
         <PickABox />
       </section>
 
-      <footer className="case-foot">
-        <Link href="/#work" className="display">← all work</Link>
-      </footer>
+      <SiteFooter back />
     </main>
   );
 }

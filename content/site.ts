@@ -6,6 +6,9 @@ export const site = {
   tagline: "part engineer, part designer.",
   bio: "I try to build things that look good, work well, and just…make sense.",
   email: "z.ramjeet@gmail.com",
+  github: "https://github.com/ramj0002",
+  // ✏️ paste your LinkedIn profile link here
+  linkedin: "https://www.linkedin.com/search/results/people/?keywords=Ram%20Jeet%20Singh",
   resume:
     "https://drive.google.com/file/d/1H54MdFpHRYW8GnX39U_vJvLncy9skABQ/view?usp=sharing",
   // Drop your photo in /public/me.jpg — it gets the halftone treatment automatically.

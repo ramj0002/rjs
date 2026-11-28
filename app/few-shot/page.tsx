@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import "../ktmb/case.css";
 import "../glow-of-orchard/orchard.css";
@@ -142,9 +143,7 @@ export default function FewShot() {
         </div>
       </section>
 
-      <footer className="case-foot">
-        <Link href="/#work" className="display">← all work</Link>
-      </footer>
+      <SiteFooter back />
     </main>
   );
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import "../ktmb/case.css";
 import "./drawings.css";
@@ -38,9 +39,7 @@ export default function Drawings() {
         <ArtGallery art={art} />
       </section>
 
-      <footer className="case-foot">
-        <Link href="/#work" className="display">← all work</Link>
-      </footer>
+      <SiteFooter back />
     </main>
   );
 }

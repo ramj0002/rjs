@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import "./case.css";
 import CaseImage from "@/components/CaseImage";
@@ -258,9 +259,7 @@ export default function KtmbCase() {
         </div>
       </section>
 
-      <footer className="case-foot">
-        <Link href="/#work" className="display">← all work</Link>
-      </footer>
+      <SiteFooter back />
     </main>
   );
 }

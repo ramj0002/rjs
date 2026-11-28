@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SiteFooter from "@/components/SiteFooter";
 import type { ReactNode } from "react";
 import HighlightBlock from "@/components/Highlight";
 import { plates } from "@/components/plates";
@@ -65,8 +66,6 @@ export function AiRows({ rows }: { rows: [string, string][] }) {
 
 export function AiFoot() {
   return (
-    <footer className="case-foot">
-      <Link href="/#work" className="display">← all work</Link>
-    </footer>
+    <SiteFooter back />
   );
 }

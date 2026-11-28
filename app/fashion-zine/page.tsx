@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import "@fontsource/texturina/400-italic.css";
 import "../ktmb/case.css";
@@ -62,9 +63,7 @@ export default function FashionZine() {
         </ol>
       </section>
 
-      <footer className="zine-foot">
-        <Link href="/#work" className="display">← all work</Link>
-      </footer>
+      <SiteFooter back />
     </main>
   );
 }

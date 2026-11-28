@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SiteFooter from "@/components/SiteFooter";
 import HalftoneHero from "@/components/HalftoneHero";
 import { ShaderBackground } from "@/components/ui/j-shader";
 import WorkGrid from "@/components/WorkGrid";
@@ -13,15 +14,7 @@ export default function Home() {
       </section>
 
       <WorkGrid />
-
-      <footer className="footer">
-        <span>© {new Date().getFullYear()} {site.name}</span>
-        <nav>
-          <a href={`mailto:${site.email}`}>{site.email}</a>
-          <a href={site.resume} target="_blank" rel="noreferrer">resume</a>
-          <Link href="/about/">about me</Link>
-        </nav>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

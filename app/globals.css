@@ -357,3 +357,58 @@ input[type="range"] { min-height: 28px; cursor: pointer; }
 /* soft moving silk behind the whole site (21st.dev shader), kept faint */
 .site-shader { position: fixed !important; inset: 0; width: 100vw !important; height: 100vh !important; z-index: -1; opacity: .32; pointer-events: none; }
 .nav { background: color-mix(in srgb, var(--white) 72%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+
+/* ---------- site footer: flower garden ---------- */
+.site-foot {
+  margin-top: 120px; position: relative; overflow: hidden;
+  background: color-mix(in srgb, var(--blue) 7%, #fff); color: var(--ink);
+  padding: 56px max(4vw, 20px) 28px;
+}
+.site-foot-top { display: flex; flex-direction: column; gap: 22px; }
+.site-foot-mark { width: fit-content; color: var(--ink); }
+.site-foot nav { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.site-foot nav a {
+  font-family: var(--display); font-size: clamp(2rem, 4.2vw, 3.4rem); line-height: 1.05;
+  text-transform: lowercase; color: var(--ink); text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 100% / 0 3px no-repeat;
+  transition: background-size .3s ease;
+}
+.site-foot nav a:hover, .site-foot nav a:focus-visible { background-size: 100% 3px; }
+.garden {
+  display: flex; justify-content: center; align-items: flex-end;
+  gap: clamp(6px, 3vw, 48px); margin: 36px auto 0; max-width: 980px; min-height: 200px;
+}
+.garden-friend {
+  width: clamp(64px, 14vw, 150px); cursor: pointer; touch-action: manipulation;
+  transform-origin: 50% 100%; animation: sway var(--d) ease-in-out var(--delay) infinite alternate;
+  position: relative; -webkit-tap-highlight-color: transparent;
+}
+.garden-friend::after {
+  content: ""; position: absolute; left: 22%; right: 22%; bottom: -6px; height: 10px; border-radius: 50%;
+  background: color-mix(in srgb, var(--ink) 14%, transparent); z-index: -1;
+}
+.garden-friend svg { display: block; overflow: visible; }
+.garden-head { transform-box: fill-box; transform-origin: 50% 50%; transition: transform .35s cubic-bezier(.3,1.6,.5,1); }
+.garden-head .petals { transform-box: fill-box; transform-origin: 50% 50%; transition: transform .6s cubic-bezier(.3,1.4,.5,1); }
+.garden-friend:hover .garden-head { transform: scale(1.08); }
+.garden-friend:hover .petals { transform: rotate(18deg); }
+.garden-friend .eyes { transition: transform .12s linear; }
+.garden-friend .eyes ellipse { transform-box: fill-box; transform-origin: 50% 50%; animation: blink 5s infinite; animation-delay: var(--delay); }
+.garden-friend.hop svg { animation: hop .6s cubic-bezier(.3,1.5,.5,1); }
+.garden-friend.hop .petals { transform: rotate(200deg); }
+@keyframes sway { from { transform: rotate(-3deg); } to { transform: rotate(3deg); } }
+@keyframes hop { 0% { transform: translateY(0) scaleY(1); } 18% { transform: translateY(4px) scaleY(.92); } 45% { transform: translateY(-34px) scaleY(1.04); } 100% { transform: translateY(0) scaleY(1); } }
+@keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(.1); } }
+.site-foot-bottom {
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; align-items: baseline;
+  border-top: 2px solid var(--ink); margin-top: 18px; padding-top: 16px; font-size: 1rem;
+}
+.site-foot-bottom small { font-size: 1rem; }
+.site-foot-bottom p { font-style: italic; }
+@media (min-width: 900px) {
+  .site-foot-top { flex-direction: row; justify-content: space-between; align-items: flex-start; }
+  .site-foot nav { align-items: flex-end; text-align: right; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .garden-friend, .garden-friend .eyes ellipse, .garden-friend.hop svg { animation: none; }
+}
