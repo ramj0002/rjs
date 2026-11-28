@@ -41,6 +41,11 @@ export default function About() {
             <img src="/about/hand.png" alt="" width={1024} height={694} />
             <span className="card-word display" aria-hidden>RESUME</span>
           </a>
+          <nav className="about-links" aria-label="Find me elsewhere">
+            <a className="display" href={site.github} target="_blank" rel="noreferrer">github ↗</a>
+            <a className="display" href={site.linkedin} target="_blank" rel="noreferrer">linkedin ↗</a>
+            <a className="display" href={`mailto:${site.email}`}>email ↗</a>
+          </nav>
         </section>
       </div>
     </main>
