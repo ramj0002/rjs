@@ -162,7 +162,6 @@ export default function GlowOfOrchard() {
 
       <footer className="case-foot">
         <Link href="/#work" className="display">← all work</Link>
-        <Link href="/about/">about me →</Link>
       </footer>
     </main>
   );

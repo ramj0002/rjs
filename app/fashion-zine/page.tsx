@@ -64,7 +64,6 @@ export default function FashionZine() {
 
       <footer className="zine-foot">
         <Link href="/#work" className="display">← all work</Link>
-        <Link href="/about/">about me →</Link>
       </footer>
     </main>
   );
