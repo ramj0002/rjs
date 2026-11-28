@@ -100,7 +100,7 @@ export default function SiteFooter({ back = false, onSilk = false }: { back?: bo
     <footer className={`site-foot${onSilk ? " on-silk" : ""}`}>
       {!onSilk && <ShaderBackground className="foot-shader" themed />}
       <div className="site-foot-top">
-        <Link href="/" aria-label="home" className="site-foot-mark"><Flower size={46} /></Link>
+        <Link href="/" aria-label="back to top" className="site-foot-mark" onClick={(e) => { if (location.pathname === "/") { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); } }}><Flower size={46} /></Link>
         {back && (
           <nav aria-label="Footer">
             <Link href="/#work">← all work</Link>
