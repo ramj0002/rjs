@@ -27,6 +27,6 @@ export const experience: Row[] = [
     when: "Mar – Aug 2020",
     where: "Illuminating Asia",
     role: "Research & Development Intern",
-    note: "Named inventor on a patented smart-lighting product. Led it from research and five prototypes to production and installation at Design Orchard.",
+    note: "Named inventor on a patented smart-lighting product. Led it from research and prototyping to production and installation at Design Orchard.",
   },
 ];
