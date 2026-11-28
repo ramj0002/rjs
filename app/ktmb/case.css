@@ -316,3 +316,9 @@ html:has(.case) { scroll-padding-top: 120px; }
   .pain-flow .pin { transform: none; animation: none !important; }
   .tbar-fill { width: var(--w); transition: none; }
 }
+
+/* light project colours (teal, yellow): dark text in the hero so it stays readable */
+.page-theme.t-teal .case-hero { color: #0f3d44; --ink: #0f3d44; --accent: #0f3d44; --soft: rgba(15,61,68,.6); }
+.page-theme.t-yellow .case-hero, .page-theme.t-yellow2 .case-hero { color: #3d2e00; --ink: #3d2e00; --accent: #3d2e00; --soft: rgba(61,46,0,.6); }
+.page-theme.t-teal .case-hero .tools li { border-color: #0f3d44; }
+.page-theme.t-yellow .case-hero .tools li, .page-theme.t-yellow2 .case-hero .tools li { border-color: #3d2e00; }
