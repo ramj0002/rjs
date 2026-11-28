@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { og } from "@/lib/meta";
 import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import fs from "node:fs";
@@ -13,10 +14,10 @@ import { plates } from "@/components/plates";
 import { xyr as x } from "@/content/xyr";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = og({
   title: `XYR Fashion Store — ${site.title}`,
   description: x.tagline,
-};
+});
 
 const sections = [
   ["overview", "overview"],

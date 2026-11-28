@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { og } from "@/lib/meta";
 import "../ktmb/case.css";
 import "../glow-of-orchard/orchard.css";
 import "../xyr/xyr.css";
@@ -10,7 +11,7 @@ import { marks } from "@/components/marks";
 import { site } from "@/content/site";
 
 const tagline = "A recruiter-style resume review against a specific job ad: rule-based checks for the facts, Claude for the judgement.";
-export const metadata: Metadata = { title: `AI resume reviewer — ${site.title}`, description: tagline };
+export const metadata: Metadata = og({ title: `AI resume reviewer — ${site.title}`, description: tagline });
 
 export default function Resume() {
   return (

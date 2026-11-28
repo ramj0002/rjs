@@ -8,8 +8,7 @@ export const site = {
   email: "z.ramjeet@gmail.com",
   github: "https://github.com/ramj0002",
   linkedin: "https://www.linkedin.com/in/ram-jeet-singh-1320b2168",
-  resume:
-    "https://drive.google.com/file/d/1H54MdFpHRYW8GnX39U_vJvLncy9skABQ/view?usp=sharing",
+  resume: "/resume.pdf",
   // Drop your photo in /public/me.jpg — it gets the halftone treatment automatically.
   photo: "/me.svg",
 };

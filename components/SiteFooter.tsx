@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { projects } from "@/content/projects";
 import { site } from "@/content/site";
 import { ShaderBackground } from "./ui/j-shader";
 
@@ -89,6 +91,9 @@ function Friend({ f, i }: { f: (typeof FRIENDS)[number]; i: number }) {
 
 export default function SiteFooter({ back = false, onSilk = false }: { back?: boolean; onSilk?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
+  const path = usePathname();
+  const at = projects.findIndex((p) => p.link.replace(/\/$/, "") === (path || "").replace(/\/$/, ""));
+  const next = at >= 0 ? projects[(at + 1) % projects.length] : null;
   useEffect(() => {
     const root = ref.current;
     if (!root) return;
@@ -116,6 +121,11 @@ export default function SiteFooter({ back = false, onSilk = false }: { back?: bo
         {back && (
           <nav aria-label="Footer">
             <Link href="/#work">← all work</Link>
+            {next && (
+              <Link href={next.link} className={`foot-next t-${next.theme}`}>
+                <em>next</em> {next.title} →
+              </Link>
+            )}
           </nav>
         )}
       </div>

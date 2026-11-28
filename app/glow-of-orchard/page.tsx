@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { og } from "@/lib/meta";
 import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import "../ktmb/case.css";
@@ -13,10 +14,10 @@ import { plates } from "@/components/plates";
 import { orchard as o } from "@/content/orchard";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = og({
   title: `Glow of Orchard — ${site.title}`,
   description: o.subtitle,
-};
+});
 
 const sections = [
   ["overview", "overview"],

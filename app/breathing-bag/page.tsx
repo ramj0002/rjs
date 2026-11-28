@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { og } from "@/lib/meta";
 import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import fs from "node:fs";
@@ -14,10 +15,10 @@ import BagDashboard from "@/components/BagDashboard";
 import { bag as b } from "@/content/bag";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = og({
   title: `Breathing Bag — ${site.title}`,
   description: b.tagline,
-};
+});
 
 const sections = [
   ["overview", "overview"],

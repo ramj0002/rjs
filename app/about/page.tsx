@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { og } from "@/lib/meta";
 import LineReveal from "@/components/LineReveal";
 import { site } from "@/content/site";
 import { skills } from "@/content/skills";
+import { experience, intro } from "@/content/experience";
 
-export const metadata: Metadata = { title: `about me — ${site.title}` };
+export const metadata: Metadata = og({ title: `about me — ${site.title}` });
 
 export default function About() {
   return (
@@ -17,6 +19,25 @@ export default function About() {
             <video src="/about/hello.mp4" poster="/about/hello-poster.jpg" autoPlay muted loop playsInline aria-label="hello! my name is ram, in my handwriting" />
           </div>
           <LineReveal lines={["part engineer, part designer.", "I try to build things that look good,", "work well,", "and just…make sense."]} />
+        </section>
+
+        <section className="about-exp" aria-labelledby="exp-h">
+          <p className="about-lead display">{intro}</p>
+          <h2 id="exp-h" className="label"><em>experience &amp; education</em></h2>
+          <ul>
+            {experience.map((e) => (
+              <li key={e.where}>
+                <div className="exp-head">
+                  <h3 className="display">{e.where}</h3>
+                  <span className="exp-when">{e.when}</span>
+                </div>
+                <div>
+                  <p className="exp-role"><em>{e.role}</em></p>
+                  <p>{e.note}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </section>
 
         <section className="about-skills" aria-labelledby="skills-h">

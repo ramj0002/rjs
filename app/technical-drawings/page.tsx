@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { og } from "@/lib/meta";
 import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import "../ktmb/case.css";
@@ -9,7 +10,7 @@ import { site } from "@/content/site";
 
 const tagline = "Examples of my work in Autodesk Inventor: everyday products, modelled part by part.";
 
-export const metadata: Metadata = { title: `Technical drawings — ${site.title}`, description: tagline };
+export const metadata: Metadata = og({ title: `Technical drawings — ${site.title}`, description: tagline });
 
 const models = [
   { src: "/drawings-3d/ikea-clock.png", name: "IKEA clock", note: "The TJINGA alarm clock: body, recessed face, hands and snooze button." },

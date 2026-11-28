@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { og } from "@/lib/meta";
 import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import "../ktmb/case.css";
@@ -9,7 +10,7 @@ import { site } from "@/content/site";
 
 const tagline = "Pencil drawings, a lino print, a paper collage, a poster and a logo. Where I practise composition, line, tone and colour theory.";
 
-export const metadata: Metadata = { title: `Drawings — ${site.title}`, description: tagline };
+export const metadata: Metadata = og({ title: `Drawings — ${site.title}`, description: tagline });
 
 const art = [
   { src: "/drawings/eyes.jpg", title: "Eyes", medium: "pencil", wide: true },

@@ -257,6 +257,21 @@ body { transition: color 0.3s; }
 .hello { position: relative; z-index: 1; width: min(62vw, 1100px); margin: -6vw 10vw 0 auto; }
 .hello video { width: 100%; height: auto; display: block;
   -webkit-mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%); mask-image: radial-gradient(ellipse 50% 50% at 50% 50%, #000 62%, transparent 100%); }
+.about-exp { padding: 72px max(4vw, 20px) 0; }
+.about-lead { font-size: clamp(2rem, 4.4vw, 4.4rem); line-height: 1.04; color: var(--white); max-width: 30ch; margin-bottom: 48px; }
+.about-exp .label, .about-skills .label { color: var(--white); font-size: 1.2rem; margin-bottom: 12px; font-weight: 400; }
+.about-exp ul { list-style: none; }
+.about-exp li {
+  display: grid; grid-template-columns: minmax(14rem, 22%) minmax(0, 1fr); gap: 10px 4vw; align-items: baseline;
+  border-top: 2px solid var(--ink); padding: 18px 0; transition: padding 0.25s;
+}
+.about-exp li:last-child { border-bottom: 2px solid var(--ink); }
+.about-exp h3 { font-size: clamp(1.9rem, 3.4vw, 3.2rem); color: var(--ink); line-height: 1; transition: color .25s; }
+.exp-when { display: block; margin-top: 6px; color: var(--white); font-size: 1rem; font-style: italic; }
+.exp-role { color: var(--white); font-size: clamp(1.15rem, 1.7vw, 1.6rem); margin-bottom: 4px; }
+.about-exp li p:not(.exp-role) { color: var(--white); font-size: clamp(1.05rem, 1.5vw, 1.4rem); line-height: 1.55; max-width: 75ch; }
+.about-exp li:hover { padding-left: 18px; }
+.about-exp li:hover h3 { color: var(--white); }
 .about-skills { padding: 72px max(4vw, 20px) 0; }
 .about-skills .label { color: var(--white); font-size: 1.2rem; margin-bottom: 12px; font-weight: 400; }
 .about-skills ul { list-style: none; }
@@ -297,7 +312,7 @@ body { transition: color 0.3s; }
   .about-lines .line-0 { margin-left: 14px; } .about-lines .line-1 { margin-left: 24px; } .about-lines .line-2 { margin-left: 56px; } .about-lines .line-3 { margin-left: 84px; }
   .hello { width: 100%; margin: 8px 0 0; }
   .about-me { position: relative; order: 3; height: auto; width: 86vw; margin-top: -40px; }
-  .about-skills li { grid-template-columns: 1fr; }
+  .about-skills li, .about-exp li { grid-template-columns: 1fr; }
   .about-contact { min-height: 0; display: flex; flex-direction: column; }
   .about-links { position: static; transform: none; align-items: flex-start; padding: 0 18px 24px; }
   .card-hand { position: relative; }
@@ -446,3 +461,9 @@ input[type="range"] { min-height: 28px; cursor: pointer; }
 .work { padding-bottom: 32px; }
 .site-foot-top:has(nav) { position: relative !important; top: auto; left: auto; right: auto; pointer-events: auto; flex-direction: row; justify-content: space-between; align-items: center; }
 .site-foot-top:has(nav) nav a { font-size: clamp(1.8rem, 4vw, 3rem); }
+
+.site-foot-top:has(nav) nav { flex-direction: row; justify-content: space-between; align-items: baseline; width: 100%; gap: 16px 32px; flex-wrap: wrap; }
+.site-foot-top nav .foot-next { text-align: right; max-width: 60%; }
+.site-foot-top nav .foot-next em { font-family: var(--serif); font-size: .45em; letter-spacing: 0; vertical-align: middle; margin-right: .3em; }
+.site-foot-top nav .foot-next:hover { color: var(--ci); }
+@media (max-width: 760px) { .site-foot-top nav .foot-next { max-width: none; text-align: left; } }

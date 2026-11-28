@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { og } from "@/lib/meta";
 import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import "../ktmb/case.css";
@@ -15,7 +16,7 @@ import { plates } from "@/components/plates";
 import { sarcasm as s } from "@/content/sarcasm";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = { title: `Sarcasm detection — ${site.title}`, description: s.tagline };
+export const metadata: Metadata = og({ title: `Sarcasm detection — ${site.title}`, description: s.tagline });
 
 const sections = [
   ["overview", "overview"],

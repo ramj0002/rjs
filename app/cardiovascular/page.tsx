@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { og } from "@/lib/meta";
 import "../ktmb/case.css";
 import "../glow-of-orchard/orchard.css";
 import "../xyr/xyr.css";
@@ -10,7 +11,7 @@ import { AiFlow, AiFoot, AiHero, AiOverview, AiRows } from "@/components/AiPage"
 import { site } from "@/content/site";
 
 const tagline = "Which health factors matter most for heart disease? Four models on 68,583 people, and a personal risk report explained with SHAP.";
-export const metadata: Metadata = { title: `Cardiovascular disease prediction — ${site.title}`, description: tagline };
+export const metadata: Metadata = og({ title: `Cardiovascular disease prediction — ${site.title}`, description: tagline });
 
 // test-set results from the notebook's final comparison (after cross-validated tuning)
 const models: [string, number, number][] = [["XGBoost", 73.4, 71.19], ["Random Forest", 73.3, 70.92], ["Decision Tree", 73.0, 71.12], ["Logistic Regression", 72.7, 70.12]];

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { og } from "@/lib/meta";
 import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import "../ktmb/case.css";
@@ -14,7 +15,7 @@ import { plates } from "@/components/plates";
 import { fewshot as f } from "@/content/fewshot";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = { title: `Few-shot medical image classification — ${site.title}`, description: f.tagline };
+export const metadata: Metadata = og({ title: `Few-shot medical image classification — ${site.title}`, description: f.tagline });
 
 const sections = [
   ["overview", "overview"],

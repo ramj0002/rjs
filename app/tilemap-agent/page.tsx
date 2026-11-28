@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { og } from "@/lib/meta";
 import "../ktmb/case.css";
 import "../glow-of-orchard/orchard.css";
 import "../xyr/xyr.css";
@@ -9,7 +10,7 @@ import { AiFlow, AiFoot, AiHero, AiOverview, AiRows } from "@/components/AiPage"
 import { site } from "@/content/site";
 
 const tagline = "An AI agent that builds 2D game levels only through tool calls, and an evaluation that checks each level can really be played.";
-export const metadata: Metadata = { title: `Tilemap agent — ${site.title}`, description: tagline };
+export const metadata: Metadata = og({ title: `Tilemap agent — ${site.title}`, description: tagline });
 
 const tools: [string, string][] = [
   ["get_tilemap_state", "See the map as text, with its size and markers"],

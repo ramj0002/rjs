@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { og } from "@/lib/meta";
 import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import "@fontsource/texturina/400-italic.css";
@@ -10,7 +11,7 @@ import RevealText from "@/components/RevealText";
 import { zine } from "@/content/zine";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = { title: `fashion zine — ${site.title}` };
+export const metadata: Metadata = og({ title: `fashion zine — ${site.title}` });
 
 export default function FashionZine() {
   return (

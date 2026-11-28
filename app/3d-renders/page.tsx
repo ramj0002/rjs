@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { og } from "@/lib/meta";
 import SiteFooter from "@/components/SiteFooter";
 import Link from "next/link";
 import fs from "node:fs";
@@ -16,10 +17,10 @@ import { plates } from "@/components/plates";
 import { renders as r } from "@/content/renders";
 import { site } from "@/content/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = og({
   title: `3D rendered visualisations — ${site.title}`,
   description: r.tagline,
-};
+});
 
 const sections = [
   ["clock", "the clock"],
