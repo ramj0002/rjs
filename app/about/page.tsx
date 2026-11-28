@@ -3,7 +3,7 @@ import { og } from "@/lib/meta";
 import LineReveal from "@/components/LineReveal";
 import { site } from "@/content/site";
 import { skills } from "@/content/skills";
-import { experience, intro } from "@/content/experience";
+import { education, experience } from "@/content/experience";
 
 export const metadata: Metadata = og({ title: `about me — ${site.title}` });
 
@@ -21,24 +21,25 @@ export default function About() {
           <LineReveal lines={["part engineer, part designer.", "I try to build things that look good,", "work well,", "and just…make sense."]} />
         </section>
 
-        <section className="about-exp" aria-labelledby="exp-h">
-          <p className="about-lead display">{intro}</p>
-          <h2 id="exp-h" className="label"><em>experience &amp; education</em></h2>
-          <ul>
-            {experience.map((e) => (
-              <li key={e.where}>
-                <div className="exp-head">
-                  <h3 className="display">{e.where}</h3>
-                  <span className="exp-when">{e.when}</span>
-                </div>
-                <div>
-                  <p className="exp-role"><em>{e.role}</em></p>
-                  <p>{e.note}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section>
+        {([["education", education], ["experience", experience]] as const).map(([label, rows]) => (
+          <section key={label} className="about-exp" aria-labelledby={`${label}-h`}>
+            <h2 id={`${label}-h`} className="label"><em>{label}</em></h2>
+            <ul>
+              {rows.map((e) => (
+                <li key={e.where}>
+                  <div className="exp-head">
+                    <h3 className="display">{e.where}</h3>
+                    <span className="exp-when">{e.when}</span>
+                  </div>
+                  <div>
+                    <p className="exp-role"><em>{e.role}</em></p>
+                    <p>{e.note}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
 
         <section className="about-skills" aria-labelledby="skills-h">
           <h2 id="skills-h" className="label"><em>skills</em></h2>

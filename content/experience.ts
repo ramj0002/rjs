@@ -1,7 +1,22 @@
 // ✏️ From Ram's master resume. Newest first, one row each on the About page.
-export const intro = "Information Engineering & Media graduate (NTU, 2026), open to product, UX and AI roles.";
+type Row = { when: string; where: string; role: string; note: string };
 
-export const experience: { when: string; where: string; role: string; note: string }[] = [
+export const education: Row[] = [
+  {
+    when: "Aug 2023 – May 2026",
+    where: "NTU Singapore",
+    role: "B.Eng (Hons), Information Engineering and Media",
+    note: "Software engineering, interface design, interactive media, web application design, data science and AI, machine learning.",
+  },
+  {
+    when: "Apr 2018 – May 2021",
+    where: "Ngee Ann Polytechnic",
+    role: "Diploma in Electrical Engineering, with Merit",
+    note: "Specialised in power engineering.",
+  },
+];
+
+export const experience: Row[] = [
   {
     when: "May – Jul 2025",
     where: "IRAS",
@@ -13,17 +28,5 @@ export const experience: { when: string; where: string; role: string; note: stri
     where: "Illuminating Asia",
     role: "Research & Development Intern",
     note: "Named inventor on a patented smart-lighting product. Led it from research and five prototypes to production and installation at Design Orchard.",
-  },
-  {
-    when: "2023 – 2026",
-    where: "NTU Singapore",
-    role: "B.Eng (Hons), Information Engineering and Media",
-    note: "Software engineering, interface design, interactive media, data science and AI.",
-  },
-  {
-    when: "2018 – 2021",
-    where: "Ngee Ann Polytechnic",
-    role: "Diploma in Electrical Engineering, with Merit",
-    note: "Specialised in power engineering.",
   },
 ];
