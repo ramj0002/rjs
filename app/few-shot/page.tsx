@@ -49,7 +49,6 @@ export default function FewShot() {
         <div className="case-two fs-two">
           <HighlightBlock>
             {f.problem.map((t, i) => <p key={i} className="case-lead">{hl(t)}</p>)}
-            <p className="label fs-meta">{f.meta}</p>
           </HighlightBlock>
           <HighlightBlock className="pop-block">
             <div className="case-stats vertical">

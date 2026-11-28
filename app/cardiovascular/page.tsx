@@ -27,7 +27,6 @@ export default function Cardio() {
       <AiOverview stats={[["68,583", "people after cleaning"], ["73.4%", "accuracy, XGBoost"], ["4", "models compared"]]}>
         <p className="case-lead">The goal: help people take charge of their health by showing which factors raise the risk of cardiovascular disease the most.</p>
         <p className="case-lead">We cleaned a dataset of 70,000 patients, explored it, compared four models, and used SHAP to turn the best one into a personal risk report with a recommendation.</p>
-        <p className="label" style={{ marginTop: 18 }}>Team of four · NTU IE0005 · My part: exploratory analysis, the machine learning models and the conclusions</p>
       </AiOverview>
 
       <section id="explore" className="case-sec">

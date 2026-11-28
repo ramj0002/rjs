@@ -41,6 +41,8 @@ export default function HalftoneHero() {
     const mouse = { x: -9999, y: -9999 };
     let raf = 0;
     let visible = true;
+    let first = true;
+    const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     const build = async () => {
       try { await document.fonts.load("400 200px Anton"); } catch {}
@@ -77,13 +79,17 @@ export default function HalftoneHero() {
         for (let x = cell / 2; x < w; x += cell) {
           const a = data[(Math.floor(y) * w + Math.floor(x)) * 4 + 3];
           if (a > 40) {
-            dots.push({ hx: x, hy: y, x, y, vx: 0, vy: 0, r: (cell / 2) * (0.45 + 0.55 * (a / 255)) });
+            // first load: start scattered below the word and fly up into place
+            const sx = first && !still ? x + (Math.random() - 0.5) * w * 0.5 : x;
+            const sy = first && !still ? h + 40 + Math.random() * h : y;
+            dots.push({ hx: x, hy: y, x: sx, y: sy, vx: 0, vy: 0, r: (cell / 2) * (0.45 + 0.55 * (a / 255)) });
           }
         }
       }
     };
 
     const tick = () => {
+      if (first) first = false;
       raf = requestAnimationFrame(tick);
       if (!visible) return;
       ctx.clearRect(0, 0, w, h);
