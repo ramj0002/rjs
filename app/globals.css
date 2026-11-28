@@ -354,8 +354,6 @@ body { transition: color 0.3s; }
 :where(a, button, input, textarea, [tabindex]):focus-visible { outline: 2.5px solid currentColor; outline-offset: 3px; border-radius: 4px; }
 input[type="range"] { min-height: 28px; cursor: pointer; }
 
-/* soft moving silk behind the welcome (21st.dev shader), kept faint */
-.hero { overflow: hidden; }
-.hero .hero-shader { position: absolute; inset: 0; z-index: 0; opacity: .38;
-  -webkit-mask-image: radial-gradient(ellipse 70% 62% at 50% 52%, #000 35%, transparent 100%); mask-image: radial-gradient(ellipse 70% 62% at 50% 52%, #000 35%, transparent 100%); }
-.hero .hero-canvas { position: relative; z-index: 1; }
+/* soft moving silk behind the whole site (21st.dev shader), kept faint */
+.site-shader { position: fixed !important; inset: 0; width: 100vw !important; height: 100vh !important; z-index: -1; opacity: .32; pointer-events: none; }
+.nav { background: color-mix(in srgb, var(--white) 72%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }

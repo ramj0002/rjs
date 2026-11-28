@@ -99,6 +99,7 @@ export default function HalftoneHero() {
       const now = performance.now(), t = (now - t0) / 1000;
       ctx.clearRect(0, 0, w, h);
       const R = Math.max(90, w * 0.09);
+      const HR = R * 0.45; // colour only right under the cursor
       for (let i = waves.length - 1; i >= 0; i--) if (now - waves[i].t > 1400) waves.splice(i, 1);
       for (const d of dots) {
         const dx = d.x - mouse.x, dy = d.y - mouse.y;
@@ -108,7 +109,7 @@ export default function HalftoneHero() {
           const f = (1 - dist / R) * 2.2;
           d.vx += (dx / dist) * f;
           d.vy += (dy / dist) * f;
-          d.heat = Math.min(1, d.heat + (1 - dist / R) * 0.35);
+          if (dist < HR) d.heat = Math.min(1, d.heat + (1 - dist / HR) * 0.5);
         }
         // a click sends a ring outwards that pushes dots and lights them up as it passes
         for (const wv of waves) {
@@ -121,7 +122,7 @@ export default function HalftoneHero() {
         d.vy += (d.hy - d.y) * 0.06;
         d.vx *= 0.82; d.vy *= 0.82;
         d.x += d.vx; d.y += d.vy;
-        d.heat *= 0.965;
+        d.heat *= 0.94;
         const disp = Math.min(1, Math.hypot(d.x - d.hx, d.y - d.hy) / 40);
         // idle: a slow breathing ripple rolls out from the flower
         const breathe = still ? 1 : 1 + 0.16 * Math.sin(t * 1.7 - Math.hypot(d.hx - cx, d.hy - cy) * 0.018);
