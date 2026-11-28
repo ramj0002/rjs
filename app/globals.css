@@ -306,3 +306,33 @@ body { transition: color 0.3s; }
 .a-stream { animation: a-stream 3.6s ease-in-out infinite; transform-box: fill-box; transform-origin: left center; }
 @keyframes a-stream { 0% { transform: scaleX(0); } 45%, 85% { transform: scaleX(1); } 100% { transform: scaleX(1); opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { .a-hbar, .a-stream { animation: none; } }
+
+/* ---------- drawing strip (replaces the text marquee) ---------- */
+.strip {
+  --accent: var(--blue); --soft: color-mix(in srgb, var(--blue) 60%, white); --panel: #fff;
+  position: relative; overflow: hidden; padding: 26px 0 30px; color: var(--blue);
+  border-top: 2px solid var(--blue); border-bottom: 2px solid var(--blue);
+  background-image: radial-gradient(color-mix(in srgb, var(--blue) 22%, transparent) 1px, transparent 1.4px);
+  background-size: 14px 14px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.strip-track { display: flex; width: max-content; animation: strip 70s linear infinite; }
+.strip:hover .strip-track, .strip:focus-within .strip-track { animation-play-state: paused; }
+.strip-set { display: flex; gap: 18px; padding-right: 18px; }
+.strip-tile {
+  position: relative; display: flex; flex-direction: column; width: 210px; flex: none;
+  color: var(--blue); text-decoration: none; background: #fff;
+  border: 2px solid var(--blue); transition: transform .25s ease, box-shadow .25s ease, border-color .25s, color .25s;
+}
+.strip-plate { position: relative; inset: auto; display: block; height: 150px; padding: 10px 12px 4px; }
+.strip-cap { display: flex; align-items: baseline; gap: 8px; padding: 6px 12px 9px; border-top: 1.5px dashed color-mix(in srgb, currentColor 45%, transparent); }
+.strip-cap b { font-size: 1.15rem; font-weight: 400; }
+.strip-cap em { font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.strip-tile:hover, .strip-tile:focus-visible {
+  --accent: var(--c); --soft: color-mix(in srgb, var(--c) 60%, white);
+  color: var(--ci); border-color: var(--ci); transform: translate(-3px, -5px) rotate(-1.2deg); box-shadow: 6px 7px 0 var(--c); outline: none;
+}
+@keyframes strip { to { transform: translateX(-50%); } }
+@media (max-width: 700px) { .strip-tile { width: 160px; } .strip-plate { height: 115px; } .strip-track { animation-duration: 55s; } }
+@media (prefers-reduced-motion: reduce) { .strip-track { animation: none; } .strip { overflow-x: auto; } }
